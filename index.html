@@ -790,7 +790,7 @@
             <a href="ai-programs.html" class="header-btn btn-secondary-nav">AI PROGRAMS</a>
             <a href="freeairesources.html" class="header-btn btn-primary-nav">FREE AI RESOURCES</a>
         </nav>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -818,7 +818,7 @@
             background: rgba(3, 7, 18, 0.95);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            z-index: 1000;
+            z-index: 99999;
             display: flex;
             justify-content: center;
         }
@@ -934,7 +934,7 @@
             border: none;
             cursor: pointer;
             padding: 0;
-            z-index: 1001;
+            z-index: 100000;
         }
 
         .mobile-menu-toggle span {
@@ -959,7 +959,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            z-index: 999;
+            z-index: 99998;
             transform: translateX(100%);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -1044,39 +1044,41 @@
     </style>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggle = document.getElementById('mobileMenuToggle');
+        function toggleMobileMenu() {
             const drawer = document.getElementById('mobileNavDrawer');
+            const toggle = document.getElementById('mobileMenuToggle');
 
-            toggle.addEventListener('click', () => {
-                drawer.classList.toggle('open');
+            if (!drawer || !toggle) return;
 
-                // Animate toggle icon
-                const spans = toggle.querySelectorAll('span');
-                if (drawer.classList.contains('open')) {
-                    spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                    spans[1].style.opacity = '0';
-                    spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                } else {
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                    document.body.style.overflow = '';
-                }
-            });
+            drawer.classList.toggle('open');
 
-            // Close when clicking links
-            drawer.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    drawer.classList.remove('open');
-                    const spans = toggle.querySelectorAll('span');
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                    document.body.style.overflow = '';
+            const spans = toggle.querySelectorAll('span');
+            if (drawer.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const drawer = document.getElementById('mobileNavDrawer');
+            if (drawer) {
+                drawer.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Close menu when link is clicked
+                        const toggle = document.getElementById('mobileMenuToggle');
+                        if (drawer.classList.contains('open')) {
+                            toggleMobileMenu();
+                        }
+                    });
                 });
-            });
+            }
         });
     </script>
 
