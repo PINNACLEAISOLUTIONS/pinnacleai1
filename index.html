@@ -813,7 +813,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
+            /* Force 100% width */
             height: 70px;
             background: rgba(3, 7, 18, 0.95);
             backdrop-filter: blur(15px);
@@ -831,6 +832,8 @@
             justify-content: space-between;
             padding: 0 20px;
             height: 100%;
+            box-sizing: border-box;
+            /* Fix for padding overflow */
         }
 
         /* Logo */
@@ -1014,10 +1017,32 @@
         }
 
         /* Body Padding Fix */
+        /* CRITICAL RESET AND OVERFLOW FIX */
+        html,
         body {
-            padding-top: 70px !important;
+            width: 100%;
+            max-width: 100%;
             overflow-x: hidden;
-            /* Prevents horizontal scroll */
+            /* Strict overflow hiding */
+            position: relative;
+            margin: 0;
+            padding: 0;
+            padding-top: 70px !important;
+        }
+
+        /* Prevent media from causing overflow */
+        iframe,
+        canvas,
+        img,
+        video,
+        svg {
+            max-width: 100%;
+        }
+
+        /* Specifically target Codepen iframes */
+        .codepen-full-bg-iframe {
+            max-width: 100vw;
+            width: 100%;
         }
 
         /* Media Queries */
