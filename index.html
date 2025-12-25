@@ -1110,8 +1110,8 @@
             }
 
             body {
-                padding-top: 130px !important;
-                /* Adjust body padding for extra bar */
+                padding-top: 110px !important;
+                /* Adjusted to remove gap */
             }
 
             .mobile-menu-toggle {
@@ -1309,8 +1309,8 @@
     </section>
 
     <!-- Contact Section - Modified -->
-    <section id="contact" class="section py-20 bg-gray-800 text-white">
-        <canvas id="codepenCanvasContactBackground"></canvas>
+    <section id="contact" class="section py-20 bg-gray-800 text-white relative">
+
         <script type="x-shader/x-fragment" id="contactShaderSource">#version 300 es
         precision highp float;
         out vec4 O;
