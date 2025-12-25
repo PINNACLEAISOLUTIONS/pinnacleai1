@@ -1054,16 +1054,33 @@
 
             .mobile-menu-toggle {
                 display: flex;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
             }
 
             .header-container {
-                justify-content: space-between;
+                justify-content: center;
+                /* Center the logo */
+                position: relative;
+                width: 100%;
+                padding: 0 20px;
             }
         }
 
         @media (max-width: 480px) {
             .header-logo a {
                 font-size: 1.1rem;
+            }
+
+            .header-container {
+                padding: 0 15px;
+            }
+
+            .mobile-menu-toggle {
+                right: 15px;
+                /* Match padding */
             }
         }
     </style>
