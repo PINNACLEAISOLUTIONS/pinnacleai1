@@ -1244,8 +1244,12 @@
 
         /* Media Queries */
         @media (max-width: 1024px) {
-            .header-nav {
-                display: none;
+
+            /* Hide desktop nav elements on mobile */
+            .header-nav-links,
+            .header-shader-spacer,
+            .header-buttons {
+                display: none !important;
             }
 
             .mobile-cta-bar {
@@ -1271,17 +1275,31 @@
                 /* Center the logo */
                 position: relative;
                 width: 100%;
-                padding: 0 20px;
+                padding: 0 70px 0 20px;
+                /* Right padding for hamburger */
+            }
+
+            .header-logo {
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .header-logo a,
+            .logo-animated {
+                font-size: 1.1rem;
             }
         }
 
         @media (max-width: 480px) {
-            .header-logo a {
-                font-size: 1.1rem;
+
+            .header-logo a,
+            .logo-animated {
+                font-size: 0.95rem !important;
+                letter-spacing: 1px !important;
             }
 
             .header-container {
-                padding: 0 15px;
+                padding: 0 60px 0 15px;
             }
 
             .mobile-menu-toggle {
@@ -1706,16 +1724,17 @@
                         <p class="text-gray-300 text-lg">futureai4all@gmail.com</p>
                     </div>
                 </div>
-                <div class="info-item flex items-center animate-on-scroll scale-in">
+                <a href="tel:9046866593"
+                    class="info-item flex items-center animate-on-scroll scale-in hover:scale-105 transition-transform duration-300">
                     <div
                         class="info-icon flex-shrink-0 mr-4 p-4 rounded-full bg-green-600 text-white flex items-center justify-center text-2xl shadow-md">
                         <i class="fas fa-phone"></i>
                     </div>
                     <div>
                         <h4 class="text-xl font-semibold mb-1">Call Us</h4>
-                        <p class="text-gray-300 text-lg">352-443-8670</p>
+                        <p class="text-gray-300 text-lg">904 686 6593</p>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="contact-form-glow animate-on-scroll scale-in max-w-3xl mx-auto">
                 <h3 class="text-2xl font-bold text-center mb-6">Or Fill Out The Form</h3>
@@ -1810,7 +1829,7 @@
     </footer>
 
     <!-- Floating "Call Us" Button -->
-    <a href="tel:3524438670" class="call-us-fab" aria-label="Call Us">
+    <a href="tel:9046866593" class="call-us-fab" aria-label="Call Us">
         <i class="fas fa-phone"></i>
         <span class="fab-text">Call Us</span>
     </a>
