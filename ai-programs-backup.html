@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinnacle AI Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533a71 100%);
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+            overflow-x: hidden;
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(0, 255, 127, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes backgroundPulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes backgroundShift {
+            0% {
+                background-color: #0a0a0a;
+            }
+
+            25% {
+                background-color: #1a1a2e;
+            }
+
+            50% {
+                background-color: #0f3460;
+            }
+
+            75% {
+                background-color: #533a71;
+            }
+
+            100% {
+                background-color: #0a0a0a;
+            }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background:
+                linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(26, 26, 46, 0.8) 50%, rgba(15, 52, 96, 0.7) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1), rgba(0, 255, 127, 0.1), transparent);
+            animation: heroRotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes heroRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero h1 {
+            font-size: 5em;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-shadow:
+                0 0 10px rgba(0, 255, 255, 0.6),
+                0 0 20px rgba(0, 255, 255, 0.3);
+            letter-spacing: -1px;
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            animation: gentleGlow 4s ease-in-out infinite alternate;
+        }
+
+        .hero h1::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg,
+                    rgba(0, 255, 255, 0.2),
+                    rgba(255, 255, 255, 0.1),
+                    rgba(0, 255, 255, 0.2));
+            border-radius: 15px;
+            z-index: -1;
+            filter: blur(15px);
+            animation: subtleHalo 6s ease-in-out infinite;
+        }
+
+        /* FIX: NEW STYLES FOR THE "AI PROGRAMS FOR SALE" BUTTON */
+        .programs-for-sale {
+            display: inline-block;
+            background: rgba(45, 48, 56, 0.75);
+            /* Dark, semi-transparent background */
+            border-radius: 20px;
+            /* Rounded corners */
+            padding: 20px 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            /* Soft drop shadow */
+            backdrop-filter: blur(10px);
+            /* Glass effect */
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            margin: 30px 0 40px 0;
+        }
+
+        .programs-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            /* The crucial glow effect using multiple text-shadows */
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 35px #fff;
+        }
+
+        @keyframes gentleGlow {
+            0% {
+                text-shadow:
+                    0 0 10px rgba(0, 255, 255, 0.6),
+                    0 0 20px rgba(0, 255, 255, 0.3);
+            }
+
+            100% {
+                text-shadow:
+                    0 0 15px rgba(0, 255, 255, 0.8),
+                    0 0 25px rgba(0, 255, 255, 0.4);
+            }
+        }
+
+        @keyframes subtleHalo {
+
+            0%,
+            100% {
+                background: linear-gradient(45deg,
+                        rgba(0, 255, 255, 0.2),
+                        rgba(255, 255, 255, 0.1),
+                        rgba(0, 255, 255, 0.2));
+            }
+
+            50% {
+                background: linear-gradient(45deg,
+                        rgba(0, 255, 255, 0.3),
+                        rgba(255, 255, 255, 0.15),
+                        rgba(0, 255, 255, 0.3));
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:nth-child(odd) {
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(0.5deg);
+            }
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.3), rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3), transparent);
+            transform: rotate(0deg);
+            transition: all 0.8s ease;
+            opacity: 0;
+            animation: rotateGradient 4s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            backdrop-filter: blur(20px);
+            border-radius: 18px;
+            z-index: -1;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+            animation: rotateGradient 2s linear infinite, pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(1.1);
+            }
+        }
+
+        /* Individual Card Color Schemes */
+        .card-training {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.25), rgba(123, 104, 238, 0.2));
+            border: 2px solid rgba(74, 144, 226, 0.4);
+            box-shadow:
+                0 15px 35px rgba(74, 144, 226, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .card-training:hover {
+            transform: translateY(-20px) scale(1.05) rotateX(5deg);
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.4), rgba(123, 104, 238, 0.35));
+            border: 2px solid rgba(74, 144, 226, 0.7);
+            box-shadow:
+                0 25px 50px rgba(74, 144, 226, 0.4),
+                0 0 40px rgba(123, 104, 238, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .card-chatbot {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.25), rgba(255, 99, 132, 0.2));
+            border: 2px solid rgba(255, 107, 157, 0.4);
+            box-shadow:
+                0 15px 35px rgba(255, 107, 157, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .card-chatbot:hover {
+            transform: translateY(-20px) scale(1.05) rotateX(5deg);
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.4), rgba(255, 99, 132, 0.35));
+            border: 2px solid rgba(255, 107, 157, 0.7);
+            box-shadow:
+                0 25px 50px rgba(255, 107, 157, 0.4),
+                0 0 40px rgba(255, 99, 132, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .card-website {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.25), rgba(80, 201, 195, 0.2));
+            border: 2px solid rgba(78, 205, 196, 0.4);
+            box-shadow:
+                0 15px 35px rgba(78, 205, 196, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .card-website:hover {
+            transform: translateY(-20px) scale(1.05) rotateX(5deg);
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.4), rgba(80, 201, 195, 0.35));
+            border: 2px solid rgba(78, 205, 196, 0.7);
+            box-shadow:
+                0 25px 50px rgba(78, 205, 196, 0.4),
+                0 0 40px rgba(80, 201, 195, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .card-integration {
+            background: linear-gradient(135deg, rgba(196, 113, 237, 0.25), rgba(155, 89, 182, 0.2));
+            border: 2px solid rgba(196, 113, 237, 0.4);
+            box-shadow:
+                0 15px 35px rgba(196, 113, 237, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .card-integration:hover {
+            transform: translateY(-20px) scale(1.05) rotateX(5deg);
+            background: linear-gradient(135deg, rgba(196, 113, 237, 0.4), rgba(155, 89, 182, 0.35));
+            border: 2px solid rgba(196, 113, 237, 0.7);
+            box-shadow:
+                0 25px 50px rgba(196, 113, 237, 0.4),
+                0 0 40px rgba(155, 89, 182, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .card-automation {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 152, 0, 0.2));
+            border: 2px solid rgba(255, 193, 7, 0.4);
+            box-shadow:
+                0 15px 35px rgba(255, 193, 7, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .card-automation:hover {
+            transform: translateY(-20px) scale(1.05) rotateX(5deg);
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.4), rgba(255, 152, 0, 0.35));
+            border: 2px solid rgba(255, 193, 7, 0.7);
+            box-shadow:
+                0 25px 50px rgba(255, 193, 7, 0.4),
+                0 0 40px rgba(255, 152, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .card-custom {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.25), rgba(67, 160, 71, 0.2));
+            border: 2px solid rgba(76, 175, 80, 0.4);
+            box-shadow:
+                0 15px 35px rgba(76, 175, 80, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .card-custom:hover {
+            transform: translateY(-20px) scale(1.05) rotateX(5deg);
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.4), rgba(67, 160, 71, 0.35));
+            border: 2px solid rgba(76, 175, 80, 0.7);
+            box-shadow:
+                0 25px 50px rgba(76, 175, 80, 0.4),
+                0 0 40px rgba(67, 160, 71, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+        }
+
+        .service-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #c471ed);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: iconGlow 3s ease-in-out infinite, iconMove 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #ffd700);
+            transform-style: preserve-3d;
+        }
+
+        @keyframes iconGlow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 10px #ffd700);
+            }
+
+            50% {
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 20px #ff6b6b);
+            }
+        }
+
+        @keyframes iconMove {
+
+            0%,
+            100% {
+                transform: rotateY(0deg) scale(1);
+            }
+
+            25% {
+                transform: rotateY(90deg) scale(1.1);
+            }
+
+            50% {
+                transform: rotateY(180deg) scale(1);
+            }
+
+            75% {
+                transform: rotateY(270deg) scale(1.1);
+            }
+        }
+
+        .service-card h3 {
+            font-size: 1.8em;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 1.1em;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(20, 20, 40, 0.6) 100%);
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffd700" opacity="0.1"><polygon points="0,0 1000,100 0,100"/></svg>');
+            animation: waveMove 8s ease-in-out infinite;
+        }
+
+        @keyframes waveMove {
+
+            0%,
+            100% {
+                transform: translateX(-50px) scale(1);
+            }
+
+            50% {
+                transform: translateX(50px) scale(1.1);
+            }
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin: 40px auto;
+            max-width: 800px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: contactPulse 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes contactPulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 20px 60px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                    0 0 0 0 rgba(255, 215, 0, 0);
+            }
+
+            50% {
+                box-shadow:
+                    0 25px 80px rgba(0, 0, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                    0 0 0 20px rgba(255, 215, 0, 0.1);
+            }
+        }
+
+        .contact-title {
+            font-size: 2.8em;
+            font-weight: 800;
+            color: #e8e8e8;
+            margin-bottom: 20px;
+            text-shadow:
+                0 0 15px rgba(255, 255, 255, 0.6),
+                0 0 25px rgba(220, 220, 220, 0.4);
+            animation: contactTitleGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes contactTitleGlow {
+            0% {
+                color: #e8e8e8;
+                text-shadow:
+                    0 0 15px rgba(255, 255, 255, 0.6),
+                    0 0 25px rgba(220, 220, 220, 0.4);
+            }
+
+            100% {
+                color: #f5f5f5;
+                text-shadow:
+                    0 0 20px rgba(255, 255, 255, 0.8),
+                    0 0 35px rgba(240, 240, 240, 0.5);
+            }
+        }
+
+        .contact-info {
+            font-size: 3em;
+            font-weight: 700;
+            color: #00ffff;
+            text-decoration: none;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            display: block;
+            margin-top: 25px;
+            animation: contactInfoGlow 2s ease-in-out infinite alternate;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            word-wrap: break-word;
+            /* Ensure long text wraps */
+        }
+
+        @keyframes contactInfoGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+                transform: scale(1);
+            }
+
+            100% {
+                text-shadow: 0 0 40px rgba(0, 255, 255, 1), 0 0 60px rgba(255, 107, 107, 0.7);
+                transform: scale(1.05);
+            }
+        }
+
+        .contact-info:hover {
+            color: #fff;
+            text-shadow: 0 0 60px rgba(0, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .contact-prompt {
+            animation: subtleBounce 4s ease-in-out infinite;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes subtleBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+            border-radius: 50%;
+            animation: particleFloat 8s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* FIX: MEDIA QUERIES FOR RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 15px;
+            }
+
+            .hero h1 {
+                font-size: 3.5em;
+            }
+
+            .programs-for-sale {
+                padding: 15px 20px;
+                border-radius: 15px;
+            }
+
+            .programs-text {
+                font-size: 1.6em;
+                /* Matched to new responsive size */
+                letter-spacing: 1px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+
+            .service-card h3 {
+                font-size: 1.5em;
+            }
+
+            .service-card p {
+                font-size: 1em;
+            }
+
+            .contact-section {
+                padding: 40px 25px;
+            }
+
+            .contact-title {
+                font-size: 2.2em;
+            }
+
+            .contact-info {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Navigation Bar -->
+    <header style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 55px;
+        background: linear-gradient(90deg, rgba(0, 255, 255, 0.05) 0%, transparent 30%, transparent 70%, rgba(255, 0, 255, 0.05) 100%), rgba(5, 5, 10, 0.95);
+        backdrop-filter: blur(15px);
+        border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        z-index: 9999;
+        padding: 0 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    ">
+        <a href="index.html" style="
+            color: rgba(255,255,255,0.7);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        " onmouseover="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#fff'; this.style.transform='translateY(-2px)';"
+            onmouseout="this.style.background='transparent'; this.style.color='rgba(255,255,255,0.7)'; this.style.transform='translateY(0)';">🏠
+            HOME</a>
+        <a href="ai-programs.html" style="
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.1));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            animation: navGlow 2s ease-in-out infinite alternate;
+        ">🤖 AI SOLUTIONS</a>
+        <a href="freeairesources.html" style="
+            color: rgba(255,255,255,0.7);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        " onmouseover="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#fff'; this.style.transform='translateY(-2px)';"
+            onmouseout="this.style.background='transparent'; this.style.color='rgba(255,255,255,0.7)'; this.style.transform='translateY(0)';">✨
+            FREE AI RESOURCES</a>
+    </header>
+    <style>
+        @keyframes navGlow {
+            0% {
+                box-shadow: 0 0 5px rgba(0, 255, 255, 0.2), inset 0 0 10px rgba(0, 255, 255, 0.05);
+            }
+
+            100% {
+                box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), inset 0 0 20px rgba(0, 255, 255, 0.1);
+            }
+        }
+
+        .hero {
+            margin-top: 55px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                gap: 5px !important;
+                padding: 0 10px !important;
+            }
+
+            header a {
+                font-size: 0.6rem !important;
+                padding: 8px 10px !important;
+                letter-spacing: 0 !important;
+            }
+        }
+    </style>
+
+    <div class="hero">
+        <h1>PINNACLE AI SOLUTIONS</h1>
+        <div class="programs-for-sale">
+            <span class="programs-text">CUSTOM AI SOLUTIONS</span>
+        </div>
+    </div>
+
+    <!-- The Services section, completing the grid -->
+    <div class="container" id="services">
+        <div class="services-grid">
+            <div class="service-card card-training">
+                <div class="service-icon">🎯</div>
+                <h3>One-on-One Virtual Training</h3>
+                <p>Personalized AI training sessions at reasonable rates with free initial consultations. Get expert
+                    guidance tailored to your specific needs and skill level.</p>
+            </div>
+            <div class="service-card card-chatbot">
+                <div class="service-icon">🤖</div>
+                <h3>AI Chatbot Development</h3>
+                <p>Build intelligent conversational agents to automate customer service, provide information, and engage
+                    users on your website or social media channels.</p>
+            </div>
+            <div class="service-card card-website">
+                <div class="service-icon">💻</div>
+                <h3>AI Website Integration</h3>
+                <p>Integrate powerful AI models directly into your existing website for features like dynamic content,
+                    smart search, and enhanced user experiences.</p>
+            </div>
+            <div class="service-card card-automation">
+                <div class="service-icon">⚙️</div>
+                <h3>Process Automation</h3>
+                <p>Streamline business workflows and eliminate repetitive tasks with AI-powered automation. Increase
+                    efficiency and reduce operational costs.</p>
+            </div>
+            <div class="service-card card-custom">
+                <div class="service-icon">💡</div>
+                <h3>Custom AI Solutions</h3>
+                <p>Have a unique challenge? We design and build bespoke AI models and applications tailored to solve
+                    your most complex business problems.</p>
+            </div>
+            <div class="service-card card-integration">
+                <div class="service-icon">🔗</div>
+                <h3>Data Analysis & Insights</h3>
+                <p>Unlock the value of your data. Our AI-driven analysis reveals patterns and insights to help you make
+                    smarter, data-backed decisions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Contact section, with its own unique styling -->
+    <div class="container">
+        <div class="contact-section">
+            <h2 class="contact-title">CONTACT US</h2>
+            <p>Ready to transform your business with AI? Contact us today for a free consultation. We can't wait to hear
+                from you!</p>
+            <br>
+            <p class="contact-prompt"><strong>Call or email us at:</strong></p>
+            <a href="tel:+1-352-231-9154" class="contact-info">(352) 231-9154</a>
+            <a href="mailto:FUTUREAI4ALL@GMAIL.COM" class="contact-info">FUTUREAI4ALL@GMAIL.COM</a>
+        </div>
+    </div>
+
+    <!-- The Footer section -->
+    <footer class="footer">
+        <div class="particles"></div>
+        <p>&copy; 2024 Pinnacle AI Solutions. All Rights Reserved.</p>
+    </footer>
+
+    <!-- A simple script to generate floating particles for visual effect -->
+    <script>
+        const particlesContainer = document.querySelector('.particles');
+        if (particlesContainer) {
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 5 + 2;
+                const x = Math.random() * 100;
+                const duration = Math.random() * 8 + 4;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${x}vw`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${Math.random() * 8}s`;
+
+                particlesContainer.appendChild(particle);
+
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+            setInterval(createParticle, 500);
+        }
+    </script>
+</body>
+
+</html>
