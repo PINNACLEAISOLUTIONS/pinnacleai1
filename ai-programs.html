@@ -264,20 +264,263 @@
                 /* Reset visual order on mobile */
             }
 
+
             /* Visual Order Swap fix for alternate layout */
             .use-case-section:nth-child(even) .visual-panel {
                 order: -1;
             }
         }
+
+        /* --- THEME SPECIFIC ANIMATIONS & STYLES --- */
+
+        /* 1. Voice AI: Deep Purple Pulse */
+        .theme-voice {
+            background: linear-gradient(135deg, #050510 0%, #1a0b2e 100%);
+            position: relative;
+        }
+
+        .theme-voice::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(75, 0, 130, 0.15), transparent 60%);
+            animation: pulseVoice 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulseVoice {
+
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        /* 2. Autonomous Agent: Electric Cyan/Blue */
+        .theme-agent {
+            background: linear-gradient(135deg, #020205 0%, #001f3f 100%);
+            position: relative;
+        }
+
+        .theme-agent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(0, 243, 255, 0.05) 50%, transparent 55%);
+            background-size: 200% 200%;
+            animation: scanAgent 6s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanAgent {
+            0% {
+                background-position: 100% 0%;
+            }
+
+            100% {
+                background-position: 0% 100%;
+            }
+        }
+
+        /* 3. Lead Engine: Matrix Green/Teal */
+        .theme-leads {
+            background: linear-gradient(135deg, #001a10 0%, #000000 100%);
+            position: relative;
+        }
+
+        .theme-leads::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: radial-gradient(rgba(0, 255, 157, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            animation: moveGrid 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes moveGrid {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 0 400px;
+            }
+        }
+
+        /* 4. Smart Ops: Industrial Orange/Gold */
+        .theme-ops {
+            background: linear-gradient(135deg, #1a0f00 0%, #050505 100%);
+            position: relative;
+        }
+
+        .theme-ops::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-conic-gradient(from 0deg, rgba(255, 107, 53, 0.03) 0deg 10deg, transparent 10deg 20deg);
+            animation: rotateOps 60s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotateOps {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 5. Brand Ambassador: Premium Gold/Magenta */
+        .theme-brand {
+            background: linear-gradient(135deg, #1a001a 0%, #000000 100%);
+            position: relative;
+        }
+
+        .theme-brand::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1), transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(0, 243, 255, 0.1), transparent 50%);
+            filter: blur(20px);
+            animation: shiftBrand 10s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes shiftBrand {
+            0% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* 6. Content Multiplier: Ultraviolet/Neon */
+        .theme-content {
+            background: linear-gradient(135deg, #0a001a 0%, #030005 100%);
+            position: relative;
+        }
+
+        .theme-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(189, 0, 255, 0.05) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulseContent 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulseContent {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        /* General Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .glslCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            /* Behind content but in front of section background if needed, or replace section background */
+            opacity: 0.6;
+            /* Slight transparency to blend */
+            pointer-events: none;
+        }
+
+        /* Use Case 4 Raindrop Styles */
+        .raindrop {
+            position: absolute;
+            width: 3px;
+            height: 15px;
+            background: linear-gradient(180deg, rgba(0, 119, 255, 0.8), rgba(0, 182, 255, 0.6));
+            /* Glistening effect */
+            border-radius: 50%;
+            opacity: 0.3;
+            /* 3/10 transparency */
+            animation: fall 1.5s infinite linear;
+            box-shadow: 0 0 5px rgba(0, 119, 255, 0.6);
+            /* Adding subtle glistening shadow */
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: translateY(100vh);
+                /* Fall through section */
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- HEADER -->
     <header style="
-        position: fixed;
+ position: fixed;
         top: 0;
         left: 0;
         right: 0;
@@ -290,285 +533,766 @@
         justify-content: center;
         gap: 20px;
         z-index: 9999;
-    ">
+        ">
         <a href="index.html"
-            style="color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700;">HOME</a>
-        <a href="ai-programs.html"
+            style="color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700;">HOME</a><a
+            href="ai-programs.html"
             style="color: #00ffff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700; border-bottom: 2px solid #00ffff;">AI
-            SOLUTIONS</a>
-        <a href="freeairesources.html"
+            SOLUTIONS</a><a href="freeairesources.html"
             style="color: #fff; text-decoration: none; font-family: 'Orbitron'; font-weight: 700;">FREE RESOURCES</a>
     </header>
+    < !-- HERO SECTION -->
+        <section class="hero"><canvas id="heroWarpCanvas" class="hero-canvas-bg"></canvas>
+            <div class="hero-content">
+                <h1>REAL WORLD AI SOLUTIONS</h1>
+                <p>Don't just buy software. Invest in results. See how our custom-built AI solutions solve real business
+                    problems,
+                    24/7.</p><a href="#chatbots" style="
+ display: inline-block;
+        padding: 15px 40px;
+        background: linear-gradient(90deg, #00f3ff, #bd00ff);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 30px;
+        font-family: 'Orbitron';
+        font-weight: 700;
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+        ">EXPLORE USE CASES</a>
+        </section>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <canvas id="heroWarpCanvas" class="hero-canvas-bg"></canvas>
-        <div class="hero-content">
-            <h1>REAL WORLD AI SOLUTIONS</h1>
-            <p>Don't just buy software. Invest in results. See how our custom-built AI solutions solve real business
-                problems, 24/7.</p>
-            <a href="#chatbots" style="
-                display: inline-block;
-                padding: 15px 40px;
-                background: linear-gradient(90deg, #00f3ff, #bd00ff);
-                color: #fff;
-                text-decoration: none;
-                border-radius: 30px;
-                font-family: 'Orbitron';
-                font-weight: 700;
-                box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-            ">EXPLORE USE CASES</a>
-        </div>
-    </section>
+        <!-- VOICE AI AGENT (NEW) -->
+        <section class="use-case-section theme-voice reveal" style="position: relative; overflow: hidden;">
+            <canvas class="glslCanvas" id="voiceCanvas"></canvas>
+            <!-- Canvas overlay to darken/blend if needed -->
+            <div
+                style="position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(5,5,16,0.5); z-index: 1;">
+            </div>
 
-    <!-- VOICE AI AGENT (NEW) -->
-    <section class="use-case-section" style="background: linear-gradient(180deg, #050510 0%, #1a0b2e 100%);">
-        <div class="container">
-            <div class="use-case-grid">
-                <div class="visual-panel">
-                    <span class="real-life-badge">NEW TECHNOLOGY</span>
-                    <div style="text-align: center; width: 100%;">
-                        <div class="waveform">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="use-case-grid">
+                    <div class="visual-panel">
+                        <span class="real-life-badge">NEW TECHNOLOGY</span>
+                        <div style="text-align: center; width: 100%;">
+                            <div class="waveform">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                            <h3 style="font-family: 'Orbitron'; margin-top: 30px; letter-spacing: 1px;">"Hello, this is
+                                Sarah from Pinnacle."</h3>
+                            <p style="color: #a0a0ff; font-size: 0.9em; margin-top: 10px;">(Indistinguishable from
+                                Human) </p>
                         </div>
-                        <h3 style="font-family: 'Orbitron'; margin-top: 30px; letter-spacing: 1px;">"Hello, this is
-                            Sarah from Pinnacle."</h3>
-                        <p style="color: #a0a0ff; font-size: 0.9em; margin-top: 10px;">(Indistinguishable from Human)
+                    </div>
+                    <div class="use-case-text">
+                        <h2
+                            style="background: linear-gradient(90deg, #a0a0ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            THE HYPER-REAL VOICE AGENT</h2>
+                        <div class="problem-box"><span class="problem-title">THE PROBLEM</span>
+                            <p>Hiring phone staff is expensive,
+                                training takes months,
+                                and humans can only answer one call at a time.</p>
+                        </div>
+                        <div class="solution-box"
+                            style="border-left: 4px solid #a0a0ff; background: rgba(160, 160, 255, 0.1);"><span
+                                class="solution-title" style="color: #a0a0ff;">THE SOLUTION</span>
+                            <p><strong>Infinite Scale. Zero Wait Times.</strong>Our Voice Agents handle 1,
+                                000+simultaneous calls with human-like latency and emotion. They qualify leads,
+                                book appointments,
+                                and handle support.</p>
+                        </div>
+                        <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: High-Volume Sales,
+                            Customer Support,
+                            Appointment Setting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            .waveform {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60px;
+                gap: 5px;
+            }
+
+            .bar {
+                width: 8px;
+                background: linear-gradient(to top, #bd00ff, #00f3ff);
+                border-radius: 5px;
+                animation: wave 1s ease-in-out infinite;
+            }
+
+            .bar:nth-child(odd) {
+                animation-duration: 0.8s;
+            }
+
+            .bar:nth-child(2) {
+                animation-duration: 1.1s;
+            }
+
+            .bar:nth-child(4) {
+                animation-duration: 1.3s;
+            }
+
+            .bar:nth-child(6) {
+                animation-duration: 0.9s;
+            }
+
+            @keyframes wave {
+
+                0%,
+                100% {
+                    height: 10px;
+                    opacity: 0.5;
+                }
+
+                50% {
+                    height: 50px;
+                    opacity: 1;
+                }
+            }
+        </style>
+
+        <!-- USE CASE 1: AUTONOMOUS AGENTS (Upgraded from Chatbots) -->
+        <section id="chatbots" class="use-case-section theme-agent reveal"
+            style="position: relative; overflow: hidden;">
+            <canvas id="agentCanvas"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.4; z-index: 0; pointer-events: none;"></canvas>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="use-case-grid">
+                    <div class="use-case-text">
+                        <h2 class="chatbot-title">THE AUTONOMOUS SALES AGENT</h2>
+                        <div class="problem-box">
+                            <span class="problem-title">THE PROBLEM</span>
+                            <p>Standard chatbots are "dumb" &mdash; they just answer FAQs. They don't actually
+                                <strong>DO</strong> anything to grow your business.
+                            </p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">THE SOLUTION</span>
+                            <p><strong>Action-Oriented AI.</strong> Our agents connect to your tools (Calendar, CRM,
+                                Email).
+                                They don't just chat; they access your calendar to book meetings, update HubSpot lead
+                                statuses, and trigger SMS follow-ups automatically.</p>
+                        </div>
+                        <p style="color: #ccc; margin-top: 20px;">CONNECTS TO: Salesforce, Hubble, Google Calendar,
+                            Zapier.
                         </p>
                     </div>
-                </div>
-                <div class="use-case-text">
-                    <h2
-                        style="background: linear-gradient(90deg, #a0a0ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                        THE HYPER-REAL VOICE AGENT</h2>
-                    <div class="problem-box">
-                        <span class="problem-title">THE PROBLEM</span>
-                        <p>Hiring phone staff is expensive, training takes months, and humans can only answer one call
-                            at a time.</p>
+                    <div class="visual-panel">
+                        <span class="real-life-badge">DEEP INTEGRATION</span>
+                        <div style="text-align: center;">
+                            <i class="fas fa-project-diagram icon-large" style="color: #00f3ff;"></i>
+                            <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"Meeting Booked.<br>CRM
+                                Updated.<br>Email
+                                Sent."</h3>
+                        </div>
                     </div>
-                    <div class="solution-box"
-                        style="border-left: 4px solid #a0a0ff; background: rgba(160, 160, 255, 0.1);">
-                        <span class="solution-title" style="color: #a0a0ff;">THE SOLUTION</span>
-                        <p><strong>Infinite Scale. Zero Wait Times.</strong> Our Voice Agents handle 1,000+ simultaneous
-                            calls with human-like latency and emotion. They qualify leads, book appointments, and handle
-                            support.</p>
-                    </div>
-                    <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: High-Volume Sales, Customer Support,
-                        Appointment Setting.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <style>
-        .waveform {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 60px;
-            gap: 5px;
-        }
+        <!-- USE CASE 2: LEAD SCRAPING -->
+        <section class="use-case-section theme-leads reveal" style="position: relative; overflow: hidden;">
+            <canvas id="fireflyCanvas"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></canvas>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="use-case-grid">
+                    <div class="visual-panel">
+                        <span class="real-life-badge">REAL LIFE CASE</span>
+                        <div style="text-align: center;">
+                            <i class="fas fa-network-wired icon-large" style="color: #00ff9d;"></i>
+                            <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"Found 500+ Local Homeowners<br>with
+                                broken sprinklers."</h3>
+                        </div>
+                    </div>
+                    <div class="use-case-text">
+                        <h2 class="leads-title">THE LEAD ENGINE</h2>
+                        <div class="problem-box">
+                            <span class="problem-title">THE PROBLEM</span>
+                            <p>Manual prospecting is slow, boring, and soul-crushing. You spend hours searching for one
+                                decent lead.</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">THE SOLUTION</span>
+                            <p>Automated Lead Scrapers. We build bots that scour the web for your exact ideal customer
+                                and
+                                deliver their contact info to you.</p>
+                        </div>
+                        <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: Landscapers, Wholesalers, B2B Sales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        .bar {
-            width: 8px;
-            background: linear-gradient(to top, #bd00ff, #00f3ff);
-            border-radius: 5px;
-            animation: wave 1s ease-in-out infinite;
-        }
+        <!-- USE CASE 3: OPERATIONS -->
+        <section class="use-case-section theme-ops reveal">
+            <div class="container">
+                <div class="use-case-grid">
+                    <div class="use-case-text">
+                        <h2 class="ops-title">THE SMART OPERATION</h2>
+                        <div class="problem-box">
+                            <span class="problem-title">THE PROBLEM</span>
+                            <p>Data scattered everywhere? Copy-pasting from email to Excel? Wasting hours on admin work?
+                            </p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">THE SOLUTION</span>
+                            <p>Custom AI Workflows. We connect your apps (Gmail, Slack, Excel) so data flows
+                                automatically.
+                                "Set it and forget it."</p>
+                        </div>
+                        <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: E-commerce, Logistics, Agencies.</p>
+                    </div>
+                    <div class="visual-panel">
+                        <span class="real-life-badge">REAL LIFE CASE</span>
+                        <div style="text-align: center;">
+                            <i class="fas fa-cogs icon-large" style="color: #ff6b35;"></i>
+                            <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"Invoices sorted & paid.<br>Without
+                                touching a button."</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        .bar:nth-child(odd) {
-            animation-duration: 0.8s;
-        }
+        <!-- USE CASE 4: THE BRAND AMBASSADOR (Custom Chatbot) -->
+        <section class="use-case-section theme-brand reveal" id="use-case-4"
+            style="position: relative; overflow: hidden;">
+            <div id="rainContainer"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="use-case-grid">
+                    <div class="use-case-text">
+                        <div class="use-case-badge" style="
+                        display: inline-block;
+                        padding: 5px 15px;
+                        background: rgba(0, 243, 255, 0.1);
+                        border: 1px solid #00f3ff;
+                        color: #00f3ff;
+                        border-radius: 20px;
+                        font-family: 'Orbitron';
+                        font-size: 0.8em;
+                        margin-bottom: 20px;
+                    ">CUSTOM INTEGRATION</div>
+                        <h2
+                            style="background: linear-gradient(90deg, #00f3ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            THE BRAND AMBASSADOR</h2>
+                        <div class="subtitle" style="font-size: 1.2em; color: #a0a0ff; margin-bottom: 20px;">YOUR
+                            IDENTITY.
+                            YOUR TONE. YOUR AI.</div>
 
-        .bar:nth-child(2) {
-            animation-duration: 1.1s;
-        }
+                        <div class="problem-box">
+                            <span class="problem-title">THE PROBLEM</span>
+                            <p>Generic, robotic interfaces kill engagement. Users hate feeling like they're talking to a
+                                machine.</p>
+                        </div>
+                        <div class="solution-box"
+                            style="border-left: 4px solid #00f3ff; background: rgba(0, 243, 255, 0.1);">
+                            <span class="solution-title" style="color: #00f3ff;">THE SOLUTION</span>
+                            <p><strong>A fully branded AI.</strong> We don't just paste code; we craft an experience.
+                                Your
+                                logos, your colors, your voice. It's seamless, premium, and 100% you.</p>
+                        </div>
 
-        .bar:nth-child(4) {
-            animation-duration: 1.3s;
-        }
+                        <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: Luxury Brands, Tech Startups, High-Ticket
+                            Services.</p>
+                    </div>
 
-        .bar:nth-child(6) {
-            animation-duration: 0.9s;
-        }
+                    <div class="visual-panel">
+                        <span class="real-life-badge">CUSTOM DESIGN</span>
+                        <div
+                            style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <i class="fas fa-paint-brush icon-large" style="color: #00f3ff;"></i>
+                            <h3 style="font-family: 'Orbitron'; margin-top: 20px; text-align: center;">"Can you match
+                                our
+                                neon theme?<br>Absolutely."</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        @keyframes wave {
+        <!-- USE CASE 5: THE CONTENT MULTIPLIER -->
+        <section class="use-case-section theme-content reveal" id="use-case-5">
+            <div class="container">
+                <div class="use-case-grid">
+                    <div class="visual-panel">
+                        <span class="real-life-badge">GROWTH ENGINE</span>
+                        <div
+                            style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <i class="fas fa-share-alt icon-large" style="color: #bd00ff;"></i>
+                            <h3 style="font-family: 'Orbitron'; margin-top: 20px; text-align: center;">"ONE Video
+                                Input.<br>FIVE Blog Posts Output."</h3>
+                        </div>
+                    </div>
 
-            0%,
-            100% {
-                height: 10px;
-                opacity: 0.5;
+                    <div class="use-case-text">
+                        <div class="use-case-badge" style="
+                        display: inline-block;
+                        padding: 5px 15px;
+                        background: rgba(189, 0, 255, 0.1);
+                        border: 1px solid #bd00ff;
+                        color: #bd00ff;
+                        border-radius: 20px;
+                        font-family: 'Orbitron';
+                        font-size: 0.8em;
+                        margin-bottom: 20px;
+                    ">AUTOMATED MARKETING</div>
+                        <h2
+                            style="background: linear-gradient(90deg, #bd00ff, #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            THE CONTENT MULTIPLIER</h2>
+
+                        <div class="problem-box">
+                            <span class="problem-title">THE PROBLEM</span>
+                            <p>The "Content Treadmill." You create once, post once, and it's gone. Maximizing reach
+                                takes
+                                infinite effort.</p>
+                        </div>
+                        <div class="solution-box"
+                            style="border-left: 4px solid #bd00ff; background: rgba(189, 0, 255, 0.1);">
+                            <span class="solution-title" style="color: #bd00ff;">THE SOLUTION</span>
+                            <p><strong>Omni-Channel Repurposing.</strong> Our workflow takes your raw input—voice notes,
+                                videos, or rough ideas—and instantly reformats it for every channel. Blog, Tweet,
+                                Newsletter. Done.</p>
+                        </div>
+
+                        <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: Creators, Agencies, Marketing Teams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer style="padding: 50px; text-align: center; background: #000; color: #666;">
+            <p>&copy; 2025 Pinnacle AI Solutions. Building the Future.</p>
+        </footer>
+
+        <!-- WARP SPEED SCRIPT (Simplified from Index) -->
+        <script>
+            const canvas = document.getElementById('heroWarpCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let stars = [];
+            const STAR_COUNT = 400;
+
+            function init() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                stars = [];
+                for (let i = 0; i < STAR_COUNT; i++) {
+                    stars.push({
+                        x: Math.random() * width - width / 2,
+                        y: Math.random() * height - height / 2,
+                        z: Math.random() * 2000
+                    });
+                }
             }
 
-            50% {
-                height: 50px;
-                opacity: 1;
-            }
-        }
-    </style>
+            function animate() {
+                ctx.fillStyle = "#000";
+                ctx.fillRect(0, 0, width, height);
 
-    <!-- USE CASE 1: AUTONOMOUS AGENTS (Upgraded from Chatbots) -->
-    <section id="chatbots" class="use-case-section">
-        <div class="container">
-            <div class="use-case-grid">
-                <div class="use-case-text">
-                    <h2 class="chatbot-title">THE AUTONOMOUS SALES AGENT</h2>
-                    <div class="problem-box">
-                        <span class="problem-title">THE PROBLEM</span>
-                        <p>Standard chatbots are "dumb" &mdash; they just answer FAQs. They don't actually
-                            <strong>DO</strong> anything to grow your business.</p>
-                    </div>
-                    <div class="solution-box">
-                        <span class="solution-title">THE SOLUTION</span>
-                        <p><strong>Action-Oriented AI.</strong> Our agents connect to your tools (Calendar, CRM, Email).
-                            They don't just chat; they access your calendar to book meetings, update HubSpot lead
-                            statuses, and trigger SMS follow-ups automatically.</p>
-                    </div>
-                    <p style="color: #ccc; margin-top: 20px;">CONNECTS TO: Salesforce, Hubble, Google Calendar, Zapier.
-                    </p>
-                </div>
-                <div class="visual-panel">
-                    <span class="real-life-badge">DEEP INTEGRATION</span>
-                    <div style="text-align: center;">
-                        <i class="fas fa-project-diagram icon-large" style="color: #00f3ff;"></i>
-                        <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"Meeting Booked.<br>CRM Updated.<br>Email
-                            Sent."</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                const cx = width / 2;
+                const cy = height / 2;
 
-    <!-- USE CASE 2: LEAD SCRAPING -->
-    <section class="use-case-section">
-        <div class="container">
-            <div class="use-case-grid">
-                <div class="visual-panel">
-                    <span class="real-life-badge">REAL LIFE CASE</span>
-                    <div style="text-align: center;">
-                        <i class="fas fa-network-wired icon-large" style="color: #00ff9d;"></i>
-                        <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"Found 500+ Local Homeowners<br>with
-                            broken sprinklers."</h3>
-                    </div>
-                </div>
-                <div class="use-case-text">
-                    <h2 class="leads-title">THE LEAD ENGINE</h2>
-                    <div class="problem-box">
-                        <span class="problem-title">THE PROBLEM</span>
-                        <p>Manual prospecting is slow, boring, and soul-crushing. You spend hours searching for one
-                            decent lead.</p>
-                    </div>
-                    <div class="solution-box">
-                        <span class="solution-title">THE SOLUTION</span>
-                        <p>Automated Lead Scrapers. We build bots that scour the web for your exact ideal customer and
-                            deliver their contact info to you.</p>
-                    </div>
-                    <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: Landscapers, Wholesalers, B2B Sales.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                stars.forEach(star => {
+                    star.z -= 10; // Speed
+                    if (star.z <= 0) {
+                        star.z = 2000;
+                        star.x = Math.random() * width - width / 2;
+                        star.y = Math.random() * height - height / 2;
+                    }
 
-    <!-- USE CASE 3: OPERATIONS -->
-    <section class="use-case-section">
-        <div class="container">
-            <div class="use-case-grid">
-                <div class="use-case-text">
-                    <h2 class="ops-title">THE SMART OPERATION</h2>
-                    <div class="problem-box">
-                        <span class="problem-title">THE PROBLEM</span>
-                        <p>Data scattered everywhere? Copy-pasting from email to Excel? Wasting hours on admin work?</p>
-                    </div>
-                    <div class="solution-box">
-                        <span class="solution-title">THE SOLUTION</span>
-                        <p>Custom AI Workflows. We connect your apps (Gmail, Slack, Excel) so data flows automatically.
-                            "Set it and forget it."</p>
-                    </div>
-                    <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: E-commerce, Logistics, Agencies.</p>
-                </div>
-                <div class="visual-panel">
-                    <span class="real-life-badge">REAL LIFE CASE</span>
-                    <div style="text-align: center;">
-                        <i class="fas fa-cogs icon-large" style="color: #ff6b35;"></i>
-                        <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"Invoices sorted & paid.<br>Without
-                            touching a button."</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    const k = 128.0 / star.z;
+                    const x = star.x * k + cx;
+                    const y = star.y * k + cy;
+                    const size = (1 - star.z / 2000) * 4;
 
-    <!-- FOOTER -->
-    <footer style="padding: 50px; text-align: center; background: #000; color: #666;">
-        <p>&copy; 2025 Pinnacle AI Solutions. Building the Future.</p>
-    </footer>
-
-    <!-- WARP SPEED SCRIPT (Simplified from Index) -->
-    <script>
-        const canvas = document.getElementById('heroWarpCanvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let stars = [];
-        const STAR_COUNT = 400;
-
-        function init() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            stars = [];
-            for (let i = 0; i < STAR_COUNT; i++) {
-                stars.push({
-                    x: Math.random() * width - width / 2,
-                    y: Math.random() * height - height / 2,
-                    z: Math.random() * 2000
+                    if (x >= 0 && x <= width && y >= 0 && y <= height) {
+                        const shade = parseInt((1 - star.z / 2000) * 255);
+                        ctx.fillStyle = `rgb(${shade},${shade},${shade})`;
+                        ctx.beginPath();
+                        ctx.arc(x, y, size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
                 });
+
+                requestAnimationFrame(animate);
             }
-        }
 
-        function animate() {
-            ctx.fillStyle = "#000";
-            ctx.fillRect(0, 0, width, height);
+            window.addEventListener('resize', init);
+            init();
+            animate();
 
-            const cx = width / 2;
-            const cy = height / 2;
+            // Scroll Reveal Script
+            function reveal() {
+                var reveals = document.querySelectorAll(".reveal");
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = window.innerHeight;
+                    var elementTop = reveals[i].getBoundingClientRect().top;
+                    var elementVisible = 150;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    }
+                }
+            }
+            window.addEventListener("scroll", reveal);
+            // Trigger once on load
+            reveal();
 
-            stars.forEach(star => {
-                star.z -= 10; // Speed
-                if (star.z <= 0) {
-                    star.z = 2000;
-                    star.x = Math.random() * width - width / 2;
-                    star.y = Math.random() * height - height / 2;
+            // --- Custom Three.js Shader for Voice AI ---
+            class CustomScene {
+                init(canvas) {
+                    this.scene = new THREE.Scene();
+                    // Use dark background to match theme
+                    this.scene.background = new THREE.Color(0x050510);
+                    this.light = new THREE.SpotLight(0xffffff, 1);
+
+                    const fov = 45;
+                    const aspect = canvas.clientWidth / canvas.clientHeight; // Use container dim
+                    const near = 1;
+                    const far = 100;
+                    this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
+                    // Using PlaneGeometry instead of PlaneBufferGeometry for newer Three.js, but r128 supports both. 
+                    // sticking to user's code logic but adapting for JS
+                    this.geometry = new THREE.PlaneGeometry(30, 20); // Width, Height
+
+                    this.material = new THREE.ShaderMaterial({
+                        vertexShader: `
+                        precision mediump float;
+                        varying vec2 vUv;
+                        void main() {
+                            vUv = uv;
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                        }
+                    `,
+                        fragmentShader: `
+                        #ifdef GL_ES
+                        precision highp float;
+                        #endif
+
+                        #define PI2 6.28318530718
+                        #define MAX_ITER 5
+
+                        uniform float uTime;
+                        uniform vec2 uResolution;
+                        uniform float spectrum;
+
+                        void mainImage( out vec4 fragColor, in vec2 fragCoord )
+                        {
+                            float time = uTime * .12;
+                            vec2 uv = fragCoord.xy / uResolution.xy;
+
+                            vec2 p = mod(uv * PI2, PI2) - 100.0;
+                            vec2 i = vec2(p);
+                            float c = 0.5;
+                            float inten = .0094;
+
+                            for (int n = 0; n < MAX_ITER; n++) {
+                                float t = time * (4.5 - (2.2 / float(n + 122)));
+                                i = p + vec2(cos(t - i.x) + sin(t + i.y), sin(t - i.y) + cos(t + i.x));
+                                c += 1.0 / length(vec2(p.x / (sin(i.x + t) / inten + spectrum), p.y / (cos(i.y + t) / inten)));
+                            }
+
+                            c /= float(MAX_ITER);
+                            c = 1.10 - pow(c, 1.26);
+                            // Adjusted output color to match purple theme lightly
+                            vec3 colour = vec3(0.098 + c*0.2, 0.098, 0.2 + pow(abs(c), 4.1));
+                            
+                            fragColor = vec4(colour, 1.0);
+                        }
+
+                        void main( void ) {
+                            mainImage(gl_FragColor, gl_FragCoord.xy);
+                        }
+                    `,
+                        uniforms: {
+                            uTime: { value: 0.0 },
+                            uResolution: { value: new THREE.Vector2(canvas.clientWidth, canvas.clientHeight) },
+                            uMouse: { value: new THREE.Vector2(0, 0) },
+                            uColor: { value: new THREE.Color(0xffffff) },
+                            spectrum: { value: 0.5 } // Added default
+                        }
+                    });
+
+                    this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+                    this.renderer = new THREE.WebGLRenderer({
+                        canvas: canvas,
+                        alpha: true,
+                        preserveDrawingBuffer: true // Sometimes helps with resizing
+                    });
+                    this.renderer.setPixelRatio(window.devicePixelRatio);
+                    this.renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+                    this.scene.add(this.camera);
+                    this.scene.add(this.mesh);
+                    this.scene.add(this.light);
+
+                    this.mesh.position.set(0, 0, 0);
+                    this.camera.position.set(0, 0, 10);
+                    this.light.position.set(0, 0, 10);
+
+                    this.light.lookAt(this.mesh.position);
+                    this.camera.lookAt(this.mesh.position);
+
+                    this.clock = new THREE.Clock();
+
+                    this.addEvents();
                 }
 
-                const k = 128.0 / star.z;
-                const x = star.x * k + cx;
-                const y = star.y * k + cy;
-                const size = (1 - star.z / 2000) * 4;
+                run() {
+                    requestAnimationFrame(this.run.bind(this));
 
-                if (x >= 0 && x <= width && y >= 0 && y <= height) {
-                    const shade = parseInt((1 - star.z / 2000) * 255);
-                    ctx.fillStyle = `rgb(${shade},${shade},${shade})`;
+                    // Only render if element is visible/in viewport to save performance? 
+                    // For now just run it.
+
+                    if (this.material && this.material.uniforms) {
+                        this.material.uniforms.uTime.value = this.clock.getElapsedTime();
+                    }
+                    if (this.renderer && this.scene && this.camera) {
+                        this.renderer.render(this.scene, this.camera);
+                    }
+                }
+
+                addEvents() {
+                    window.addEventListener("resize", this.onResize.bind(this), false);
+                }
+
+                onResize() {
+                    if (!this.renderer || !this.material || !this.camera) return;
+
+                    const canvas = this.renderer.domElement;
+                    // Need to look up parent size for full width/height
+                    const width = canvas.parentElement.clientWidth;
+                    const height = canvas.parentElement.clientHeight;
+
+                    this.material.uniforms.uResolution.value.x = width;
+                    this.material.uniforms.uResolution.value.y = height;
+
+                    this.camera.aspect = width / height;
+                    this.camera.updateProjectionMatrix();
+                    this.renderer.setSize(width, height);
+                }
+            }
+
+            // Initialize Shader on Voice Canvas
+            const voiceCanvas = document.getElementById("voiceCanvas");
+            if (voiceCanvas) {
+                // Ensure canvas fits size
+                voiceCanvas.style.width = '100%';
+                voiceCanvas.style.height = '100%';
+
+                const scene3D = new CustomScene();
+                scene3D.init(voiceCanvas);
+                scene3D.run();
+            }
+
+            // --- Custom Canvas Particles for Autonomous Agents (Use Case 2) ---
+            (function () {
+                var canvas, ctx, circles, tick = 0,
+                    numCircles = 50; // Reduced count for section
+                var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+
+                var randomColor = function () {
+                    var c = [];
+                    for (var i = 0; i < 6; i++) {
+                        c.push(chars[Math.floor(Math.random() * chars.length)]);
+                    }
+                    return '#' + c.join('');
+                };
+
+                var resize = function () {
+                    if (!canvas || !canvas.parentElement) return;
+                    canvas.width = canvas.parentElement.offsetWidth;
+                    canvas.height = canvas.parentElement.offsetHeight;
+                };
+
+                var Circle = function (x, y) {
+                    this.pos = [x, y];
+                    this.r = (1.5 * Math.random()) + 1;
+                    this.c = randomColor();
+                    this.v = [
+                        (Math.random() - 0.5) * 0.3,
+                        (Math.random() - 0.5) * 0.3
+                    ];
+                };
+
+                Circle.prototype.getBound = function (i) {
+                    return i ? canvas.height : canvas.width;
+                };
+
+                Circle.prototype.frame = function () {
+                    for (var i = 0; i < 2; i++) {
+                        if (this.pos[i] > this.getBound(i) - 10) {
+                            this.v[i] *= -1;
+                        } else if (this.pos[i] < 10) {
+                            this.v[i] *= -1;
+                        }
+                        this.pos[i] += this.v[i] * 5; // Adjusted speed
+                    }
+                    this.draw();
+                };
+
+                Circle.prototype.draw = function () {
+                    ctx.fillStyle = this.c;
                     ctx.beginPath();
-                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.arc(this.pos[0], this.pos[1], this.r, 0, 2 * Math.PI, false);
                     ctx.fill();
+                };
+
+                var initAgentCanvas = function () {
+                    canvas = document.getElementById('agentCanvas');
+                    if (!canvas) return;
+
+                    ctx = canvas.getContext('2d');
+                    resize();
+                    window.addEventListener('resize', resize);
+
+                    circles = [];
+                    for (var i = 0; i < numCircles; i++) {
+                        var x = Math.random() * canvas.width;
+                        var y = Math.random() * canvas.height;
+                        var c = new Circle(x, y);
+                        circles.push(c); // Use new Circle constructor
+                    }
+
+                    var loop = function () {
+                        requestAnimationFrame(loop);
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        for (var i = 0; i < circles.length; i++) {
+                            circles[i].frame();
+                        }
+                    };
+                    loop();
+                };
+
+                // Init immediately or on load
+                window.addEventListener('load', initAgentCanvas);
+                // Also call immediately in case load already fired
+                if (document.readyState === 'complete') initAgentCanvas();
+            })();
+
+            // --- Custom Firefly Particles for Lead Engine (Use Case 3) ---
+            (function () {
+                var canvas, ctx, fireflies, fireflyCount = 100;
+
+                class Firefly {
+                    constructor(canvasWidth, canvasHeight) {
+                        this.init(canvasWidth, canvasHeight);
+                    }
+
+                    init(w, h) {
+                        this.x = Math.random() * w;
+                        this.y = Math.random() * h;
+                        this.vx = (Math.random() - 0.5) * 2;
+                        this.vy = (Math.random() - 0.5) * 2;
+                        this.size = Math.random() * 3 + 1;
+                        this.alpha = Math.random() * 0.8 + 0.2;
+                    }
+
+                    move(w, h) {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        // Bounce off edges logic from user request
+                        if (this.x < 0 || this.x > w) this.vx *= -1;
+                        if (this.y < 0 || this.y > h) this.vy *= -1;
+                    }
+
+                    draw(ctx) {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        // Using the requested yellow color: rgba(255, 255, 150, alpha)
+                        // It contrasts well with the dark green/black theme of Lead Engine
+                        ctx.fillStyle = `rgba(255, 255, 150, ${this.alpha})`;
+                        ctx.fill();
+                    }
                 }
-            });
 
-            requestAnimationFrame(animate);
-        }
+                function initFireflyCanvas() {
+                    canvas = document.getElementById("fireflyCanvas");
+                    if (!canvas) return;
 
-        window.addEventListener('resize', init);
-        init();
-        animate();
-    </script>
+                    ctx = canvas.getContext("2d");
+
+                    var resize = function () {
+                        if (canvas.parentElement) {
+                            canvas.width = canvas.parentElement.offsetWidth;
+                            canvas.height = canvas.parentElement.offsetHeight;
+                        } else {
+                            canvas.width = window.innerWidth;
+                            canvas.height = window.innerHeight;
+                        }
+                    };
+
+                    window.addEventListener('resize', resize);
+                    resize(); // Initial sizing
+
+                    fireflies = [];
+                    for (let i = 0; i < fireflyCount; i++) {
+                        fireflies.push(new Firefly(canvas.width, canvas.height));
+                    }
+
+                    function animate() {
+                        if (!canvas) return;
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        fireflies.forEach(firefly => {
+                            firefly.move(canvas.width, canvas.height);
+                            firefly.draw(ctx);
+                        });
+                        requestAnimationFrame(animate);
+                    }
+
+                    animate();
+                }
+
+                window.addEventListener('load', initFireflyCanvas);
+                if (document.readyState === 'complete') initFireflyCanvas();
+                if (document.readyState === 'complete') initFireflyCanvas();
+            })();
+
+            // --- Custom Raindrop Effect for Brand Ambassador (Use Case 4) ---
+            (function () {
+                function createRaindrops() {
+                    const container = document.getElementById('rainContainer');
+                    if (!container) return;
+
+                    // Limit number of existing raindrops to prevent memory issues if tab is left open
+                    if (container.childElementCount > 100) return;
+
+                    for (let i = 0; i < 2; i++) { // Spawn fewer per tick, but frequent ticks
+                        const raindrop = document.createElement('div');
+                        raindrop.classList.add('raindrop');
+                        raindrop.style.left = `${Math.random() * container.offsetWidth}px`;
+                        raindrop.style.animationDuration = `${Math.random() * 2 + 1.5}s`; // Vary the speed
+
+                        container.appendChild(raindrop);
+
+                        // Remove after animation completes + buffer to be safe
+                        setTimeout(() => {
+                            if (raindrop && raindrop.parentNode) {
+                                raindrop.parentNode.removeChild(raindrop);
+                            }
+                        }, 4000);
+                    }
+                }
+
+                // Start raining
+                setInterval(createRaindrops, 100);
+            })();
+
+        </script>
 </body>
 
 </html>
