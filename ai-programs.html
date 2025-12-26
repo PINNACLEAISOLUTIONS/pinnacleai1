@@ -321,31 +321,125 @@
         </div>
     </section>
 
-    <!-- USE CASE 1: CHATBOTS -->
+    <!-- VOICE AI AGENT (NEW) -->
+    <section class="use-case-section" style="background: linear-gradient(180deg, #050510 0%, #1a0b2e 100%);">
+        <div class="container">
+            <div class="use-case-grid">
+                <div class="visual-panel">
+                    <span class="real-life-badge">NEW TECHNOLOGY</span>
+                    <div style="text-align: center; width: 100%;">
+                        <div class="waveform">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                        <h3 style="font-family: 'Orbitron'; margin-top: 30px; letter-spacing: 1px;">"Hello, this is
+                            Sarah from Pinnacle."</h3>
+                        <p style="color: #a0a0ff; font-size: 0.9em; margin-top: 10px;">(Indistinguishable from Human)
+                        </p>
+                    </div>
+                </div>
+                <div class="use-case-text">
+                    <h2
+                        style="background: linear-gradient(90deg, #a0a0ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        THE HYPER-REAL VOICE AGENT</h2>
+                    <div class="problem-box">
+                        <span class="problem-title">THE PROBLEM</span>
+                        <p>Hiring phone staff is expensive, training takes months, and humans can only answer one call
+                            at a time.</p>
+                    </div>
+                    <div class="solution-box"
+                        style="border-left: 4px solid #a0a0ff; background: rgba(160, 160, 255, 0.1);">
+                        <span class="solution-title" style="color: #a0a0ff;">THE SOLUTION</span>
+                        <p><strong>Infinite Scale. Zero Wait Times.</strong> Our Voice Agents handle 1,000+ simultaneous
+                            calls with human-like latency and emotion. They qualify leads, book appointments, and handle
+                            support.</p>
+                    </div>
+                    <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: High-Volume Sales, Customer Support,
+                        Appointment Setting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .waveform {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            gap: 5px;
+        }
+
+        .bar {
+            width: 8px;
+            background: linear-gradient(to top, #bd00ff, #00f3ff);
+            border-radius: 5px;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .bar:nth-child(odd) {
+            animation-duration: 0.8s;
+        }
+
+        .bar:nth-child(2) {
+            animation-duration: 1.1s;
+        }
+
+        .bar:nth-child(4) {
+            animation-duration: 1.3s;
+        }
+
+        .bar:nth-child(6) {
+            animation-duration: 0.9s;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                height: 10px;
+                opacity: 0.5;
+            }
+
+            50% {
+                height: 50px;
+                opacity: 1;
+            }
+        }
+    </style>
+
+    <!-- USE CASE 1: AUTONOMOUS AGENTS (Upgraded from Chatbots) -->
     <section id="chatbots" class="use-case-section">
         <div class="container">
             <div class="use-case-grid">
                 <div class="use-case-text">
-                    <h2 class="chatbot-title">THE 24/7 SALES AGENT</h2>
+                    <h2 class="chatbot-title">THE AUTONOMOUS SALES AGENT</h2>
                     <div class="problem-box">
                         <span class="problem-title">THE PROBLEM</span>
-                        <p>Missed calls after 5 PM? Leads going cold because you can't respond instantly? Losing money
-                            while you sleep?</p>
+                        <p>Standard chatbots are "dumb" &mdash; they just answer FAQs. They don't actually
+                            <strong>DO</strong> anything to grow your business.</p>
                     </div>
                     <div class="solution-box">
                         <span class="solution-title">THE SOLUTION</span>
-                        <p>A custom AI Chatbot trained on <strong>your</strong> business data. It answers questions,
-                            qualifies leads, and books appointments automatically.</p>
+                        <p><strong>Action-Oriented AI.</strong> Our agents connect to your tools (Calendar, CRM, Email).
+                            They don't just chat; they access your calendar to book meetings, update HubSpot lead
+                            statuses, and trigger SMS follow-ups automatically.</p>
                     </div>
-                    <p style="color: #ccc; margin-top: 20px;">PERFECT FOR: Real Estate, HVAC, Law Firms, Medical
-                        Practices.</p>
+                    <p style="color: #ccc; margin-top: 20px;">CONNECTS TO: Salesforce, Hubble, Google Calendar, Zapier.
+                    </p>
                 </div>
                 <div class="visual-panel">
-                    <span class="real-life-badge">REAL LIFE CASE</span>
+                    <span class="real-life-badge">DEEP INTEGRATION</span>
                     <div style="text-align: center;">
-                        <i class="fas fa-robot icon-large" style="color: #00f3ff;"></i>
-                        <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"I qualified 15 leads<br>while you were
-                            sleeping."</h3>
+                        <i class="fas fa-project-diagram icon-large" style="color: #00f3ff;"></i>
+                        <h3 style="font-family: 'Orbitron'; margin-top: 20px;">"Meeting Booked.<br>CRM Updated.<br>Email
+                            Sent."</h3>
                     </div>
                 </div>
             </div>
