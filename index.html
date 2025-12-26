@@ -29,6 +29,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/CustomEase.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
 
+    <!-- Three.js Import Map for Header Animation -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"
+            }
+        }
+    </script>
+
     <!-- INLINE STYLES (Includes styles for footer animation container) -->
     <style>
         /* Custom Colors & Gradients */
@@ -403,6 +412,15 @@
             position: relative;
             background-color: #000;
             overflow: hidden;
+            margin-top: -70px;
+            padding-top: 70px;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                margin-top: -110px;
+                padding-top: 110px;
+            }
         }
 
         .hero-content {
@@ -473,6 +491,41 @@
             filter: blur(.75em);
             content: '';
             border-radius: inherit;
+        }
+
+        /* Enhanced Service Card Styles */
+        .service-card-enhanced {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .service-card-enhanced:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card-enhanced h3 {
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+            background: none !important;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            font-weight: 700;
+        }
+
+        .service-card-enhanced .service-icon {
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+
+        .service-card-enhanced:hover .service-icon {
+            transform: scale(1.2) rotateY(180deg);
+            color: var(--color-secondary-green);
+        }
+
+        .service-card-enhanced p {
+            color: #ffffff !important;
+            font-size: 1.05rem;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+            line-height: 1.7;
         }
 
         .service-icon {
@@ -651,14 +704,14 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background-color: var(--color-secondary-green);
+            background: linear-gradient(135deg, #00f3ff, #bd00ff);
             color: white;
             border-radius: 50px;
             padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 243, 255, 0.4), 0 0 30px rgba(189, 0, 255, 0.2);
             z-index: 1000;
             text-decoration: none;
             font-weight: 600;
@@ -667,7 +720,7 @@
 
         .call-us-fab:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 243, 255, 0.5), 0 0 40px rgba(189, 0, 255, 0.4);
         }
 
         .call-us-fab i {
@@ -779,22 +832,30 @@
 <body class="bg-gray-900 text-gray-200 font-inter">
     <!-- Single Clean Top Navigation -->
     <header id="main-header">
-        <div class="header-logo">
-            <a href="index.html">PINNACLE AI</a>
+        <div class="header-container">
+            <div class="header-logo">
+                <a href="index.html" class="logo-animated">PINNACLE AI SOLUTIONS</a>
+            </div>
+            <nav class="header-nav-links">
+                <a href="index.html" class="header-link active">HOME</a>
+                <a href="#services" class="header-link">SERVICES</a>
+                <a href="#about" class="header-link">ABOUT</a>
+                <a href="#contact" class="header-link">CONTACT</a>
+            </nav>
+            <div class="header-shader-spacer shader-pill" id="middleShaderWrapper">
+                <canvas id="headerShaderCanvas"></canvas>
+            </div>
+            <div class="header-buttons">
+                <a href="ai-programs.html" class="header-btn btn-secondary-nav">AI PROGRAMS</a>
+                <a href="freeairesources.html" class="header-btn btn-primary-nav">FREE AI RESOURCES</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"
+                onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <nav class="header-nav">
-            <a href="index.html" class="header-link active">HOME</a>
-            <a href="#services" class="header-link">SERVICES</a>
-            <a href="#about" class="header-link">ABOUT</a>
-            <a href="#contact" class="header-link">CONTACT</a>
-            <a href="ai-programs.html" class="header-btn btn-secondary-nav">AI PROGRAMS</a>
-            <a href="freeairesources.html" class="header-btn btn-primary-nav">FREE AI RESOURCES</a>
-        </nav>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </header>
 
     <!-- Mobile Navigation Drawer -->
@@ -821,40 +882,123 @@
             top: 0;
             left: 0;
             width: 100%;
-            /* Force 100% width */
             height: 70px;
             background: rgba(3, 7, 18, 0.95);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             z-index: 99999;
             display: flex;
             justify-content: center;
+            overflow: visible;
+        }
+
+        /* Shared shader pill styling - no black box */
+        .shader-pill {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            border-radius: 30px;
+            overflow: hidden;
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        .shader-pill canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 30px;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .header-nav-wrapper {
+            flex: 0 1 auto;
+            min-width: 320px;
+            max-width: 400px;
+            margin: 0 15px;
+        }
+
+        .header-shader-spacer {
+            flex: 1;
+            min-width: 150px;
+            max-width: 500px;
+            margin: 0 10px;
+            height: 45px;
+            background: none !important;
+        }
+
+        .header-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .header-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 30px;
             height: 100%;
             box-sizing: border-box;
-            /* Fix for padding overflow */
+            position: relative;
+            z-index: 10;
         }
 
-        /* Logo */
-        .header-logo a {
+        /* Logo - Larger and Animated */
+        .header-logo {
+            flex-shrink: 0;
+        }
+
+        .header-logo a,
+        .header-logo a.logo-animated {
             font-family: 'Inter', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #3b82f6, #22c55e);
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00f3ff, #bd00ff, #ff00aa, #00ff9d, #00f3ff);
+            background-size: 400% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             text-transform: uppercase;
+            animation: logoGradientMove 4s ease infinite;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            white-space: nowrap;
+        }
+
+        @keyframes logoGradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* Desktop Navigation */
@@ -1192,52 +1336,266 @@
 
 
     <!-- Hero Section -->
-    <section id="home" class="hero relative overflow-hidden flex items-center justify-center text-center text-white">
-        <iframe scrolling="no" title="Creative Black Hole" src="https://cdpn.io/wodniack/debug/VYwGEGg" frameborder="no"
-            loading="lazy" allowtransparency="true" allowfullscreen="true" class="codepen-full-bg-iframe"></iframe>
+    <section id="home" class="hero relative overflow-hidden flex items-start justify-center text-center text-white"
+        style="padding-top: 100px;">
+        <canvas id="heroWarpCanvas" class="hero-canvas-bg"></canvas>
         <div class="hero-content relative z-10 p-6 max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-on-scroll">Intelligent Solutions
-                for the Digital Age</h1>
-            <p class="text-lg md:text-xl font-light mb-10 animate-on-scroll" style="animation-delay: 0.2s;">Harness the
-                power of AI to transform your business operations and customer experiences.</p>
-            <div class="hero-buttons flex justify-center space-x-4 animate-on-scroll" style="animation-delay: 0.4s;">
+            <h1 class="hero-title-animated text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-on-scroll">
+                <span class="hero-text-gradient">Intelligent Solutions</span>
+                <br>
+                <span class="hero-text-glow">for the Digital Age</span>
+            </h1>
+            <p class="hero-subtitle-animated text-lg md:text-xl font-light mb-10 animate-on-scroll"
+                style="animation-delay: 0.2s;">
+                Harness the power of <span class="text-highlight">AI</span> to transform your business operations and
+                customer experiences.
+            </p>
+            <div class="hero-buttons flex justify-between w-full max-w-xl mx-auto animate-on-scroll"
+                style="animation-delay: 0.4s;">
                 <a href="#services" class="btn-primary-hero">Explore Services</a>
                 <a href="#contact" class="btn-outline-hero">Get Started</a>
             </div>
         </div>
     </section>
 
+    <style>
+        /* Premium Hero Text - Gold Platinum Aurora */
+        .hero-text-gradient {
+            background: linear-gradient(135deg,
+                    #ffd700 0%,
+                    /* Gold */
+                    #ffffff 20%,
+                    /* Pure White */
+                    #87ceeb 40%,
+                    /* Sky Blue */
+                    #ffffff 55%,
+                    /* Pure White */
+                    #e6be8a 75%,
+                    /* Champagne Gold */
+                    #ffffff 90%,
+                    /* Pure White */
+                    #ffd700 100%
+                    /* Gold */
+                );
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: premiumGradientFlow 6s ease infinite, textFloatUp 3s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+        }
+
+        /* Holographic Shimmer Effect */
+        .hero-text-glow {
+            background: linear-gradient(90deg,
+                    #ffffff 0%,
+                    #e8d5ff 20%,
+                    /* Soft Lavender */
+                    #b8f4ff 40%,
+                    /* Ice Blue */
+                    #ffffff 50%,
+                    #ffe8f8 70%,
+                    /* Pearl Pink */
+                    #d4f7ff 90%,
+                    /* Diamond Blue */
+                    #ffffff 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: holographicShimmer 4s linear infinite, textBreath 2.5s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 0 20px rgba(184, 244, 255, 0.5)) drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes premiumGradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            25% {
+                background-position: 100% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            75% {
+                background-position: 0% 100%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes holographicShimmer {
+            0% {
+                background-position: -100% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes textFloatUp {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes textBreath {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 20px rgba(184, 244, 255, 0.5)) drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
+                letter-spacing: 0px;
+            }
+
+            50% {
+                filter: drop-shadow(0 0 35px rgba(184, 244, 255, 0.8)) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.4));
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Premium AI Highlight - Neon Pulse */
+        .text-highlight {
+            background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            animation: neonPulse 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        .text-highlight::after {
+            content: 'AI';
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(8px);
+            opacity: 0.7;
+            animation: neonPulse 2s ease-in-out infinite reverse;
+            z-index: -1;
+        }
+
+        @keyframes neonPulse {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));
+            }
+
+            50% {
+                background-position: 100% 50%;
+                filter: drop-shadow(0 0 25px rgba(255, 0, 255, 1)) drop-shadow(0 0 50px rgba(0, 255, 255, 0.6));
+            }
+        }
+
+        /* Cinematic Subtitle */
+        .hero-subtitle-animated {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow:
+                0 0 20px rgba(196, 79, 255, 0.3),
+                0 2px 10px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.5px;
+            animation: subtitleFade 3s ease-in-out infinite;
+        }
+
+        @keyframes subtitleFade {
+
+            0%,
+            100% {
+                opacity: 0.95;
+            }
+
+            50% {
+                opacity: 1;
+                text-shadow: 0 0 30px rgba(196, 79, 255, 0.5), 0 2px 15px rgba(0, 0, 0, 0.6);
+            }
+        }
+    </style>
+
     <!-- Services Section -->
-    <section id="services" class="section py-20 relative overflow-hidden text-white bg-gray-900">
-        <iframe scrolling="no" title="bluesky" src="https://cdpn.io/AI-Learning-Lab/debug/gbpxbZo" frameborder="no"
-            loading="lazy" allowtransparency="true" allowfullscreen="true" class="codepen-full-bg-iframe"
-            style="opacity: 0.3;"></iframe>
+    <section id="services" class="section py-20 relative overflow-hidden text-white"
+        style="background: linear-gradient(180deg, #030014 0%, #0a0a2e 30%, #1a0a3e 70%, #0a0a2e 100%);">
         <div class="container mx-auto px-4 relative z-20">
             <div class="section-header text-center mb-16 animate-on-scroll">
                 <h2 class="text-4xl font-bold mb-4">Our Services</h2>
                 <p class="text-xl text-gray-400">Comprehensive AI-powered solutions tailored to your business needs</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                <div class="box animate-on-scroll scale-in">
+                <!-- Row 1 -->
+                <div class="box animate-on-scroll scale-in service-card-enhanced" style="--list: #ff6b35, #f7931e;">
                     <div class="service-icon mb-6"><i class="fas fa-desktop"></i></div>
-                    <h3 class="text-2xl font-semibold mb-4">Custom Websites</h3>
-                    <p class="text-white mb-6">Custom landing pages with advanced coding and animations.</p>
+                    <h3 class="text-2xl font-bold mb-4"
+                        style="background: linear-gradient(90deg, #ff6b35, #f7931e); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Custom Websites</h3>
+                    <p class="mb-6 leading-relaxed">Professional landing pages featuring cutting-edge
+                        animations, responsive design, and conversion-optimized layouts that elevate your brand.</p>
                 </div>
-                <div class="box animate-on-scroll scale-in">
+                <div class="box animate-on-scroll scale-in service-card-enhanced" style="--list: #bd00ff, #ff00aa;">
                     <div class="service-icon mb-6"><i class="fas fa-comments"></i></div>
-                    <h3 class="text-2xl font-semibold mb-4">Chat Box Integration</h3>
-                    <p class="text-white mb-6">Seamlessly integrate intelligent chat boxes into any of your services.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4"
+                        style="background: linear-gradient(90deg, #bd00ff, #ff00aa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Chat Box Integration</h3>
+                    <p class="mb-6 leading-relaxed">Enterprise-grade AI chatbots that provide 24/7
+                        customer support, lead generation, and seamless integration with your existing platforms.</p>
                 </div>
-                <div class="box animate-on-scroll scale-in">
+                <div class="box animate-on-scroll scale-in service-card-enhanced" style="--list: #00ff9d, #00d4aa;">
                     <div class="service-icon mb-6"><i class="fas fa-brain"></i></div>
-                    <h3 class="text-2xl font-semibold mb-4">Custom AI Solutions</h3>
-                    <p class="text-white mb-6">Bespoke AI solutions tailored to solve your unique business challenges.
-                    </p>
+                    <h3 class="text-2xl font-bold mb-4"
+                        style="background: linear-gradient(90deg, #00ff9d, #00d4aa); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Custom AI Solutions</h3>
+                    <p class="mb-6 leading-relaxed">Tailored artificial intelligence systems designed
+                        specifically for your business needs, from automation to advanced decision-making engines.</p>
+                </div>
+                <!-- Row 2 -->
+                <div class="box animate-on-scroll scale-in service-card-enhanced" style="--list: #00f3ff, #bd00ff;">
+                    <div class="service-icon mb-6"><i class="fas fa-robot"></i></div>
+                    <h3 class="text-2xl font-bold mb-4"
+                        style="background: linear-gradient(90deg, #00f3ff, #bd00ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        AI Agents</h3>
+                    <p class="mb-6 leading-relaxed">Autonomous intelligent agents that automate complex
+                        workflows, execute multi-step tasks, and make real-time decisions for maximum efficiency.</p>
+                </div>
+                <div class="box animate-on-scroll scale-in service-card-enhanced" style="--list: #ff6b35, #ffcc00;">
+                    <div class="service-icon mb-6"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="text-2xl font-bold mb-4"
+                        style="background: linear-gradient(90deg, #ff6b35, #ffcc00); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Machine Learning Models</h3>
+                    <p class="mb-6 leading-relaxed">Production-ready ML models for predictive analytics,
+                        pattern recognition, and intelligent automation that drive data-powered decisions.</p>
+                </div>
+                <div class="box animate-on-scroll scale-in service-card-enhanced" style="--list: #00ff9d, #00f3ff;">
+                    <div class="service-icon mb-6"><i class="fas fa-search-dollar"></i></div>
+                    <h3 class="text-2xl font-bold mb-4"
+                        style="background: linear-gradient(90deg, #00ff9d, #00f3ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                        Custom Lead Scrapers</h3>
+                    <p class="mb-6 leading-relaxed">Automated lead generation systems that scrape targeted prospects
+                        from multiple sources, filter by your criteria, and integrate directly with your CRM for instant
+                        outreach.</p>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- FIX: NEW CORE OFFERINGS SECTION -->
     <section id="core-offerings" class="section py-20 bg-gray-800 text-white">
@@ -1424,10 +1782,10 @@
                     </ul>
                 </div>
                 <div class="footer-col animate-on-scroll scale-in">
-                    <h4 class="text-2xl font-semibold mb-6 text-white">Learn AI for Free</h4>
-                    <a href="learnaiforfree.html"
-                        class="footer-link block py-2 px-4 rounded bg-blue-600 text-white font-semibold text-center hover:bg-blue-700 transition mb-4">Go
-                        to Learn AI Page</a>
+                    <h4 class="text-2xl font-semibold mb-6 text-white">Free AI Resources</h4>
+                    <a href="freeairesources.html"
+                        class="footer-link block py-2 px-4 rounded bg-blue-600 text-white font-semibold text-center hover:bg-blue-700 transition mb-4">View
+                        Free AI Resources</a>
                     <div class="grid grid-cols-1 gap-3">
                         <a href="https://chat.openai.com/"
                             class="footer-link underline text-blue-300 hover:text-blue-400" target="_blank"
@@ -1528,6 +1886,330 @@
 
             if (typeof initContactBackgroundShader === 'function') { initContactBackgroundShader(); }
         });
+    </script>
+
+    <!-- Three.js Header Shader Animation (Both Pills) -->
+    <script type="module">
+        import * as THREE from 'three';
+
+        // Shader creation function for reuse
+        function createShaderPill(canvas, container) {
+            if (!canvas || !container) return null;
+
+            let scene, camera, renderer, material, clock;
+            let mouse = new THREE.Vector2(0.5, 0.5);
+            let targetMouse = new THREE.Vector2(0.5, 0.5);
+
+            const uniforms = {
+                t: { value: 0.0 },
+                r: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) },
+                mouse: { value: new THREE.Vector2(0.5, 0.5) }
+            };
+
+            function init() {
+                scene = new THREE.Scene();
+                clock = new THREE.Clock();
+                camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+                camera.position.z = 1;
+
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+                const geometry = new THREE.PlaneGeometry(2, 2);
+                material = new THREE.ShaderMaterial({
+                    uniforms: uniforms,
+                    vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position, 1.0); }`,
+                    fragmentShader: `
+                        precision highp float;
+                        uniform float t;
+                        uniform vec2 r;
+                        uniform vec2 mouse;
+                        varying vec2 vUv;
+                        mat2 rot(float a) { float c = cos(a), s = sin(a); return mat2(c, -s, s, c); }
+                        float wave(vec2 uv, float time, float freq) { return sin(uv.x * freq + time) * 0.5 + sin(uv.x * freq * 1.5 + time * 1.3) * 0.3; }
+                        float glowLine(float y, float w, float i) { return pow(abs(w / y), i); }
+                        vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                        vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+                        vec3 permute(vec3 x) { return mod289(((x*34.0)+1.0)*x); }
+                        float snoise(vec2 v) {
+                            const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+                            vec2 i = floor(v + dot(v, C.yy)); vec2 x0 = v - i + dot(i, C.xx); vec2 i1; i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+                            vec4 x12 = x0.xyxy + C.xxzz; x12.xy -= i1; i = mod289(i);
+                            vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+                            vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0); m = m*m; m = m*m;
+                            vec3 x = 2.0 * fract(p * C.www) - 1.0; vec3 h = abs(x) - 0.5; vec3 ox = floor(x + 0.5); vec3 a0 = x - ox;
+                            m *= (1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h)); vec3 g; g.x = a0.x * x0.x + h.x * x0.y; g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+                            return 130.0 * dot(m, g);
+                        }
+                        void main() {
+                            vec2 uv = (vUv - 0.5) * 2.0; uv.x *= r.x / r.y; vec2 uv0 = uv; vec3 col = vec3(0.0); float time = t * 0.4;
+                            float noise = (snoise(uv * 0.5 + time * 0.02) + 1.0) * 0.5; col += noise * vec3(0.05, 0.0, 0.1) * 0.3;
+                            vec2 mouse_uv = (mouse - 0.5) * 2.0; mouse_uv.x *= r.x / r.y; float mouseDist = length(uv - mouse_uv);
+                            uv += (mouse_uv - uv) * (0.3 / (mouseDist + 0.5));
+                            float mouseGlow = 0.1 / (mouseDist + 0.1); mouseGlow *= (sin(t * 1.5) * 0.5 + 0.5) * 0.7 + 0.3; col += mouseGlow * vec3(1.0, 0.8, 1.0) * 0.15;
+                            uv *= rot(time * 0.05);
+                            float c1 = sin(time * 0.3 + 0.0) * 0.5 + 0.5; float c2 = sin(time * 0.3 + 2.0) * 0.5 + 0.5; float c3 = sin(time * 0.3 + 4.0) * 0.5 + 0.5;
+                            float y1 = uv.y - wave(uv, time * 1.5, 2.0); float line1 = glowLine(y1, 0.03, 0.8); vec3 color1 = vec3(1.0, c1 * 0.5 + 0.1, c2 * 0.7 + 0.3); col += color1 * line1;
+                            float y2 = uv.y + 0.4 - wave(uv + vec2(1.0, 0.5), time * 1.2, 2.5); float line2 = glowLine(y2, 0.03, 0.8); vec3 color2 = vec3(c2 * 0.3 + 0.1, c3 * 0.7 + 0.3, 1.0); col += color2 * line2;
+                            float y3 = uv.y - 0.4 - wave(uv + vec2(-0.5, 1.0), time * 1.8, 1.8); float line3 = glowLine(y3, 0.03, 0.8); vec3 color3 = vec3(c1 * 0.7 + 0.3, c3 * 0.5 + 0.1, 1.0); col += color3 * line3;
+                            float dist = length(uv0); float circle = abs(sin(dist * 4.0 - time * 2.0)) * exp(-dist * 0.5); col += vec3(0.5, 0.7, 1.0) * circle * 0.3;
+                            float centerGlow = exp(-dist * 1.0) * 0.3; col += centerGlow * vec3(0.4, 0.5, 0.8);
+                            float brightness = length(col);
+                            float alpha = smoothstep(0.05, 0.3, brightness);
+                            gl_FragColor = vec4(col, alpha);
+                        }
+                    `
+                });
+
+                const mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+            }
+
+            function onMouseMove(event) {
+                const rect = container.getBoundingClientRect();
+                targetMouse.x = (event.clientX - rect.left) / rect.width;
+                targetMouse.y = 1.0 - ((event.clientY - rect.top) / rect.height);
+            }
+
+            function onResize() {
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                uniforms.r.value.set(container.clientWidth, container.clientHeight);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                uniforms.t.value = clock.getElapsedTime();
+                mouse.lerp(targetMouse, 0.05);
+                uniforms.mouse.value.copy(mouse);
+                renderer.render(scene, camera);
+            }
+
+            init();
+            animate();
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('resize', onResize);
+
+            return { renderer, uniforms };
+        }
+
+        // Create shader for middle spacer pill only - with delay to ensure container is sized
+        setTimeout(() => {
+            const middleCanvas = document.getElementById('headerShaderCanvas');
+            const middleWrapper = document.getElementById('middleShaderWrapper');
+            if (middleCanvas && middleWrapper) {
+                createShaderPill(middleCanvas, middleWrapper);
+            }
+        }, 100);
+    </script>
+
+    <!-- Hero Warp Speed Particle Effect -->
+    <script type="module">
+        import * as THREE from 'three';
+
+        const heroCanvas = document.getElementById('heroWarpCanvas');
+        if (heroCanvas) {
+            const heroSection = heroCanvas.parentElement;
+            const w = heroSection.clientWidth;
+            const h = heroSection.clientHeight;
+
+            const renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, antialias: true, alpha: true });
+            renderer.setSize(w, h);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
+            camera.position.z = 0;
+            const scene = new THREE.Scene();
+
+            const particleCount = 20000;
+            const radius = 1.0;
+            const length = 30.0;
+            const warpIntensity = 1.0;
+            const warpSpeed = 0.2;
+            const timeSlowdownFactor = 0.1;
+            const transitionSpeed = 0.01;
+
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const sizes = new Float32Array(particleCount);
+            const speeds = new Float32Array(particleCount);
+
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                const angle = Math.random() * Math.PI * 2;
+                const r = radius * (0.4 + Math.random() * 0.6);
+                const z = -length * 0.5 + Math.random() * length;
+                positions[i3] = Math.cos(angle) * r;
+                positions[i3 + 1] = Math.sin(angle) * r;
+                positions[i3 + 2] = z;
+                sizes[i] = 0.2 + Math.random() * 0.4;
+                speeds[i] = 1.0 + Math.random() * 2.0;
+            }
+
+            geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
+            geometry.setAttribute("speed", new THREE.BufferAttribute(speeds, 1));
+
+            const vertexShader = `
+                attribute float size;
+                attribute float speed;
+                varying vec3 vColor;
+                varying float vOpacity;
+                varying float vLength;
+                varying float vDistFromCamera;
+                uniform float uTime;
+                uniform float uRadius;
+                uniform float uLength;
+                uniform float uWarpIntensity;
+                uniform float uWarpSpeed;
+                uniform float uEffectsActive;
+                uniform float uTimeSlowdown;
+                
+                void main() {
+                    vec3 pos = position;
+                    float effectiveSpeed = mix(uWarpSpeed, uWarpSpeed * uTimeSlowdown, uEffectsActive);
+                    float t = mod(uTime * speed * effectiveSpeed, uLength);
+                    pos.z = mod(pos.z + t, uLength) - uLength * 0.5;
+                    float distFromCamera = pos.z;
+                    vDistFromCamera = distFromCamera;
+                    float brightness = 1.0 - smoothstep(-uLength * 0.5, uLength * 0.5, distFromCamera);
+                    brightness = max(brightness, 0.4);
+                    float depthFactor = 1.0 - smoothstep(-uLength * 0.5, uLength * 0.5, distFromCamera);
+                    float distFromCenter = length(pos.xy);
+                    vLength = size * speed * uWarpIntensity * brightness * (1.0 + distFromCenter / uRadius * 0.6) * depthFactor;
+                    float forwardBrightness = 1.0 - smoothstep(-uLength * 0.3, uLength * 0.3, distFromCamera);
+                    float colorShift = sin(uTime * 0.8 + pos.x * 0.6 + pos.y * 0.4 + pos.z * 0.3) * 0.5 + 0.5;
+                    float colorShift2 = cos(uTime * 1.0 + pos.x * 0.5 - pos.y * 0.5 + pos.z * 0.4) * 0.5 + 0.5;
+                    float colorShift3 = sin(uTime * 0.6 + pos.x * 0.4 + pos.y * 0.5 - pos.z * 0.3) * 0.4 + 0.6;
+                    float blueIntensity = 0.3 + colorShift * 0.6 + forwardBrightness * 0.3;
+                    float cyanIntensity = 0.4 + colorShift2 * 0.5 + forwardBrightness * 0.3;
+                    float magentaIntensity = 0.5 + colorShift3 * 0.4 + forwardBrightness * 0.2;
+                    float whiteIntensity = 0.7 + (1.0 - colorShift) * 0.25 + forwardBrightness * 0.25;
+                    vColor = vec3(
+                        0.3 + blueIntensity * 0.4 + cyanIntensity * 0.2 + magentaIntensity * 0.2 + whiteIntensity * 0.2,
+                        0.4 + blueIntensity * 0.3 + cyanIntensity * 0.4 + magentaIntensity * 0.3 + whiteIntensity * 0.3,
+                        0.6 + blueIntensity * 0.3 + cyanIntensity * 0.5 + magentaIntensity * 0.2 + whiteIntensity * 0.5
+                    );
+                    float pulseSeed = pos.x * 50.0 + pos.y * 30.0 + pos.z * 20.0;
+                    float pulse = sin(uTime * 1.5 + pulseSeed) * 0.3 + 0.7;
+                    pulse = pow(pulse, 1.5);
+                    pulse = mix(1.0, pulse, uEffectsActive);
+                    float burstSeed = pos.x * 100.0 + pos.y * 70.0;
+                    float burst = sin(uTime * 0.8 + burstSeed) * 0.5 + 0.5;
+                    burst = pow(burst, 8.0);
+                    float burstIntensity = 1.0 + burst * 2.0 * uEffectsActive;
+                    vOpacity = brightness * pulse * (1.0 + (burstIntensity - 1.0));
+                    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+                    gl_PointSize = size * (300.0 / -mvPosition.z) * brightness * depthFactor * (1.0 + vLength * 0.2) * (1.0 + burst * 0.3 * uEffectsActive);
+                    gl_Position = projectionMatrix * mvPosition;
+                }
+            `;
+
+            const fragmentShader = `
+                varying vec3 vColor;
+                varying float vOpacity;
+                varying float vLength;
+                varying float vDistFromCamera;
+                uniform float uEffectsActive;
+                
+                void main() {
+                    vec2 coord = gl_PointCoord - vec2(0.5);
+                    float distortionIntensity = 0.0005 * uEffectsActive;
+                    float warpDistortion = sin(coord.y * 8.0 + vDistFromCamera * 0.3) * distortionIntensity;
+                    coord.x += warpDistortion;
+                    float timeDistortion = sin(coord.x * 6.0 + vDistFromCamera * 0.4) * 0.0004 * uEffectsActive;
+                    coord.y += timeDistortion;
+                    float lineWidth = 0.0035;
+                    float lineLength = vLength * 1.5;
+                    float perpDist = abs(coord.x);
+                    float alongLine = coord.y;
+                    float alpha = 0.0;
+                    if (alongLine >= -lineLength && alongLine <= 0.0 && perpDist < lineWidth) {
+                        float alongAlpha = 1.0 - smoothstep(-lineLength, 0.0, alongLine);
+                        float centerAlpha = 1.0 - smoothstep(0.0, lineWidth, perpDist);
+                        float energyPulse = sin(alongLine * 4.0 + vDistFromCamera * 0.6) * 0.2 + 0.8;
+                        energyPulse = mix(1.0, energyPulse, uEffectsActive);
+                        alpha = alongAlpha * centerAlpha * energyPulse;
+                        float trailColorShift = sin(alongLine * 3.0 + vDistFromCamera * 0.8) * 0.4 + 0.6;
+                        alpha *= trailColorShift;
+                    }
+                    float dist = length(coord);
+                    float core = pow(1.0 - smoothstep(0.0, 0.1, dist), 3.0);
+                    float corePulse = sin(vDistFromCamera * 0.5 + dist * 10.0) * 0.15 + 0.85;
+                    corePulse = mix(1.0, corePulse, uEffectsActive);
+                    alpha = max(alpha, core * 1.2 * corePulse);
+                    float glow = pow(1.0 - smoothstep(0.0, 0.35, dist), 2.0);
+                    float energyRings = sin(dist * 15.0 - vDistFromCamera * 0.4) * 0.1 + 0.9;
+                    energyRings = mix(1.0, energyRings, uEffectsActive);
+                    alpha = max(alpha, glow * 0.5 * energyRings);
+                    float outerGlow = pow(1.0 - smoothstep(0.0, 0.5, dist), 1.5);
+                    alpha = max(alpha, outerGlow * 0.2);
+                    float energyField = pow(1.0 - smoothstep(0.0, 0.4, dist), 1.8);
+                    float fieldPulse = sin(vDistFromCamera * 0.3 + dist * 8.0) * 0.2 + 0.8;
+                    fieldPulse = mix(1.0, fieldPulse, uEffectsActive);
+                    alpha = max(alpha, energyField * 0.15 * fieldPulse * uEffectsActive);
+                    float colorWave = sin(vDistFromCamera * 0.4 + dist * 6.0) * 0.3 + 0.7;
+                    vec3 spaceColor = vColor * colorWave;
+                    vec3 blueTone = vec3(0.4, 0.6, 1.0);
+                    vec3 cyanTone = vec3(0.3, 0.8, 1.0);
+                    vec3 magentaTone = vec3(0.8, 0.4, 1.0);
+                    float toneMix = sin(vDistFromCamera * 0.3) * 0.5 + 0.5;
+                    vec3 mixedTone = mix(blueTone, mix(cyanTone, magentaTone, toneMix), 0.3);
+                    spaceColor = mix(spaceColor, mixedTone, 0.25);
+                    vec3 finalColor = spaceColor * (1.0 + alpha * 1.8);
+                    float finalAlpha = alpha * vOpacity;
+                    finalAlpha = min(finalAlpha, 1.0);
+                    gl_FragColor = vec4(finalColor, finalAlpha);
+                }
+            `;
+
+            const material = new THREE.ShaderMaterial({
+                vertexShader,
+                fragmentShader,
+                uniforms: {
+                    uTime: { value: 0 },
+                    uRadius: { value: radius },
+                    uLength: { value: length },
+                    uWarpIntensity: { value: warpIntensity },
+                    uWarpSpeed: { value: warpSpeed },
+                    uEffectsActive: { value: 0.0 },
+                    uTimeSlowdown: { value: timeSlowdownFactor },
+                },
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+            });
+
+            const particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            let time = 0;
+            let currentEffectsActive = 0.0;
+            let targetEffectsActive = 0.0;
+
+            heroSection.addEventListener("mousedown", () => { targetEffectsActive = 1.0; });
+            heroSection.addEventListener("mouseup", () => { targetEffectsActive = 0.0; });
+            heroSection.addEventListener("mouseleave", () => { targetEffectsActive = 0.0; });
+
+            function animateHeroWarp() {
+                requestAnimationFrame(animateHeroWarp);
+                time += 0.016;
+                currentEffectsActive += (targetEffectsActive - currentEffectsActive) * transitionSpeed;
+                material.uniforms.uEffectsActive.value = currentEffectsActive;
+                material.uniforms.uTime.value = time;
+                renderer.render(scene, camera);
+            }
+
+            animateHeroWarp();
+
+            window.addEventListener("resize", () => {
+                const newW = heroSection.clientWidth;
+                const newH = heroSection.clientHeight;
+                renderer.setSize(newW, newH);
+                camera.aspect = newW / newH;
+                camera.updateProjectionMatrix();
+            });
+        }
     </script>
 
 </body>
