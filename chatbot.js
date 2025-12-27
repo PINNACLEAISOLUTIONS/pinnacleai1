@@ -1,4 +1,4 @@
-// chatbot.js - Phase 7: Scale-corrected viewport height
+// chatbot.js - Phase 8: Final height calculation fix
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Chatbot script loaded');
 
@@ -15,15 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const isMobile = () => window.innerWidth < 768;
 
-    // --- Phase 7: True Viewport Height with Scale Correction ---
+    // --- Phase 8: Correct viewport height (no scale multiplication) ---
     function getTrueViewportHeightPx() {
         if (window.visualViewport) {
-            const vv = window.visualViewport;
-            const scaled = Math.round(vv.height * vv.scale);
-            const fallback = Math.round(document.documentElement.clientHeight);
-            return Math.max(scaled, fallback);
+            return Math.round(window.visualViewport.height);
         }
-        return Math.round(document.documentElement.clientHeight);
+        return Math.round(window.innerHeight);
     }
 
     function updateVH() {
@@ -45,11 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
             debugOverlay.innerHTML = `
                 win.size: ${window.innerWidth}x${window.innerHeight}<br>
                 vv.height: ${vv ? Math.round(vv.height) : 'N/A'}<br>
-                vv.scale: ${vv ? vv.scale.toFixed(2) : 'N/A'}<br>
-                clientHeight: ${document.documentElement.clientHeight}<br>
+                innerHeight: ${window.innerHeight}<br>
                 computed h: ${h}px<br>
                 container: ${Math.round(overlayRect.width)}x${Math.round(overlayRect.height)}<br>
-                pos: ${computedStyle.position}<br>
                 applied height: ${computedStyle.height}
             `;
         }
@@ -99,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         chatbotContainer.style.paddingTop = 'env(safe-area-inset-top)';
         chatbotContainer.style.paddingBottom = 'env(safe-area-inset-bottom)';
         chatbotContainer.style.transform = 'none';
-        chatbotContainer.style.outline = '3px solid red'; // Debug outline
+        // Debug outline removed
 
         // Header styles
         if (chatbotHeader) {
@@ -110,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (chatbotIframe) {
             chatbotIframe.style.flex = '1 1 auto';
             chatbotIframe.style.width = '100%';
-            chatbotIframe.style.height = 'auto';
+            chatbotIframe.style.height = '100%';
             chatbotIframe.style.minHeight = '0';
             chatbotIframe.style.border = 'none';
             chatbotIframe.style.display = 'block';
@@ -138,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
         chatbotContainer.style.paddingTop = '';
         chatbotContainer.style.paddingBottom = '';
         chatbotContainer.style.transform = '';
-        chatbotContainer.style.outline = '';
 
         // Header styles
         if (chatbotHeader) {

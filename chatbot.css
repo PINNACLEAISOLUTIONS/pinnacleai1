@@ -161,10 +161,12 @@
 /* Mobile Responsiveness for Chatbot - PHASE 5 HARD RESET */
 @media (max-width: 767px) {
 
-    /* Step 3: Remove transform interference and hide fixed bars when chatbot is open */
+    /* Remove transform interference and reset layout when chatbot is open */
     html.chatbot-open,
     body.chatbot-open {
+        height: 100% !important;
         overflow: hidden !important;
+        padding-top: 0 !important;
         touch-action: none !important;
         transform: none !important;
         filter: none !important;
