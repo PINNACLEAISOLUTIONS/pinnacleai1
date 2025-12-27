@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
     mobileLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href && href.startsWith('#')) {
                 e.preventDefault();
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     if (mobileMenu) {
-        mobileMenu.addEventListener('click', function(e) {
+        mobileMenu.addEventListener('click', function (e) {
             if (e.target === mobileMenu) {
                 closeMenu();
             }
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2 && sections.length > 0) {
-             currentActiveSectionId = sections[sections.length - 1].id;
+            currentActiveSectionId = sections[sections.length - 1].id;
         }
 
         navLinks.forEach(link => {
@@ -172,9 +172,9 @@ document.addEventListener('DOMContentLoaded', function () {
         gsap.set("#mainSVG", { visibility: "visible" });
         const tl = gsap.timeline({ defaults: { ease: "power2.inOut" }, repeat: -1, yoyo: true });
         tl.to("#ai", { duration: 2, morphSVG: "M50 20 C20 20, 20 80, 50 80 S80 80, 80 20 Z" })
-          .to(".ell", { duration: 1, scale: 1.2, transformOrigin: "50% 50%", stagger: 0.1 }, "-=1.5")
-          .to("#ai", { duration: 1.5, strokeDasharray: "20 10", strokeDashoffset: 30 }, "-=1")
-          .to("#mainSVG", { duration: 1, rotation: 360, transformOrigin: "50% 50%" }, "-=0.5");
+            .to(".ell", { duration: 1, scale: 1.2, transformOrigin: "50% 50%", stagger: 0.1 }, "-=1.5")
+            .to("#ai", { duration: 1.5, strokeDasharray: "20 10", strokeDashoffset: 30 }, "-=1")
+            .to("#mainSVG", { duration: 1, rotation: 360, transformOrigin: "50% 50%" }, "-=0.5");
     }
 
     // --- Initialize Contact Section CodePen Background ---
@@ -184,21 +184,5 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("initContactBackgroundShader function not found. Ensure the CodePen JS is embedded in the HTML and loaded correctly before script.js.");
     }
 
-    // --- Chatbot Toggle Logic ---
-    const chatbotContainer = document.getElementById('chatbot-container');
-    const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
-    const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
-
-    if (chatbotToggleBtn && chatbotContainer) {
-        chatbotToggleBtn.addEventListener('click', () => {
-            chatbotContainer.classList.toggle('active');
-            // Optional: Toggle icon or animation
-        });
-    }
-
-    if (chatbotCloseBtn && chatbotContainer) {
-        chatbotCloseBtn.addEventListener('click', () => {
-            chatbotContainer.classList.remove('active');
-        });
-    }
+    // --- Chatbot Toggle Logic handled in chatbot.js ---
 });

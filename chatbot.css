@@ -159,22 +159,59 @@
 }
 
 /* Mobile Responsiveness for Chatbot */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .chatbot-container {
         position: fixed;
         left: 0 !important;
+        top: 0 !important;
+        right: 0 !important;
         bottom: 0 !important;
-        width: 100vw !important;
+        width: 100% !important;
+        height: 100vh !important;
+        /* Fallback */
+        height: 100svh !important;
+        /* Small Viewport Height */
         height: 100dvh !important;
+        /* Dynamic Viewport Height */
+        height: calc(var(--vh, 1vh) * 100) !important;
+        /* JS-controlled Height for Keyboard */
+        max-width: none !important;
+        max-height: none !important;
         border-radius: 0 !important;
         border: none !important;
+        margin: 0 !important;
         z-index: 2147483647;
         transform: none !important;
         display: none;
+        flex-direction: column;
+        overscroll-behavior: contain;
+        background: #000;
     }
 
     .chatbot-container.active {
         display: flex;
+    }
+
+    .chatbot-header {
+        flex: 0 0 auto;
+        padding-top: max(15px, env(safe-area-inset-top));
+        padding-bottom: 12px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 1.1rem;
+        background: linear-gradient(90deg, rgba(0, 243, 255, 0.15), rgba(189, 0, 255, 0.15));
+    }
+
+    .chatbot-container iframe {
+        flex: 1 1 auto;
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+        padding-bottom: env(safe-area-inset-bottom);
+        background: #000;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .chatbot-toggle-btn {
@@ -186,17 +223,17 @@
 
     .chatbot-toggle-btn .icon-wrapper {
         display: flex !important;
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
     }
 
     .chatbot-toggle-btn .line-1 {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     .chatbot-toggle-btn .line-2 {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
     }
 }
 
