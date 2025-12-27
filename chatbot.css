@@ -58,9 +58,11 @@
     width: 100%;
     /* Remove height: 100% so it doesn't overflow with the header. 
        flex-grow: 1 will align it to fill the remaining space. */
-    height: auto;
+    height: 100%;
     border: none;
     flex-grow: 1;
+    display: block;
+    /* Ensure no inline spacing issues */
 }
 
 .chatbot-toggle-btn {
@@ -168,12 +170,15 @@
         left: 0;
         bottom: 0;
         top: 0;
+        width: 100%;
+        /* Fallback */
+        height: 100%;
+        /* Fallback */
         width: 100vw !important;
-        max-width: 100vw !important;
         height: 100dvh !important;
-        max-height: 100dvh !important;
-        border-radius: 0;
-        border: none;
+        right: 0;
+        /* Align to right edge too */
+        border: none !important;
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
         z-index: 2147483647;
