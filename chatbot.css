@@ -189,8 +189,20 @@
         overflow: hidden !important;
         transform: none !important;
         background: #000 !important;
-        /* Step 7: Debug outline - remove after testing */
-        outline: 3px solid red !important;
+    }
+
+    /* Update Header Text for Mobile */
+    .chatbot-header span {
+        display: none !important;
+    }
+
+    .chatbot-header::after {
+        content: "PINNACLE AI MCP CHATBOT";
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: var(--neon-cyan);
+        text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
     }
 
     /* Step 2B: Fallback for browsers without dvh */
@@ -224,7 +236,9 @@
     /* Step 5: Iframe fills remaining space */
     #chatbot-container iframe {
         flex: 1 1 auto !important;
-        width: 100% !important;
+        /* Crop Hack: Shift left to hide sidebar (approx 280px) */
+        width: calc(100% + 280px) !important;
+        margin-left: -280px !important;
         height: auto !important;
         min-height: 0 !important;
         display: block !important;
