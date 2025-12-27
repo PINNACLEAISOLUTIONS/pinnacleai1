@@ -1,35 +1,35 @@
-/* --- Chatbot Widget --- */
+/* Chatbot panel fixed overlay that fits on mobile */
 .chatbot-container {
     position: fixed;
-    bottom: 90px;
     left: 20px;
-    width: 750px;
-    max-width: 90vw;
-    height: 600px;
-    max-height: 80vh;
-    background: rgba(10, 10, 10, 0.95);
+    /* Keeping it on the left as per current layout */
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    width: min(750px, calc(100vw - 40px));
+    height: min(640px, calc(100dvh - 140px));
+    z-index: 999999;
+    background: rgba(10, 10, 10, 0.98);
     border: 1px solid rgba(0, 243, 255, 0.3);
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 243, 255, 0.1);
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
+    border-radius: 16px;
     overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px) scale(0.95);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
+    /* Controlled by .active */
+    box-sizing: border-box;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 243, 255, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
+    transition: opacity 0.3s ease;
 }
 
+/* Toggle visibility */
 .chatbot-container.active {
+    display: flex;
     opacity: 1;
-    pointer-events: all;
-    transform: translateY(0) scale(1);
 }
 
+/* Header stays fixed height */
 .chatbot-header {
+    flex: 0 0 auto;
     padding: 15px 20px;
     background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), rgba(189, 0, 255, 0.1));
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -41,7 +41,6 @@
     font-weight: 600;
     font-size: 1rem;
     letter-spacing: 0.5px;
-    flex-shrink: 0;
 }
 
 .chatbot-close-btn {
@@ -55,14 +54,10 @@
 }
 
 .chatbot-container iframe {
+    flex: 1 1 auto;
     width: 100%;
-    /* Remove height: 100% so it doesn't overflow with the header. 
-       flex-grow: 1 will align it to fill the remaining space. */
-    height: 100%;
     border: none;
-    flex-grow: 1;
     display: block;
-    /* Ensure no inline spacing issues */
 }
 
 .chatbot-toggle-btn {
@@ -167,47 +162,70 @@
 @media (max-width: 768px) {
     .chatbot-container {
         position: fixed;
-        left: 0;
-        bottom: 0;
-        top: 0;
-        width: 100%;
-        /* Fallback */
-        height: 100%;
-        /* Fallback */
+        left: 0 !important;
+        bottom: 0 !important;
         width: 100vw !important;
         height: 100dvh !important;
-        right: 0;
-        /* Align to right edge too */
+        border-radius: 0 !important;
         border: none !important;
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
         z-index: 2147483647;
-        /* Max z-index to ensure it's on top */
         transform: none !important;
-        /* Prevent desktop transform from affecting mobile */
+        display: none;
+    }
+
+    .chatbot-container.active {
+        display: flex;
     }
 
     .chatbot-toggle-btn {
-        bottom: 20px;
-        left: 20px;
-        padding: 6px 14px;
-        /* Smaller padding for mobile */
-        gap: 0;
-        /* Remove gap since icon is hidden */
+        bottom: 15px;
+        left: 15px;
+        padding: 5px 12px;
+        gap: 8px;
     }
 
     .chatbot-toggle-btn .icon-wrapper {
-        display: none !important;
-        /* Hide icon on mobile */
+        display: flex !important;
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
     }
 
     .chatbot-toggle-btn .line-1 {
-        font-size: 0.8rem;
-        /* Smaller font */
+        font-size: 0.75rem;
     }
 
     .chatbot-toggle-btn .line-2 {
-        font-size: 0.65rem;
-        /* Smaller subtext */
+        font-size: 0.6rem;
+    }
+}
+
+/* Enhancement: Phone icon animation */
+.chatbot-toggle-btn .fa-phone-alt {
+    animation: phoneShake 2s infinite ease-in-out;
+}
+
+@keyframes phoneShake {
+
+    0%,
+    90%,
+    100% {
+        transform: rotate(0);
+    }
+
+    92% {
+        transform: rotate(15deg);
+    }
+
+    94% {
+        transform: rotate(-15deg);
+    }
+
+    96% {
+        transform: rotate(15deg);
+    }
+
+    98% {
+        transform: rotate(-15deg);
     }
 }
