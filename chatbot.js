@@ -1,4 +1,4 @@
-// chatbot.js - Phase 9: Strict mobile-only styles, desktop untouched
+// chatbot.js - Phase 6: Inline styles for guaranteed mobile fullscreen
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Chatbot script loaded');
 
@@ -15,26 +15,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const isMobile = () => window.innerWidth < 768;
 
-    // --- Viewport Height for Mobile ---
-    function getTrueViewportHeightPx() {
-        if (window.visualViewport) {
-            return Math.round(window.visualViewport.height);
-        }
-        return Math.round(window.innerHeight);
+    // --- Dynamic Viewport Height ---
+    function getViewportHeight() {
+        return window.visualViewport ? window.visualViewport.height : window.innerHeight;
     }
 
     function updateVH() {
-        const h = getTrueViewportHeightPx();
+        const h = getViewportHeight();
         document.documentElement.style.setProperty('--vhpx', `${h}px`);
 
-        // ONLY update inline height if chatbot is open AND we're on mobile
+        // If chatbot is open on mobile, update the height inline
         if (isMobile() && chatbotContainer.classList.contains('active')) {
             chatbotContainer.style.height = h + 'px';
             chatbotContainer.style.maxHeight = h + 'px';
         }
+
+        // Update debug overlay if active
+        const debugOverlay = document.getElementById('chatbot-mobile-debug');
+        if (debugOverlay && localStorage.getItem('chatbot_debug') === 'true') {
+            const overlayRect = chatbotContainer.getBoundingClientRect();
+            const computedStyle = window.getComputedStyle(chatbotContainer);
+            debugOverlay.innerHTML = `
+                win.size: ${window.innerWidth}x${window.innerHeight}<br>
+                vv.size: ${window.visualViewport ? Math.round(window.visualViewport.width) + 'x' + Math.round(window.visualViewport.height) : 'N/A'}<br>
+                --vhpx: ${h}px<br>
+                container: ${Math.round(overlayRect.width)}x${Math.round(overlayRect.height)}<br>
+                pos: ${computedStyle.position}, top: ${computedStyle.top}, bot: ${computedStyle.bottom}<br>
+                transform: ${computedStyle.transform !== 'none' ? 'ACTIVE' : 'none'}
+            `;
+        }
     }
 
-    // Initialize Debug Overlay on Mobile only
+    // Initialize Debug Overlay on Mobile
     if (isMobile()) {
         let debugOverlay = document.getElementById('chatbot-mobile-debug');
         if (!debugOverlay) {
@@ -55,64 +67,83 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     updateVH();
 
-    // --- Apply Mobile Fullscreen Inline Styles (ONLY on mobile) ---
+    // --- Apply Mobile Fullscreen Inline Styles ---
     function applyMobileFullscreenStyles() {
-        if (!isMobile()) return; // Safety check
+        const h = getViewportHeight();
 
-        const h = getTrueViewportHeightPx();
-
-        // Container styles for true fullscreen
-        chatbotContainer.style.cssText = `
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            width: 100vw !important;
-            height: ${h}px !important;
-            max-height: ${h}px !important;
-            margin: 0 !important;
-            border-radius: 0 !important;
-            z-index: 999999 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            overflow: hidden !important;
-            box-sizing: border-box !important;
-            padding-top: env(safe-area-inset-top) !important;
-            padding-bottom: env(safe-area-inset-bottom) !important;
-            transform: none !important;
-            border: none !important;
-        `;
+        // Container styles
+        chatbotContainer.style.position = 'fixed';
+        chatbotContainer.style.top = '0';
+        chatbotContainer.style.left = '0';
+        chatbotContainer.style.right = '0';
+        chatbotContainer.style.bottom = '0';
+        chatbotContainer.style.width = '100vw';
+        chatbotContainer.style.height = h + 'px';
+        chatbotContainer.style.maxHeight = h + 'px';
+        chatbotContainer.style.margin = '0';
+        chatbotContainer.style.borderRadius = '0';
+        chatbotContainer.style.zIndex = '999999';
+        chatbotContainer.style.display = 'flex';
+        chatbotContainer.style.flexDirection = 'column';
+        chatbotContainer.style.overflow = 'hidden';
+        chatbotContainer.style.boxSizing = 'border-box';
+        chatbotContainer.style.paddingTop = 'env(safe-area-inset-top)';
+        chatbotContainer.style.paddingBottom = 'env(safe-area-inset-bottom)';
+        chatbotContainer.style.transform = 'none';
+        chatbotContainer.style.outline = '3px solid red'; // Debug outline
 
         // Header styles
         if (chatbotHeader) {
-            chatbotHeader.style.cssText = `
-                flex: 0 0 auto !important;
-                min-height: 56px !important;
-            `;
+            chatbotHeader.style.flex = '0 0 auto';
         }
 
-        // Iframe styles - override inline height="100%"
+        // Iframe styles
         if (chatbotIframe) {
-            chatbotIframe.style.cssText = `
-                flex: 1 1 auto !important;
-                width: 100% !important;
-                height: 100% !important;
-                min-height: 0 !important;
-                border: none !important;
-                display: block !important;
-            `;
+            chatbotIframe.style.flex = '1 1 auto';
+            chatbotIframe.style.width = '100%';
+            chatbotIframe.style.height = 'auto';
+            chatbotIframe.style.minHeight = '0';
+            chatbotIframe.style.border = 'none';
+            chatbotIframe.style.display = 'block';
         }
     }
 
-    // --- Remove ALL inline styles (let CSS take over for desktop) ---
-    function removeAllInlineStyles() {
-        chatbotContainer.style.cssText = '';
+    // --- Remove Mobile Inline Styles (reset to CSS control) ---
+    function removeMobileInlineStyles() {
+        // Container styles
+        chatbotContainer.style.position = '';
+        chatbotContainer.style.top = '';
+        chatbotContainer.style.left = '';
+        chatbotContainer.style.right = '';
+        chatbotContainer.style.bottom = '';
+        chatbotContainer.style.width = '';
+        chatbotContainer.style.height = '';
+        chatbotContainer.style.maxHeight = '';
+        chatbotContainer.style.margin = '';
+        chatbotContainer.style.borderRadius = '';
+        chatbotContainer.style.zIndex = '';
+        chatbotContainer.style.display = '';
+        chatbotContainer.style.flexDirection = '';
+        chatbotContainer.style.overflow = '';
+        chatbotContainer.style.boxSizing = '';
+        chatbotContainer.style.paddingTop = '';
+        chatbotContainer.style.paddingBottom = '';
+        chatbotContainer.style.transform = '';
+        chatbotContainer.style.outline = '';
+
+        // Header styles
         if (chatbotHeader) {
-            chatbotHeader.style.cssText = '';
+            chatbotHeader.style.flex = '';
         }
+
+        // Iframe styles
         if (chatbotIframe) {
-            chatbotIframe.style.cssText = '';
+            chatbotIframe.style.flex = '';
+            chatbotIframe.style.width = '';
+            chatbotIframe.style.height = '';
+            chatbotIframe.style.minHeight = '';
+            chatbotIframe.style.border = '';
+            chatbotIframe.style.display = '';
         }
     }
 
@@ -122,14 +153,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const becomingActive = !chatbotContainer.classList.contains('active');
 
         if (becomingActive) {
+            // Move to body on mobile to escape clipping
+            if (isMobile() && chatbotContainer.parentElement !== document.body) {
+                document.body.appendChild(chatbotContainer);
+            }
+
             chatbotContainer.classList.add('active');
 
             if (isMobile()) {
-                // Move to body on mobile to escape clipping
-                if (chatbotContainer.parentElement !== document.body) {
-                    document.body.appendChild(chatbotContainer);
-                }
-
                 // Add chatbot-open class to html and body
                 document.documentElement.classList.add('chatbot-open');
                 document.body.classList.add('chatbot-open');
@@ -140,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Safari keyboard fix: scroll to top
                 window.scrollTo(0, 0);
             }
-            // Desktop: No inline styles applied, CSS handles it
         } else {
             closeChatbot();
         }
@@ -155,8 +185,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.documentElement.classList.remove('chatbot-open');
         document.body.classList.remove('chatbot-open');
 
-        // Remove ALL inline styles so CSS takes full control
-        removeAllInlineStyles();
+        // Remove inline styles so desktop CSS takes over
+        removeMobileInlineStyles();
 
         chatbotToggleBtn.setAttribute('aria-expanded', 'false');
     }

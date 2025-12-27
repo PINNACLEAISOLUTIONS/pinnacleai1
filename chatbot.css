@@ -1,7 +1,8 @@
-/* Chatbot panel - Desktop styles (screens 768px and up) */
+/* Chatbot panel fixed overlay that fits on mobile */
 .chatbot-container {
     position: fixed;
     left: 20px;
+    /* Keeping it on the left as per current layout */
     bottom: calc(20px + env(safe-area-inset-bottom));
     width: min(750px, calc(100vw - 40px));
     height: min(640px, calc(100dvh - 140px));
@@ -11,6 +12,7 @@
     border-radius: 16px;
     overflow: hidden;
     display: none;
+    /* Controlled by .active */
     box-sizing: border-box;
     flex-direction: column;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 243, 255, 0.1);
@@ -19,13 +21,13 @@
     transition: opacity 0.3s ease;
 }
 
-/* Toggle visibility - Desktop */
+/* Toggle visibility */
 .chatbot-container.active {
     display: flex;
     opacity: 1;
 }
 
-/* Header - Desktop */
+/* Header stays fixed height */
 .chatbot-header {
     flex: 0 0 auto;
     padding: 15px 20px;
@@ -45,25 +47,19 @@
     color: var(--text-muted);
     font-size: 1.1rem;
     transition: color 0.3s ease;
-    background: none;
-    border: none;
-    cursor: pointer;
 }
 
 .chatbot-close-btn:hover {
     color: var(--neon-cyan);
 }
 
-/* Iframe - Desktop */
 .chatbot-container iframe {
     flex: 1 1 auto;
     width: 100%;
-    min-height: 0;
     border: none;
     display: block;
 }
 
-/* Toggle Button */
 .chatbot-toggle-btn {
     position: fixed;
     bottom: 20px;
@@ -134,7 +130,7 @@
     letter-spacing: 1px;
 }
 
-/* Glow animation */
+/* Add a subtle glow animation */
 .chatbot-toggle-btn::before {
     content: '';
     position: absolute;
@@ -162,42 +158,28 @@
     }
 }
 
-/* ===== MOBILE STYLES (max-width: 767px) ===== */
+/* Mobile Responsiveness for Chatbot - PHASE 5 HARD RESET */
 @media (max-width: 767px) {
 
-    /* Lock body when chatbot is open */
+    /* Step 3: Remove transform interference when chatbot is open */
     html.chatbot-open,
     body.chatbot-open {
-        height: 100% !important;
         overflow: hidden !important;
-        padding-top: 0 !important;
         touch-action: none !important;
         transform: none !important;
         filter: none !important;
         perspective: none !important;
     }
 
-    /* Hide fixed elements when chatbot is open */
-    body.chatbot-open .navbar,
-    body.chatbot-open #main-header,
-    body.chatbot-open .mobile-cta-bar,
-    body.chatbot-open .call-us-fab {
-        display: none !important;
-    }
-
-    /* Mobile fullscreen overlay - ONLY when active */
-    .chatbot-container.active {
+    /* Step 2A: Hard reset fullscreen overlay */
+    #chatbot-container.active {
         position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
+        inset: 0 !important;
         width: 100vw !important;
         height: 100dvh !important;
         max-height: 100dvh !important;
         margin: 0 !important;
         border-radius: 0 !important;
-        border: none !important;
         z-index: 999999 !important;
         box-sizing: border-box !important;
         padding-top: env(safe-area-inset-top) !important;
@@ -207,34 +189,48 @@
         overflow: hidden !important;
         transform: none !important;
         background: #000 !important;
+        /* Step 7: Debug outline - remove after testing */
+        outline: 3px solid red !important;
     }
 
-    /* Fallback for browsers without dvh */
+    /* Step 2B: Fallback for browsers without dvh */
     @supports not (height: 100dvh) {
-        .chatbot-container.active {
+        #chatbot-container.active {
             height: var(--vhpx, 100vh) !important;
             max-height: var(--vhpx, 100vh) !important;
         }
     }
 
-    /* Mobile header */
-    .chatbot-container.active .chatbot-header {
-        flex: 0 0 auto !important;
-        min-height: 50px !important;
-        box-sizing: border-box !important;
-        padding: 10px 15px !important;
+    /* Hidden state */
+    #chatbot-container {
+        display: none;
     }
 
-    /* Mobile iframe - override inline height:100% */
-    .chatbot-container.active iframe {
+    /* Step 4: Header with flex auto and min-height */
+    #chatbot-container .chatbot-header {
+        flex: 0 0 auto !important;
+        min-height: 56px !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        background: linear-gradient(90deg, rgba(0, 243, 255, 0.2), rgba(189, 0, 255, 0.2)) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Step 5: Iframe fills remaining space */
+    #chatbot-container iframe {
         flex: 1 1 auto !important;
         width: 100% !important;
         height: auto !important;
         min-height: 0 !important;
+        display: block !important;
         border: none !important;
     }
 
-    /* Mobile toggle button */
     .chatbot-toggle-btn {
         bottom: 15px !important;
         left: 15px !important;
@@ -244,9 +240,14 @@
     }
 
     .chatbot-toggle-btn .icon-wrapper {
+        display: flex !important;
         width: 30px !important;
         height: 30px !important;
         font-size: 0.85rem !important;
+    }
+
+    .chatbot-toggle-btn .btn-text {
+        display: flex !important;
     }
 
     .chatbot-toggle-btn .line-1 {
@@ -258,7 +259,7 @@
     }
 }
 
-/* Mobile Debug Overlay */
+/* Mobile-only Debug Overlay Styling */
 #chatbot-mobile-debug {
     position: fixed;
     top: 50px;
@@ -278,5 +279,35 @@
 @media (max-width: 767px) {
     body.chatbot-debug-active #chatbot-mobile-debug {
         display: block;
+    }
+}
+
+/* Enhancement: Phone icon animation */
+.chatbot-toggle-btn .fa-phone-alt {
+    animation: phoneShake 2s infinite ease-in-out;
+}
+
+@keyframes phoneShake {
+
+    0%,
+    90%,
+    100% {
+        transform: rotate(0);
+    }
+
+    92% {
+        transform: rotate(15deg);
+    }
+
+    94% {
+        transform: rotate(-15deg);
+    }
+
+    96% {
+        transform: rotate(15deg);
+    }
+
+    98% {
+        transform: rotate(-15deg);
     }
 }
