@@ -164,31 +164,43 @@
 /* Mobile Responsiveness for Chatbot */
 @media (max-width: 768px) {
     .chatbot-container {
+        position: fixed;
         left: 0;
         bottom: 0;
         top: 0;
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        max-height: 100dvh;
-        /* Dynamic Viewport Height for mobile browsers */
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
         border-radius: 0;
-        border-right: none;
-        border-left: none;
-        border-bottom: none;
+        border: none;
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
+        z-index: 2147483647;
+        /* Max z-index to ensure it's on top */
     }
 
     .chatbot-toggle-btn {
         bottom: 20px;
         left: 20px;
-        padding: 8px 15px;
-        /* Adjust padding for smaller button */
+        padding: 6px 14px;
+        /* Smaller padding for mobile */
+        gap: 0;
+        /* Remove gap since icon is hidden */
     }
 
     .chatbot-toggle-btn .icon-wrapper {
-        display: none;
+        display: none !important;
         /* Hide icon on mobile */
+    }
+
+    .chatbot-toggle-btn .line-1 {
+        font-size: 0.8rem;
+        /* Smaller font */
+    }
+
+    .chatbot-toggle-btn .line-2 {
+        font-size: 0.65rem;
+        /* Smaller subtext */
     }
 }
