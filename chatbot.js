@@ -1,10 +1,12 @@
-// chatbot.js
+// chatbot.js - Phase 6: Inline styles for guaranteed mobile fullscreen
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Chatbot script loaded');
 
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
     const chatbotContainer = document.getElementById('chatbot-container');
     const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
+    const chatbotHeader = chatbotContainer ? chatbotContainer.querySelector('.chatbot-header') : null;
+    const chatbotIframe = chatbotContainer ? chatbotContainer.querySelector('iframe') : null;
 
     if (!chatbotToggleBtn || !chatbotContainer) {
         console.error('Chatbot elements not found');
@@ -13,10 +15,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const isMobile = () => window.innerWidth < 768;
 
-    // --- Dynamic Viewport Height (Phase 3: VisualViewport) ---
+    // --- Dynamic Viewport Height ---
+    function getViewportHeight() {
+        return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    }
+
     function updateVH() {
-        const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        const h = getViewportHeight();
         document.documentElement.style.setProperty('--vhpx', `${h}px`);
+
+        // If chatbot is open on mobile, update the height inline
+        if (isMobile() && chatbotContainer.classList.contains('active')) {
+            chatbotContainer.style.height = h + 'px';
+            chatbotContainer.style.maxHeight = h + 'px';
+        }
 
         // Update debug overlay if active
         const debugOverlay = document.getElementById('chatbot-mobile-debug');
@@ -55,24 +67,107 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     updateVH();
 
+    // --- Apply Mobile Fullscreen Inline Styles ---
+    function applyMobileFullscreenStyles() {
+        const h = getViewportHeight();
+
+        // Container styles
+        chatbotContainer.style.position = 'fixed';
+        chatbotContainer.style.top = '0';
+        chatbotContainer.style.left = '0';
+        chatbotContainer.style.right = '0';
+        chatbotContainer.style.bottom = '0';
+        chatbotContainer.style.width = '100vw';
+        chatbotContainer.style.height = h + 'px';
+        chatbotContainer.style.maxHeight = h + 'px';
+        chatbotContainer.style.margin = '0';
+        chatbotContainer.style.borderRadius = '0';
+        chatbotContainer.style.zIndex = '999999';
+        chatbotContainer.style.display = 'flex';
+        chatbotContainer.style.flexDirection = 'column';
+        chatbotContainer.style.overflow = 'hidden';
+        chatbotContainer.style.boxSizing = 'border-box';
+        chatbotContainer.style.paddingTop = 'env(safe-area-inset-top)';
+        chatbotContainer.style.paddingBottom = 'env(safe-area-inset-bottom)';
+        chatbotContainer.style.transform = 'none';
+        chatbotContainer.style.outline = '3px solid red'; // Debug outline
+
+        // Header styles
+        if (chatbotHeader) {
+            chatbotHeader.style.flex = '0 0 auto';
+        }
+
+        // Iframe styles
+        if (chatbotIframe) {
+            chatbotIframe.style.flex = '1 1 auto';
+            chatbotIframe.style.width = '100%';
+            chatbotIframe.style.height = 'auto';
+            chatbotIframe.style.minHeight = '0';
+            chatbotIframe.style.border = 'none';
+            chatbotIframe.style.display = 'block';
+        }
+    }
+
+    // --- Remove Mobile Inline Styles (reset to CSS control) ---
+    function removeMobileInlineStyles() {
+        // Container styles
+        chatbotContainer.style.position = '';
+        chatbotContainer.style.top = '';
+        chatbotContainer.style.left = '';
+        chatbotContainer.style.right = '';
+        chatbotContainer.style.bottom = '';
+        chatbotContainer.style.width = '';
+        chatbotContainer.style.height = '';
+        chatbotContainer.style.maxHeight = '';
+        chatbotContainer.style.margin = '';
+        chatbotContainer.style.borderRadius = '';
+        chatbotContainer.style.zIndex = '';
+        chatbotContainer.style.display = '';
+        chatbotContainer.style.flexDirection = '';
+        chatbotContainer.style.overflow = '';
+        chatbotContainer.style.boxSizing = '';
+        chatbotContainer.style.paddingTop = '';
+        chatbotContainer.style.paddingBottom = '';
+        chatbotContainer.style.transform = '';
+        chatbotContainer.style.outline = '';
+
+        // Header styles
+        if (chatbotHeader) {
+            chatbotHeader.style.flex = '';
+        }
+
+        // Iframe styles
+        if (chatbotIframe) {
+            chatbotIframe.style.flex = '';
+            chatbotIframe.style.width = '';
+            chatbotIframe.style.height = '';
+            chatbotIframe.style.minHeight = '';
+            chatbotIframe.style.border = '';
+            chatbotIframe.style.display = '';
+        }
+    }
+
     // Toggle Chatbot
     chatbotToggleBtn.addEventListener('click', function (e) {
         e.preventDefault();
         const becomingActive = !chatbotContainer.classList.contains('active');
 
         if (becomingActive) {
-            // PHASE 3: Move to body on mobile to escape clipping
+            // Move to body on mobile to escape clipping
             if (isMobile() && chatbotContainer.parentElement !== document.body) {
                 document.body.appendChild(chatbotContainer);
             }
 
             chatbotContainer.classList.add('active');
 
-            // PHASE 5: Add chatbot-open class to html and body on mobile
             if (isMobile()) {
+                // Add chatbot-open class to html and body
                 document.documentElement.classList.add('chatbot-open');
                 document.body.classList.add('chatbot-open');
-                updateVH();
+
+                // Apply inline styles for guaranteed fullscreen
+                applyMobileFullscreenStyles();
+
                 // Safari keyboard fix: scroll to top
                 window.scrollTo(0, 0);
             }
@@ -86,9 +181,12 @@ document.addEventListener('DOMContentLoaded', function () {
     function closeChatbot() {
         chatbotContainer.classList.remove('active');
 
-        // PHASE 5: Remove chatbot-open class from html and body
+        // Remove chatbot-open class from html and body
         document.documentElement.classList.remove('chatbot-open');
         document.body.classList.remove('chatbot-open');
+
+        // Remove inline styles so desktop CSS takes over
+        removeMobileInlineStyles();
 
         chatbotToggleBtn.setAttribute('aria-expanded', 'false');
     }
