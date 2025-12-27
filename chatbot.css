@@ -183,6 +183,8 @@
         padding-bottom: env(safe-area-inset-bottom);
         z-index: 2147483647;
         /* Max z-index to ensure it's on top */
+        transform: none !important;
+        /* Prevent desktop transform from affecting mobile */
     }
 
     .chatbot-toggle-btn {
