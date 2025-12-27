@@ -6,32 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const chatbotContainer = document.getElementById('chatbot-container');
     const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
 
-    // --- Dynamic Viewport Height for Mobile ---
-    function updateVH() {
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-        // Debug option (set localStorage.getItem('chatbot_debug') === 'true' to enable)
-        if (localStorage.getItem('chatbot_debug') === 'true') {
-            console.log('--- Chatbot Debug Info ---');
-            console.log('window.innerHeight:', window.innerHeight);
-            if (window.visualViewport) {
-                console.log('visualViewport.height:', window.visualViewport.height);
-                console.log('visualViewport.offsetTop:', window.visualViewport.offsetTop);
-            }
-            console.log('--vh (px):', `${vh}px`);
-            console.log('Computed Overlay Height:', vh * 100);
-            console.log('--------------------------');
-        }
-    }
-
-    updateVH();
-    window.addEventListener('resize', updateVH);
-    window.addEventListener('orientationchange', updateVH);
-    if (window.visualViewport) {
-        window.visualViewport.addEventListener('resize', updateVH);
-    }
-
     if (!chatbotToggleBtn || !chatbotContainer) {
         console.error('Chatbot elements not found');
         return;
@@ -39,50 +13,96 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const isMobile = () => window.innerWidth < 768;
 
+    // --- Dynamic Viewport Height (Phase 3: VisualViewport) ---
+    function updateVH() {
+        const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        document.documentElement.style.setProperty('--vhpx', `${h}px`);
+
+        // Update debug overlay if active
+        const debugOverlay = document.getElementById('chatbot-mobile-debug');
+        if (debugOverlay && localStorage.getItem('chatbot_debug') === 'true') {
+            const overlayRect = chatbotContainer.getBoundingClientRect();
+            const computedStyle = window.getComputedStyle(chatbotContainer);
+            debugOverlay.innerHTML = `
+                win.size: ${window.innerWidth}x${window.innerHeight}<br>
+                vv.size: ${window.visualViewport ? Math.round(window.visualViewport.width) + 'x' + Math.round(window.visualViewport.height) : 'N/A'}<br>
+                --vhpx: ${h}px<br>
+                container: ${Math.round(overlayRect.width)}x${Math.round(overlayRect.height)}<br>
+                pos: ${computedStyle.position}, top: ${computedStyle.top}, bot: ${computedStyle.bottom}<br>
+                transform: ${computedStyle.transform !== 'none' ? 'ACTIVE' : 'none'}
+            `;
+        }
+    }
+
+    // Initialize Debug Overlay on Mobile
+    if (isMobile()) {
+        let debugOverlay = document.getElementById('chatbot-mobile-debug');
+        if (!debugOverlay) {
+            debugOverlay = document.createElement('div');
+            debugOverlay.id = 'chatbot-mobile-debug';
+            document.body.appendChild(debugOverlay);
+        }
+        if (localStorage.getItem('chatbot_debug') === 'true') {
+            document.body.classList.add('chatbot-debug-active');
+        }
+    }
+
+    window.addEventListener('resize', updateVH);
+    window.addEventListener('orientationchange', updateVH);
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', updateVH);
+        window.visualViewport.addEventListener('scroll', updateVH);
+    }
+    updateVH();
+
     // Toggle Chatbot
     chatbotToggleBtn.addEventListener('click', function (e) {
-        console.log('Chatbot toggle clicked');
         e.preventDefault();
-        chatbotContainer.classList.toggle('active');
+        const becomingActive = !chatbotContainer.classList.contains('active');
 
-        // Body scroll lock on mobile
-        if (chatbotContainer.classList.contains('active')) {
+        if (becomingActive) {
+            // PHASE 3: Move to body on mobile to escape clipping
+            if (isMobile() && chatbotContainer.parentElement !== document.body) {
+                document.body.appendChild(chatbotContainer);
+            }
+
+            chatbotContainer.classList.add('active');
+
             if (isMobile()) {
                 document.body.style.overflow = 'hidden';
                 document.body.style.touchAction = 'none';
+                updateVH();
+                // Safari keyboard fix: scroll to top
+                window.scrollTo(0, 0);
             }
         } else {
-            document.body.style.overflow = '';
-            document.body.style.touchAction = '';
+            closeChatbot();
         }
 
-        // Accessibility
-        const isVisible = chatbotContainer.classList.contains('active');
-        chatbotToggleBtn.setAttribute('aria-expanded', isVisible);
+        chatbotToggleBtn.setAttribute('aria-expanded', becomingActive);
     });
 
-    // Close Chatbot
+    function closeChatbot() {
+        chatbotContainer.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+        chatbotToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
     if (chatbotCloseBtn) {
         chatbotCloseBtn.addEventListener('click', function (e) {
-            console.log('Chatbot close clicked');
             e.preventDefault();
-            chatbotContainer.classList.remove('active');
-            chatbotToggleBtn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-            document.body.style.touchAction = '';
+            closeChatbot();
         });
     }
 
-    // Close on click outside (Desktop only)
+    // Desktop: Close on click outside
     document.addEventListener('click', function (e) {
         if (!isMobile() &&
             chatbotContainer.classList.contains('active') &&
             !chatbotContainer.contains(e.target) &&
             !chatbotToggleBtn.contains(e.target)) {
-            chatbotContainer.classList.remove('active');
-            chatbotToggleBtn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-            document.body.style.touchAction = '';
+            closeChatbot();
         }
     });
 });
