@@ -183,4 +183,22 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error("initContactBackgroundShader function not found. Ensure the CodePen JS is embedded in the HTML and loaded correctly before script.js.");
     }
+
+    // --- Chatbot Toggle Logic ---
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
+    const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
+
+    if (chatbotToggleBtn && chatbotContainer) {
+        chatbotToggleBtn.addEventListener('click', () => {
+            chatbotContainer.classList.toggle('active');
+            // Optional: Toggle icon or animation
+        });
+    }
+
+    if (chatbotCloseBtn && chatbotContainer) {
+        chatbotCloseBtn.addEventListener('click', () => {
+            chatbotContainer.classList.remove('active');
+        });
+    }
 });

@@ -22,6 +22,7 @@
 
     <!-- Link to your external Custom CSS file -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
 
     <!-- GSAP Core Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
@@ -2232,6 +2233,25 @@
         }
     </script>
 
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <span>Pinnacle AI Assistant</span>
+            <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Close Chatbot"><i
+                    class="fas fa-times"></i></button>
+        </div>
+        <iframe src="https://mcpaichatbot-1.onrender.com" title="Pinnacle AI Chatbot" allow="microphone"></iframe>
+    </div>
+
+    <button class="chatbot-toggle-btn" id="chatbot-toggle-btn" aria-label="Open Chatbot">
+        <div class="icon-wrapper">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="btn-text">
+            <span class="line-1">Talk Live</span>
+            <span class="line-2">to our AI</span>
+        </div>
+    </button>
+    <script src="chatbot.js"></script>
 </body>
 
 </html>
