@@ -161,7 +161,7 @@
 /* Mobile Responsiveness for Chatbot - PHASE 5 HARD RESET */
 @media (max-width: 767px) {
 
-    /* Step 3: Remove transform interference when chatbot is open */
+    /* Step 3: Remove transform interference and hide fixed bars when chatbot is open */
     html.chatbot-open,
     body.chatbot-open {
         overflow: hidden !important;
@@ -169,6 +169,18 @@
         transform: none !important;
         filter: none !important;
         perspective: none !important;
+    }
+
+    /* Hide fixed headers/bars so they don't overlap or push the overlay */
+    body.chatbot-open {
+        padding-top: 0 !important;
+    }
+
+    body.chatbot-open .navbar,
+    body.chatbot-open #main-header,
+    body.chatbot-open .mobile-cta-bar,
+    body.chatbot-open .call-us-fab {
+        display: none !important;
     }
 
     /* Step 2A: Hard reset fullscreen overlay */

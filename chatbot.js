@@ -1,4 +1,4 @@
-// chatbot.js - Phase 6: Inline styles for guaranteed mobile fullscreen
+// chatbot.js - Phase 7: Scale-corrected viewport height
 document.addEventListener('DOMContentLoaded', function () {
     console.log('Chatbot script loaded');
 
@@ -15,13 +15,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const isMobile = () => window.innerWidth < 768;
 
-    // --- Dynamic Viewport Height ---
-    function getViewportHeight() {
-        return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    // --- Phase 7: True Viewport Height with Scale Correction ---
+    function getTrueViewportHeightPx() {
+        if (window.visualViewport) {
+            const vv = window.visualViewport;
+            const scaled = Math.round(vv.height * vv.scale);
+            const fallback = Math.round(document.documentElement.clientHeight);
+            return Math.max(scaled, fallback);
+        }
+        return Math.round(document.documentElement.clientHeight);
     }
 
     function updateVH() {
-        const h = getViewportHeight();
+        const h = getTrueViewportHeightPx();
         document.documentElement.style.setProperty('--vhpx', `${h}px`);
 
         // If chatbot is open on mobile, update the height inline
@@ -35,13 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (debugOverlay && localStorage.getItem('chatbot_debug') === 'true') {
             const overlayRect = chatbotContainer.getBoundingClientRect();
             const computedStyle = window.getComputedStyle(chatbotContainer);
+            const vv = window.visualViewport;
             debugOverlay.innerHTML = `
                 win.size: ${window.innerWidth}x${window.innerHeight}<br>
-                vv.size: ${window.visualViewport ? Math.round(window.visualViewport.width) + 'x' + Math.round(window.visualViewport.height) : 'N/A'}<br>
-                --vhpx: ${h}px<br>
+                vv.height: ${vv ? Math.round(vv.height) : 'N/A'}<br>
+                vv.scale: ${vv ? vv.scale.toFixed(2) : 'N/A'}<br>
+                clientHeight: ${document.documentElement.clientHeight}<br>
+                computed h: ${h}px<br>
                 container: ${Math.round(overlayRect.width)}x${Math.round(overlayRect.height)}<br>
-                pos: ${computedStyle.position}, top: ${computedStyle.top}, bot: ${computedStyle.bottom}<br>
-                transform: ${computedStyle.transform !== 'none' ? 'ACTIVE' : 'none'}
+                pos: ${computedStyle.position}<br>
+                applied height: ${computedStyle.height}
             `;
         }
     }
@@ -69,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- Apply Mobile Fullscreen Inline Styles ---
     function applyMobileFullscreenStyles() {
-        const h = getViewportHeight();
+        const h = getTrueViewportHeightPx();
 
         // Container styles
         chatbotContainer.style.position = 'fixed';
