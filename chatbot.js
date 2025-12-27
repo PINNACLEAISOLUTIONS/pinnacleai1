@@ -68,9 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             chatbotContainer.classList.add('active');
 
+            // PHASE 5: Add chatbot-open class to html and body on mobile
             if (isMobile()) {
-                document.body.style.overflow = 'hidden';
-                document.body.style.touchAction = 'none';
+                document.documentElement.classList.add('chatbot-open');
+                document.body.classList.add('chatbot-open');
                 updateVH();
                 // Safari keyboard fix: scroll to top
                 window.scrollTo(0, 0);
@@ -84,8 +85,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function closeChatbot() {
         chatbotContainer.classList.remove('active');
-        document.body.style.overflow = '';
-        document.body.style.touchAction = '';
+
+        // PHASE 5: Remove chatbot-open class from html and body
+        document.documentElement.classList.remove('chatbot-open');
+        document.body.classList.remove('chatbot-open');
+
         chatbotToggleBtn.setAttribute('aria-expanded', 'false');
     }
 

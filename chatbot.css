@@ -158,46 +158,62 @@
     }
 }
 
-/* Mobile Responsiveness for Chatbot */
+/* Mobile Responsiveness for Chatbot - PHASE 5 HARD RESET */
 @media (max-width: 767px) {
-    .chatbot-container {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100vw !important;
-        height: var(--vhpx, 100vh) !important;
-        max-height: var(--vhpx, 100vh) !important;
-        min-width: 0 !important;
-        min-height: 0 !important;
-        margin: 0 !important;
-        padding-bottom: env(safe-area-inset-bottom) !important;
-        border: none !important;
-        border-radius: 0 !important;
-        z-index: 250000 !important;
-        transform: none !important;
-        translate: none !important;
-        display: none;
-        /* Controlled by .active */
-        flex-direction: column !important;
-        background: #000 !important;
+
+    /* Step 3: Remove transform interference when chatbot is open */
+    html.chatbot-open,
+    body.chatbot-open {
         overflow: hidden !important;
-        box-shadow: none !important;
+        touch-action: none !important;
+        transform: none !important;
+        filter: none !important;
+        perspective: none !important;
     }
 
-    .chatbot-container.active {
+    /* Step 2A: Hard reset fullscreen overlay */
+    #chatbot-container.active {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        z-index: 999999 !important;
+        box-sizing: border-box !important;
+        padding-top: env(safe-area-inset-top) !important;
+        padding-bottom: env(safe-area-inset-bottom) !important;
         display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        transform: none !important;
+        background: #000 !important;
+        /* Step 7: Debug outline - remove after testing */
+        outline: 3px solid red !important;
     }
 
-    .chatbot-header {
-        flex: 0 0 56px !important;
+    /* Step 2B: Fallback for browsers without dvh */
+    @supports not (height: 100dvh) {
+        #chatbot-container.active {
+            height: var(--vhpx, 100vh) !important;
+            max-height: var(--vhpx, 100vh) !important;
+        }
+    }
+
+    /* Hidden state */
+    #chatbot-container {
+        display: none;
+    }
+
+    /* Step 4: Header with flex auto and min-height */
+    #chatbot-container .chatbot-header {
+        flex: 0 0 auto !important;
+        min-height: 56px !important;
+        box-sizing: border-box !important;
         width: 100% !important;
-        padding-top: max(15px, env(safe-area-inset-top)) !important;
-        padding-bottom: 12px !important;
         padding-left: 20px !important;
         padding-right: 20px !important;
-        box-sizing: border-box !important;
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
@@ -205,6 +221,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
+    /* Step 5: Iframe fills remaining space */
     #chatbot-container iframe {
         flex: 1 1 auto !important;
         width: 100% !important;
