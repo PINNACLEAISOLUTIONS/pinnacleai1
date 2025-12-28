@@ -90,21 +90,24 @@ document.addEventListener('DOMContentLoaded', function () {
         chatbotContainer.style.paddingTop = 'env(safe-area-inset-top)';
         chatbotContainer.style.paddingBottom = 'env(safe-area-inset-bottom)';
         chatbotContainer.style.transform = 'none';
-        chatbotContainer.style.outline = '3px solid red'; // Debug outline
+        chatbotContainer.style.background = '#000';
 
         // Header styles
         if (chatbotHeader) {
             chatbotHeader.style.flex = '0 0 auto';
+            chatbotHeader.style.width = '100%';
         }
 
-        // Iframe styles
+        // Iframe styles - full width, no cropping
         if (chatbotIframe) {
             chatbotIframe.style.flex = '1 1 auto';
             chatbotIframe.style.width = '100%';
-            chatbotIframe.style.height = 'auto';
+            chatbotIframe.style.height = '100%';
             chatbotIframe.style.minHeight = '0';
             chatbotIframe.style.border = 'none';
             chatbotIframe.style.display = 'block';
+            chatbotIframe.style.margin = '0';
+            chatbotIframe.style.padding = '0';
         }
     }
 
@@ -129,11 +132,12 @@ document.addEventListener('DOMContentLoaded', function () {
         chatbotContainer.style.paddingTop = '';
         chatbotContainer.style.paddingBottom = '';
         chatbotContainer.style.transform = '';
-        chatbotContainer.style.outline = '';
+        chatbotContainer.style.background = '';
 
         // Header styles
         if (chatbotHeader) {
             chatbotHeader.style.flex = '';
+            chatbotHeader.style.width = '';
         }
 
         // Iframe styles
@@ -144,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function () {
             chatbotIframe.style.minHeight = '';
             chatbotIframe.style.border = '';
             chatbotIframe.style.display = '';
+            chatbotIframe.style.margin = '';
+            chatbotIframe.style.padding = '';
         }
     }
 
