@@ -98,16 +98,23 @@ document.addEventListener('DOMContentLoaded', function () {
             chatbotHeader.style.width = '100%';
         }
 
-        // Iframe styles - full width, no cropping
+        // Iframe styles - wider and shifted left to hide sidebar
         if (chatbotIframe) {
-            chatbotIframe.style.flex = '1 1 auto';
-            chatbotIframe.style.width = '100%';
-            chatbotIframe.style.height = '100%';
-            chatbotIframe.style.minHeight = '0';
+            const SIDEBAR_PX = 280; // typical left sidebar width in the chatbot app
+
             chatbotIframe.style.border = 'none';
             chatbotIframe.style.display = 'block';
-            chatbotIframe.style.margin = '0';
             chatbotIframe.style.padding = '0';
+            chatbotIframe.style.height = '100%';
+            chatbotIframe.style.minHeight = '0';
+
+            // Key mobile fix: hide the sidebar by shifting the iframe left
+            chatbotIframe.style.width = `calc(100% + ${SIDEBAR_PX}px)`;
+            chatbotIframe.style.marginLeft = `-${SIDEBAR_PX}px`;
+
+            // Keep layout stable inside flex
+            chatbotIframe.style.flex = '1 1 auto';
+            chatbotIframe.style.maxWidth = 'none';
         }
     }
 
@@ -149,7 +156,9 @@ document.addEventListener('DOMContentLoaded', function () {
             chatbotIframe.style.border = '';
             chatbotIframe.style.display = '';
             chatbotIframe.style.margin = '';
+            chatbotIframe.style.marginLeft = '';
             chatbotIframe.style.padding = '';
+            chatbotIframe.style.maxWidth = '';
         }
     }
 

@@ -53,9 +53,11 @@
     color: var(--neon-cyan);
 }
 
+/* Desktop: Iframe fills remaining space */
 .chatbot-container iframe {
     flex: 1 1 auto;
     width: 100%;
+    height: 100%;
     border: none;
     display: block;
 }
@@ -233,16 +235,17 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
-    /* Step 5: Iframe fills remaining space - Full width on mobile */
+    /* Step 5: Iframe - wider and shifted left to hide sidebar */
     #chatbot-container iframe {
         flex: 1 1 auto !important;
-        width: 100% !important;
+        width: calc(100% + 280px) !important;
+        margin-left: -280px !important;
         height: 100% !important;
         min-height: 0 !important;
         display: block !important;
         border: none !important;
-        margin: 0 !important;
         padding: 0 !important;
+        max-width: none !important;
     }
 
     .chatbot-toggle-btn {
