@@ -570,14 +570,12 @@
     </header>
 
     <!-- Mobile Navigation Drawer -->
-    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-drawer mobile-nav-container" id="mobileNavDrawer">
         <a href="index.html" class="mobile-nav-link">HOME</a>
         <a href="index.html#services" class="mobile-nav-link">SERVICES</a>
         <a href="index.html#about" class="mobile-nav-link">ABOUT</a>
         <a href="index.html#contact" class="mobile-nav-link">CONTACT</a>
         <a href="blogs.html" class="mobile-nav-link">BLOGS</a>
-        <a href="ai-programs.html" class="mobile-nav-btn">AI PROGRAMS</a>
-        <a href="freeairesources.html" class="mobile-nav-btn primary">FREE AI RESOURCES</a>
     </div>
 
     <!-- Mobile Quick Actions Bar (Visible on Mobile Only) -->
@@ -1647,8 +1645,8 @@
             });
         }
 
-        <script>
-            function toggleMobileMenu() {
+
+        function toggleMobileMenu() {
             const drawer = document.getElementById('mobileNavDrawer');
             const toggle = document.getElementById('mobileMenuToggle');
 
@@ -1659,14 +1657,14 @@
             const spans = toggle.querySelectorAll('span');
             if (drawer.classList.contains('open')) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            document.body.style.overflow = 'hidden';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+                document.body.style.overflow = 'hidden';
             } else {
                 spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-            document.body.style.overflow = '';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
             }
         }
 
