@@ -896,10 +896,9 @@ svg {
 [class*="hero-section"],
 [class*="demo-section"],
 .indent-text,
-.lead-scraper-label,
-
-display: none !important;
-visibility: hidden !important;
-opacity: 0 !important;
-pointer-events: none;
+.lead-scraper-label {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none;
 }
