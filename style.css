@@ -480,16 +480,18 @@ button {
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 14px 18px;
-    border-radius: 12px;
+    padding: 12px 20px;
+    border-radius: 16px;
     color: var(--text-muted);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     letter-spacing: 0.5px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    width: fit-content;
+    margin: 5px 10px;
 }
 
 .nav-item::before {

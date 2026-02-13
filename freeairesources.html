@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinnacle AI | Learn AI For Free</title>
+    <title>Free AI Resources | Learn & Master AI | Pinnacle AI</title>
+    <meta name="description"
+        content="Access our curated list of free AI tools, courses, and resources to stay ahead in the digital age.">
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free AI Resources | Learn & Master AI | Pinnacle AI">
+    <meta property="og:description"
+        content="Access our curated list of free AI tools, courses, and resources to stay ahead in the digital age.">
+    <meta property="og:image" content="https://pinnacleaisolutions.site/og-logo-black.png">
+    <meta property="og:url" content="https://pinnacleaisolutions.site/freeairesources.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free AI Resources | Learn & Master AI | Pinnacle AI">
+    <meta name="twitter:description"
+        content="Access our curated list of free AI tools, courses, and resources to stay ahead in the digital age.">
+    <meta name="twitter:image" content="https://pinnacleaisolutions.site/og-logo-black.png">
+    <link rel="canonical" href="https://pinnacleaisolutions.site/freeairesources.html" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,11 +74,53 @@
         <!-- ======================== -->
         <!-- TOP NAVIGATION BAR       -->
         <!-- ======================== -->
-        <header class="top-nav-bar">
-            <a href="index.html" class="top-nav-link">🏠 Home</a>
-            <a href="ai-programs.html" class="top-nav-link">🤖 AI Solutions</a>
-            <a href="freeairesources.html" class="top-nav-link active">✨ FREE AI RESOURCES</a>
+        <!-- Single Clean Top Navigation -->
+        <header id="main-header">
+            <div class="header-container">
+                <div class="header-logo">
+                    <a href="index.html" class="logo-animated">PINNACLE AI SOLUTIONS</a>
+                </div>
+                <nav class="header-nav-links">
+                    <a href="index.html" class="header-link">HOME</a>
+                    <a href="index.html#services" class="header-link">SERVICES</a>
+                    <a href="index.html#about" class="header-link">ABOUT</a>
+                    <a href="index.html#contact" class="header-link">CONTACT</a>
+                    <a href="blogs.html" class="header-link">BLOGS</a>
+                </nav>
+                <div class="header-shader-spacer shader-pill" id="middleShaderWrapper">
+                    <canvas id="headerShaderCanvas"></canvas>
+                </div>
+                <div class="header-buttons">
+                    <a href="ai-programs.html" class="header-btn btn-secondary-nav" data-text="AI Solutions">AI
+                        Solutions</a>
+                    <a href="freeairesources.html" class="header-btn btn-primary-nav active">FREE AI RESOURCES</a>
+                </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"
+                    onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </header>
+
+        <!-- Mobile Navigation Drawer -->
+        <div class="mobile-nav-drawer" id="mobileNavDrawer">
+            <a href="index.html" class="mobile-nav-link">HOME</a>
+            <a href="index.html#services" class="mobile-nav-link">SERVICES</a>
+            <a href="index.html#about" class="mobile-nav-link">ABOUT</a>
+            <a href="index.html#contact" class="mobile-nav-link">CONTACT</a>
+            <a href="blogs.html" class="mobile-nav-link">BLOGS</a>
+            <a href="ai-programs.html" class="mobile-nav-btn">AI PROGRAMS</a>
+            <a href="freeairesources.html" class="mobile-nav-btn primary">FREE AI RESOURCES</a>
+        </div>
+
+        <!-- Mobile Quick Actions Bar (Visible on Mobile Only) -->
+        <div class="mobile-cta-bar">
+            <a href="ai-programs.html" class="mobile-cta-btn secondary">AI PROGRAMS</a>
+            <a href="freeairesources.html" class="mobile-cta-btn primary">FREE RESOURCES</a>
+        </div>
+
 
         <!-- ======================== -->
         <!-- SIDEBAR NAVIGATION       -->
@@ -434,10 +492,6 @@
                 </div>
             </div>
 
-            <!-- Footer -->
-            <footer class="main-footer">
-                <p>&copy; 2025 Pinnacle AI Solutions. All rights reserved.</p>
-            </footer>
 
         </main>
     </div>
@@ -774,6 +828,132 @@
         })();
     </script>
 
+
+    <!-- UI Enhancements -->
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+    <script src="enhancements.js"></script>
+    <script src="chatbot.js"></script>
+    <footer class="enhanced-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="index.html">Home</a>
+                <a href="ai-programs.html">AI Solutions</a>
+                <a href="freeairesources.html">Free Resources</a>
+                <a href="blogs.html">Blogs</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                <a href="mailto:contact@pinnacleai.biz"><i class="fas fa-envelope"></i> Email</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pinnacle AI Solutions. Built for the autonomous age.</p>
+        </div>
+    </footer>
+    <!-- Three.js Header Shader -->
+    <script type="module">
+        import * as THREE from 'three';
+        function createShaderPill(canvas, container) {
+            if (!canvas || !container) return null;
+            let scene, camera, renderer, material, clock;
+            const uniforms = {
+                uTime: { value: 0 },
+                uResolution: { value: new THREE.Vector2() },
+                uHover: { value: 0 },
+                uColorShift: { value: 0 }
+            };
+            const vertexShader = `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `;
+            const fragmentShader = `
+                uniform float uTime;
+                uniform vec2 uResolution;
+                uniform float uHover;
+                uniform float uColorShift;
+                varying vec2 vUv;
+                
+                vec3 palette(float t) {
+                    vec3 a = vec3(0.5, 0.5, 0.5);
+                    vec3 b = vec3(0.5, 0.5, 0.5);
+                    vec3 c = vec3(1.0, 1.0, 1.0);
+                    vec3 d = vec3(0.263, 0.416, 0.557);
+                    return a + b * cos(6.28318 * (c * t + d));
+                }
+
+                void main() {
+                    vec2 uv = vUv * 2.0 - 1.0;
+                    float d = length(uv);
+                    vec3 color = palette(d + uTime * 0.2 + uColorShift);
+                    d = sin(d * 8.0 + uTime) / 8.0;
+                    d = abs(d);
+                    d = 0.02 / d;
+                    color *= d;
+                    float alpha = smoothstep(1.0, 0.0, length(vUv * 2.0 - 1.0)) * 0.8;
+                    gl_FragColor = vec4(color, alpha * (0.8 + uHover * 0.2));
+                }
+            `;
+
+            function init() {
+                scene = new THREE.Scene();
+                camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+                camera.position.z = 1;
+                renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                updateSize();
+                const geometry = new THREE.PlaneGeometry(2, 2);
+                material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms, transparent: true });
+                const mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+                clock = new THREE.Clock();
+                animate();
+            }
+
+            function updateSize() {
+                const rect = container.getBoundingClientRect();
+                renderer.setSize(rect.width, rect.height);
+                uniforms.uResolution.value.set(rect.width, rect.height);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                uniforms.uTime.value = clock.getElapsedTime() * 0.5;
+                renderer.render(scene, camera);
+            }
+
+            window.addEventListener('resize', updateSize);
+            init();
+
+            container.addEventListener('mouseenter', () => {
+                gsap.to(uniforms.uHover, { value: 1.0, duration: 0.5 });
+                gsap.to(uniforms.uColorShift, { value: 0.5, duration: 0.8 });
+            });
+            container.addEventListener('mouseleave', () => {
+                gsap.to(uniforms.uHover, { value: 0, duration: 0.5 });
+                gsap.to(uniforms.uColorShift, { value: 0, duration: 0.8 });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('headerShaderCanvas');
+            const wrapper = document.getElementById('middleShaderWrapper');
+            if (canvas && wrapper) createShaderPill(canvas, wrapper);
+        });
+    </script>
 </body>
 
 </html>
