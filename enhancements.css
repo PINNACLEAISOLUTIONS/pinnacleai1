@@ -595,6 +595,7 @@ select:focus {
         display: flex;
     }
 }
+
 /* ---- 12. MOBILE & NAVIGATION GLOBAL FIXES ---- */
 /* Migrated from index.html inline styles */
 
@@ -634,7 +635,7 @@ select:focus {
 /* Body Padding Fix */
 /* CRITICAL RESET AND OVERFLOW FIX */
 html,
-body.enhanced-body { 
+body.enhanced-body {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
@@ -775,7 +776,9 @@ svg {
 /* --- PINNACLE AI MASTER UI: MOBILE & DESKTOP UNIFICATION --- */
 
 /* 1. GLOBAL BUTTON & LINK FIXES */
-.btn-free-resources, .header-buttons a, .contact-btn {
+.btn-free-resources,
+.header-buttons a,
+.contact-btn {
     width: auto !important;
     max-width: fit-content;
     padding: 10px 22px !important;
@@ -788,7 +791,8 @@ svg {
 }
 
 /* Enhanced Contact Button Glow */
-.contact-btn, [href*="contact"] {
+.contact-btn,
+[href*="contact"] {
     background: linear-gradient(45deg, #00f2ff, #7000ff) !important;
     color: white !important;
     font-weight: bold;
@@ -803,29 +807,36 @@ svg {
 
 /* 2. MOBILE SIDEBAR (Starry Night, Left-Side, Fitted Width) */
 @media (max-width: 991px) {
-    .mobile-nav-container, .explore-sidebar, #side-menu {
+
+    .mobile-nav-container,
+    .mobile-nav-drawer,
+    .explore-sidebar,
+    #side-menu {
         position: fixed;
         top: 0;
         left: 0 !important;
-        width: 270px !important; /* Ends right after the text for a cleaner look */
+        width: 270px !important;
+        /* Ends right after the text for a cleaner look */
         height: 100vh;
         background: #05070a !important;
-        background-image: 
-            radial-gradient(white, rgba(255,255,255,.2) 1px, transparent 20px),
-            radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px) !important;
+        background-image:
+            radial-gradient(white, rgba(255, 255, 255, .2) 1px, transparent 20px),
+            radial-gradient(white, rgba(255, 255, 255, .1) 1px, transparent 30px) !important;
         background-size: 100px 100px, 200px 200px !important;
         border-right: 2px solid #00f2ff;
-        box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
         z-index: 10000;
         padding: 70px 20px 20px 20px;
     }
 
-    .mobile-nav-container a, .explore-sidebar a {
+    .mobile-nav-container a,
+    .mobile-nav-drawer a,
+    .explore-sidebar a {
         display: block;
         color: #e0e0e0 !important;
         padding: 18px 12px;
         text-decoration: none;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         font-family: Orbitron, sans-serif;
         font-size: 1rem;
         letter-spacing: 1px;
@@ -863,7 +874,8 @@ svg {
 
 /* 4. CONTACT POPUP (Modal) STYLING */
 /* Ensures the contact info pops up correctly over any page content */
-#contact-popup, .contact-modal {
+#contact-popup,
+.contact-modal {
     background: rgba(10, 11, 22, 0.98) !important;
     border: 1px solid rgba(0, 242, 255, 0.3);
     border-radius: 20px;
@@ -881,14 +893,14 @@ svg {
 
 /* 5. CLEANUP: HIDE CODE FRAGMENTS & "LEAD SCRAPER" LABELS */
 /* This hides the visible tags and the extra text under buttons */
-[class*="hero-section"], 
-[class*="demo-section"], 
+[class*="hero-section"],
+[class*="demo-section"],
 .indent-text,
 .lead-scraper-label,
-< !-- , -- > {
+< !--,
+--> {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none;
 }
-

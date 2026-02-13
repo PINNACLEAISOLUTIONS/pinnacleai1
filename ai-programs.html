@@ -1647,7 +1647,43 @@
             });
         }
 
+        <script>
+            function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileNavDrawer');
+            const toggle = document.getElementById('mobileMenuToggle');
+
+            if (!drawer || !toggle) return;
+
+            drawer.classList.toggle('open');
+
+            const spans = toggle.querySelectorAll('span');
+            if (drawer.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+            document.body.style.overflow = '';
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            const drawer = document.getElementById('mobileNavDrawer');
+            if (drawer) {
+                drawer.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Close menu when link is clicked
+                        const toggle = document.getElementById('mobileMenuToggle');
+                        if (drawer.classList.contains('open')) {
+                            toggleMobileMenu();
+                        }
+                    });
+                });
+            }
+
             const canvas = document.getElementById('headerShaderCanvas');
             const wrapper = document.getElementById('middleShaderWrapper');
             if (canvas && wrapper) createShaderPill(canvas, wrapper);
