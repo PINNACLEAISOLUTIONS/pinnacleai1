@@ -4,42 +4,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Blogs | Pinnacle AI Solutions</title>
+    <title>Blog Marketplace | Pinnacle AI Solutions</title>
     <meta name="description"
-        content="Stay updated with the latest in AI, data automation, and intelligent solutions from Pinnacle AI.">
+        content="High-fidelity insights on agentic workflows, autonomous data extraction, and the future of enterprise intelligence.">
 
-    <!-- Tailwind CSS for utility classes -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-    <!-- Styles from index.html -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="chatbot.css?v=5.1">
+    <!-- GSAP Core Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- GSAP Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/CustomEase.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/MotionPathPlugin.min.js"></script>
+
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"
+            }
+        }
+    </script>
 
     <style>
         :root {
-            --color-primary-blue: #3b82f6;
-            --color-secondary-green: #22c55e;
-            --color-purple: #a855f7;
-            --color-orange: #f97316;
-            --color-text-light: #e5e7eb;
-            --color-dark-bg: #111827;
-            --color-darker-bg: #030712;
+            --color-deep-navy: #020617;
+            --color-card-bg: rgba(15, 23, 42, 0.6);
+            --color-accent-cyan: #22d3ee;
+            --color-accent-purple: #8b5cf6;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes blob-move {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        @keyframes pulse-grid {
+
+            0%,
+            100% {
+                opacity: 0.1;
+            }
+
+            50% {
+                opacity: 0.2;
+            }
         }
 
         body {
-            background-color: var(--color-darker-bg);
-            color: var(--color-text-light);
+            background-color: var(--color-deep-navy);
+            color: #f1f5f9;
             font-family: 'Inter', sans-serif;
-            padding-top: 70px;
+            overflow-x: hidden;
+            margin: 0;
+            min-height: 100vh;
         }
 
+        /* Animated Cosmic Background */
+        .bg-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+        }
+
+        .blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: blob-move 20s infinite alternate;
+        }
+
+        .blob-1 {
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob-2 {
+            top: 40%;
+            right: -100px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: pulse-grid 10s infinite;
+        }
+
+        #main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-nav {
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        /* === Regular Header Parity === */
         #main-header {
             position: fixed;
             top: 0;
@@ -65,6 +184,7 @@
         }
 
         .logo-animated {
+            font-family: 'Inter', sans-serif;
             font-size: 1.6rem;
             font-weight: 900;
             letter-spacing: 2px;
@@ -75,30 +195,40 @@
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             text-transform: uppercase;
-            animation: textFlow 8s linear infinite;
+            animation: logoGradientMove 4s ease infinite;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+            white-space: nowrap;
         }
 
-        @keyframes textFlow {
+        @keyframes logoGradientMove {
             0% {
                 background-position: 0% 50%;
             }
 
+            50% {
+                background-position: 100% 50%;
+            }
+
             100% {
-                background-position: 400% 50%;
+                background-position: 0% 50%;
             }
         }
 
         .header-nav-links {
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: 8px;
         }
 
         .header-link {
-            text-decoration: none;
-            color: #d1d5db;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+            padding: 8px 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .header-link:hover,
@@ -106,86 +236,300 @@
             color: #fff;
         }
 
-        .blog-section {
-            padding: 100px 30px;
-            max-width: 1200px;
+        .header-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .header-link:hover::after,
+        .header-link.active::after {
+            width: 80%;
+        }
+
+        .shader-pill {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 50px;
+            border-radius: 30px;
+            overflow: hidden;
+            flex: 1;
+            max-width: 400px;
+            margin: 0 15px;
+        }
+
+        .shader-pill canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-btn {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-nav {
+            color: #a855f7;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .btn-primary-nav {
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* Mobile Styles */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            width: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-drawer {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(3, 7, 18, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 99998;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav-drawer.open {
+            transform: translateX(0);
+        }
+
+        .mobile-cta-bar {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(3, 7, 18, 0.95);
+            z-index: 9990;
+            gap: 12px;
+        }
+
+        @media (max-width: 1024px) {
+
+            .header-nav-links,
+            .shader-pill,
+            .header-buttons {
+                display: none !important;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .mobile-cta-bar {
+                display: flex;
+            }
+
+            body {
+                padding-top: 110px !important;
+            }
+        }
+
+        .marketplace-hero {
+            padding: 160px 20px 80px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .marketplace-hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .marketplace-hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 600px;
             margin: 0 auto;
         }
 
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+            max-width: 1250px;
+            margin: 0 auto 100px;
+            padding: 0 40px;
         }
 
         .blog-card {
-            background: rgba(17, 24, 39, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            background: var(--color-card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
         }
 
         .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: var(--color-primary-blue);
+            transform: translateY(-12px);
+            border-color: var(--color-accent-cyan);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(34, 211, 238, 0.2);
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 220px;
+            background: #111827;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .card-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .blog-card:hover .card-image-container img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .meta-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-accent-cyan);
+            margin-bottom: 12px;
+            display: inline-block;
+            background: rgba(34, 211, 238, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
         }
 
         .blog-card h2 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 800;
+            margin-bottom: 15px;
             color: #fff;
+            line-height: 1.25;
         }
 
         .blog-card p {
-            color: #9ca3af;
-            line-height: 1.6;
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.65;
+            margin-bottom: 25px;
         }
 
-        .blog-card .read-more {
-            margin-top: auto;
-            color: var(--color-primary-blue);
-            text-decoration: none;
-            font-weight: 700;
+        .read-more-link {
             display: flex;
             align-items: center;
-            gap: 5px;
-        }
-
-        .blog-card .read-more:hover {
-            text-decoration: underline;
-        }
-
-        .footer {
-            padding: 100px 30px 50px;
-            background: #030712;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-        }
-
-        .back-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
             color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 30px;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        .back-home:hover {
-            opacity: 0.8;
+        .blog-card:hover .read-more-link {
+            gap: 15px;
+            color: var(--color-accent-cyan);
+            text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-deep-navy);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+
+            .marketplace-hero {
+                padding-top: 120px;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="bg-system">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Single Clean Top Navigation -->
     <header id="main-header">
         <div class="header-container">
             <div class="header-logo">
@@ -193,50 +537,221 @@
             </div>
             <nav class="header-nav-links">
                 <a href="index.html" class="header-link">HOME</a>
+                <a href="index.html#services" class="header-link">SERVICES</a>
+                <a href="index.html#about" class="header-link">ABOUT</a>
+                <a href="index.html#contact" class="header-link">CONTACT</a>
                 <a href="blogs.html" class="header-link active">BLOGS</a>
             </nav>
+            <div class="header-shader-spacer shader-pill" id="middleShaderWrapper">
+                <canvas id="headerShaderCanvas"></canvas>
+            </div>
+            <div class="header-buttons">
+                <a href="ai-programs.html" class="header-btn btn-secondary-nav" data-text="AI Solutions">AI
+                    Solutions</a>
+                <a href="freeairesources.html" class="header-btn btn-primary-nav">FREE AI RESOURCES</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"
+                onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <main class="blog-section">
-        <a href="index.html" class="back-home">
-            <i class="fas fa-arrow-left"></i> Back to Home
-        </a>
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+        <a href="index.html" class="mobile-nav-link">HOME</a>
+        <a href="index.html#services" class="mobile-nav-link">SERVICES</a>
+        <a href="index.html#about" class="mobile-nav-link">ABOUT</a>
+        <a href="index.html#contact" class="mobile-nav-link">CONTACT</a>
+        <a href="blogs.html" class="mobile-nav-link">BLOGS</a>
+        <a href="ai-programs.html" class="mobile-nav-btn">AI PROGRAMS</a>
+        <a href="freeairesources.html" class="mobile-nav-btn primary">FREE AI RESOURCES</a>
+    </div>
 
-        <h1 class="text-4xl md:text-6xl font-black text-center mb-10">OUR <span class="text-blue-500">BLOGS</span></h1>
-        <p class="text-center text-gray-400 max-w-2xl mx-auto mb-20 text-lg">
-            Insights and updates on the future of AI, automation, and digital transformation.
-            Designed to help you lead in the intelligent era.
-        </p>
+    <!-- Mobile Quick Actions Bar (Visible on Mobile Only) -->
+    <div class="mobile-cta-bar">
+        <a href="ai-programs.html" class="mobile-cta-btn secondary">AI PROGRAMS</a>
+        <a href="freeairesources.html" class="mobile-cta-btn primary">FREE RESOURCES</a>
+    </div>
 
-        <div class="blog-grid" id="blog-posts">
-            <!-- Blog posts will be generated and placed here -->
-            <div class="blog-card">
-                <h2>Coming Soon: AI for Small Business</h2>
-                <p>Learn how local businesses are leveraging AI to automate 80% of their manual tasks and double their
-                    efficiency.</p>
-                <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+    <main>
+        <section class="marketplace-hero">
+            <span class="meta-tag">Intel Marketplace</span>
+            <h1>The <span style="color: var(--color-accent-cyan)">Autonomous</span> Hub</h1>
+            <p>High-fidelity deep dives into the future of enterprise intelligence, data ecosystems, and agentic scale.
+            </p>
+        </section>
+
+        <div class="blog-grid">
+            <!-- Article 1: AI Agents 2026 -->
+            <div class="blog-card" onclick="window.location.href='blog/ai-agents-2026.html'">
+                <div class="card-image-container">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
+                        alt="AI Agents">
+                </div>
+                <div class="card-content">
+                    <span class="meta-tag">Automation</span>
+                    <h2>Why 2026 is the Year of the AI Agent</h2>
+                    <p>Moving from chatbots to autonomous executors. Discover how agents handle multi-step complex
+                        workflows.</p>
+                    <div class="read-more-link">
+                        CLICK HERE TO READ FULL ARTICLE <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
             </div>
-            <div class="blog-card">
-                <h2>Coming Soon: Data Scraping Evolution</h2>
-                <p>Discover the next generation of web scraping tools that can bypass any bot detection with human-like
-                    behavior.</p>
-                <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+
+            <!-- Article 2: Small Biz AI -->
+            <div class="blog-card" onclick="window.location.href='blog/ai-for-small-business.html'">
+                <div class="card-image-container">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+                        alt="Business Growth">
+                </div>
+                <div class="card-content">
+                    <span class="meta-tag">Scale</span>
+                    <h2>The Small Business AI Playbook</h2>
+                    <p>Stop wasting budget on hype. A tactical roadmap for doubling efficiency without increasing
+                        headcount.</p>
+                    <div class="read-more-link">
+                        CLICK HERE TO READ FULL ARTICLE <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
             </div>
-            <div class="blog-card">
-                <h2>Coming Soon: Future of Predictions</h2>
-                <p>Exploring how predictive analytics is changing from a "nice to have" to a survival tool in the 2026
-                    market.</p>
-                <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+
+            <!-- Article 3: AI ROI -->
+            <div class="blog-card" onclick="window.location.href='blog/hi-target-seo-ai-roi.html'">
+                <div class="card-image-container">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+                        alt="ROI Analysis">
+                </div>
+                <div class="card-content">
+                    <span class="meta-tag">Strategy</span>
+                    <h2>Maximizing AI ROI: A Strategic Guide</h2>
+                    <p>Is AI making you money or just costing subscriptions? Implementation for measurable growth.</p>
+                    <div class="read-more-link">
+                        CLICK HERE TO READ FULL ARTICLE <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 4: Data Scraping -->
+            <div class="blog-card" onclick="window.location.href='blog/future-of-data-scraping.html'">
+                <div class="card-image-container">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc48?auto=format&fit=crop&q=80&w=800"
+                        alt="Web Scraping">
+                </div>
+                <div class="card-content">
+                    <span class="meta-tag">Extraction</span>
+                    <h2>3 Breakthrough Strategies for Data Scraping</h2>
+                    <p>Master the bot-proof era. Use AI-driven residential proxies to mimic human behavior at scale.</p>
+                    <div class="read-more-link">
+                        CLICK HERE TO READ FULL ARTICLE <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 5: Predictive Analytics -->
+            <div class="blog-card" onclick="window.location.href='blog/predictive-analytics-2026.html'">
+                <div class="card-image-container">
+                    <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=800"
+                        alt="Analytics">
+                </div>
+                <div class="card-content">
+                    <span class="meta-tag">Analytics</span>
+                    <h2>Predictive Analytics: Survival Tool</h2>
+                    <p>How mid-sized companies use agentic forecasting to own their niche. Survival in the data age.</p>
+                    <div class="read-more-link">
+                        CLICK HERE TO READ FULL ARTICLE <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
             </div>
         </div>
+        <section class="cta-3d-wrapper">
+            <div class="cta-3d-container" onclick="window.location.href='index.html#contact'">
+                <h3 class="cta-text-3d">Ready to Scale?</h3>
+                <p class="cta-subtext-3d">CONTACT PINNACLE AI SOLUTIONS FOR A FREE CONSULTATION</p>
+                <a href="index.html#contact" class="cta-3d-btn">Get Started Now</a>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer">
-        <p class="text-gray-500 text-sm">© 2026 Pinnacle AI Solutions. All rights reserved.</p>
+    <footer class="py-20 text-center text-gray-600 border-t border-white/5 mt-20">
+        <a href="index.html" class="logo-nav opacity-50 block mb-6">PINNACLE AI</a>
+        <p class="text-sm tracking-widest uppercase">&copy; 2026 Pinnacle AI Solutions &bull; Architecting the Future
+        </p>
     </footer>
 
-    <!-- Chatbot from index.html -->
+    <script>
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileNavDrawer');
+            const toggle = document.getElementById('mobileMenuToggle');
+            if (!drawer || !toggle) return;
+            drawer.classList.toggle('open');
+            const spans = toggle.querySelectorAll('span');
+            if (drawer.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+
+    <!-- Three.js Header Shader -->
+    <script type="module">
+        import * as THREE from 'three';
+        function createShaderPill(canvas, container) {
+            if (!canvas || !container) return null;
+            let scene, camera, renderer, material, clock;
+            const uniforms = {
+                t: { value: 0.0 },
+                r: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) },
+                mouse: { value: new THREE.Vector2(0.5, 0.5) }
+            };
+            function init() {
+                scene = new THREE.Scene();
+                clock = new THREE.Clock();
+                camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+                camera.position.z = 1;
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                const geometry = new THREE.PlaneGeometry(2, 2);
+                material = new THREE.ShaderMaterial({
+                    uniforms: uniforms,
+                    vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position, 1.0); }`,
+                    fragmentShader: `
+                        precision highp float;
+                        uniform float t;
+                        uniform vec2 r;
+                        varying vec2 vUv;
+                        void main() {
+                            vec2 uv = vUv;
+                            vec3 col = 0.5 + 0.5*cos(t+uv.xyx+vec3(0,2,4));
+                            gl_FragColor = vec4(col, 0.5);
+                        }
+                    `
+                });
+                scene.add(new THREE.Mesh(geometry, material));
+            }
+            function animate() {
+                requestAnimationFrame(animate);
+                uniforms.t.value = clock.getElapsedTime();
+                renderer.render(scene, camera);
+            }
+            init(); animate();
+        }
+        setTimeout(() => {
+            const canvas = document.getElementById('headerShaderCanvas');
+            const wrapper = document.getElementById('middleShaderWrapper');
+            if (canvas && wrapper) createShaderPill(canvas, wrapper);
+        }, 100);
+    </script>
     <script src="chatbot.js"></script>
 </body>
 

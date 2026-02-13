@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Title | Pinnacle AI Solutions</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-primary-blue: #3b82f6;
+            --color-secondary-green: #22c55e;
+            --color-purple: #a855f7;
+            --color-darker-bg: #030712;
+            --glass-bg: rgba(17, 24, 39, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--color-darker-bg);
+            color: #d1d5db;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+        }
+
+        #main-header {
+            position: fixed;
+            top: 4;
+            left: 4;
+            right: 4;
+            height: 70px;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            border-radius: 40px;
+            margin: 15px auto;
+            max-width: 1400px;
+        }
+
+        .header-container {
+            width: 100%;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-nav {
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00f3ff, #bd00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 150px auto 100px;
+            padding: 0 20px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 30px;
+            margin-bottom: 50px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .post-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 20px;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        .blog-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 40px 0 20px;
+        }
+
+        .blog-content p {
+            margin-bottom: 25px;
+            font-size: 1.125rem;
+        }
+
+        .blog-content strong {
+            color: var(--color-primary-blue);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid var(--color-primary-blue);
+            padding: 40px;
+            border-radius: 24px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo-nav">PINNACLE AI</a>
+            <nav>
+                <a href="../blogs.html" class="text-white font-semibold">ALL BLOGS</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="blog-container">
+        <a href="../blogs.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Marketplace
+        </a>
+
+        <div class="post-header">
+            <div class="post-meta">
+                <span><i class="far fa-calendar"></i> Feb 12, 2026</span>
+                <span><i class="far fa-clock"></i> 5 Min Read</span>
+                <span class="text-blue-500 font-bold uppercase tracking-widest">Strategy</span>
+            </div>
+            <h1>[Post Title]</h1>
+        </div>
+
+        <img src="[Image URL]" alt="Hero Image" class="hero-image">
+
+        <article class="blog-content">
+            [Post Content]
+        </article>
+
+        <div class="cta-box">
+            <h3 class="text-2xl font-bold text-white mb-4">Ready to automate your future?</h3>
+            <p class="mb-6">Our agents are ready to build yours.</p>
+            <a href="../index.html#contact"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold transition-all inline-block">
+                Start Strategy Session
+            </a>
+        </div>
+    </main>
+
+    <footer class="py-10 text-center text-gray-600 border-t border-gray-800 mt-20">
+        &copy; 2026 Pinnacle AI Solutions
+    </footer>
+</body>
+
+</html>
