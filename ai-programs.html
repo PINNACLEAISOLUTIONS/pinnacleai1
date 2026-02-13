@@ -1110,7 +1110,6 @@
 
     <!-- FOOTER -->
     <footer style="padding: 50px; text-align: center; background: #000; color: #666;">
-        <p>&copy; 2025 Pinnacle AI Solutions. Building the Future.</p>
     </footer>
 
     <!-- WARP SPEED SCRIPT (Simplified from Index) -->
@@ -1562,14 +1561,84 @@
                 <h4>Connect</h4>
                 <a href="https://www.facebook.com/profile.php?id=61561081702737"><i class="fab fa-facebook"></i>
                     Facebook</a>
-                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 <a href="https://github.com/PINNACLEAISOLUTIONS"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Pinnacle AI Solutions. Built for the autonomous age.</p>
         </div>
     </footer>
+    <script>
+        const modalData = {
+            'contact-info': {
+                title: 'Contact Information',
+                content: `
+                    <div style="margin-bottom: 25px; padding: 20px; background: rgba(0,243,255,0.05); border: 1px solid rgba(0,243,255,0.2); border-radius: 12px; display: flex; align-items: center; gap: 15px;">
+                        <span style="font-size: 2rem;">📞</span>
+                        <div>
+                            <h4 style="color: var(--neon-cyan); margin-bottom: 5px;">Phone</h4>
+                            <a href="tel:+13522319154" style="color: var(--text-bright); font-size: 1.1rem; font-weight: 600;">(352) 231-9154</a>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 20px; padding: 20px; background: rgba(189,0,255,0.05); border: 1px solid rgba(189,0,255,0.2); border-radius: 12px; display: flex; align-items: center; gap: 15px;">
+                        <span style="font-size: 2rem;">📧</span>
+                        <div>
+                            <h4 style="color: var(--neon-purple); margin-bottom: 5px;">Email</h4>
+                            <a href="mailto:futureai4all@gmail.com" style="color: var(--text-bright); font-size: 1.1rem; font-weight: 600;">futureai4all@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <p style="color: var(--text-dim); font-size: 0.85rem; text-align: center; margin-top: 20px;">We typically respond within 24 hours</p>
+                `
+            }
+        };
+
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+
+            if (modalData[type]) {
+                title.textContent = modalData[type].title;
+                content.innerHTML = modalData[type].content;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileNavDrawer');
+            const toggle = document.getElementById('mobileMenuToggle');
+            if (!drawer || !toggle) return;
+            drawer.classList.toggle('open');
+            const spans = toggle.querySelectorAll('span');
+            if (drawer.classList.contains('open')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+                document.body.style.overflow = 'hidden';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+    </script>
     <!-- Three.js Header Shader -->
     <script type="module">
         import * as THREE from 'three';
@@ -1657,83 +1726,6 @@
             });
         }
 
-
-        function toggleMobileMenu() {
-            const drawer = document.getElementById('mobileNavDrawer');
-            const toggle = document.getElementById('mobileMenuToggle');
-
-            if (!drawer || !toggle) return;
-
-            drawer.classList.toggle('open');
-
-            const spans = toggle.querySelectorAll('span');
-            if (drawer.classList.contains('open')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-                document.body.style.overflow = 'hidden';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-                document.body.style.overflow = '';
-            }
-        }
-
-        // Modal Logic
-        const modalData = {
-            contact: {
-                title: '📞 Contact Pinnacle AI',
-                content: `
-                    <p style="color: var(--text-muted); margin-bottom: 25px;">Have questions or need assistance? Reach out anytime!</p>
-                    
-                    <div style="margin-bottom: 20px; padding: 20px; background: rgba(0,243,255,0.05); border: 1px solid rgba(0,243,255,0.2); border-radius: 12px; display: flex; align-items: center; gap: 15px;">
-                        <span style="font-size: 2rem;">📱</span>
-                        <div>
-                            <h4 style="color: var(--neon-cyan); margin-bottom: 5px;">Phone</h4>
-                            <a href="tel:+13522319154" style="color: var(--text-bright); font-size: 1.1rem; font-weight: 600;">(352) 231-9154</a>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 20px; padding: 20px; background: rgba(189,0,255,0.05); border: 1px solid rgba(189,0,255,0.2); border-radius: 12px; display: flex; align-items: center; gap: 15px;">
-                        <span style="font-size: 2rem;">📧</span>
-                        <div>
-                            <h4 style="color: var(--neon-purple); margin-bottom: 5px;">Email</h4>
-                            <a href="mailto:futureai4all@gmail.com" style="color: var(--text-bright); font-size: 1.1rem; font-weight: 600;">futureai4all@gmail.com</a>
-                        </div>
-                    </div>
-                    
-                    <p style="color: var(--text-dim); font-size: 0.85rem; text-align: center; margin-top: 20px;">We typically respond within 24 hours</p>
-                `
-            }
-        };
-
-        function openModal(type) {
-            const modal = document.getElementById('modal');
-            const title = document.getElementById('modal-title');
-            const content = document.getElementById('modal-content');
-
-            if (modalData[type]) {
-                title.textContent = modalData[type].title;
-                content.innerHTML = modalData[type].content;
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        document.addEventListener('click', (e) => {
-            if (e.target.id === 'modal') closeModal();
-        });
 
         document.addEventListener('DOMContentLoaded', () => {
             const drawer = document.getElementById('mobileNavDrawer');

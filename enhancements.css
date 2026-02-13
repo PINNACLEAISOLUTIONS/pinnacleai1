@@ -819,10 +819,7 @@ svg {
         /* Ends right after the text for a cleaner look */
         height: 100vh;
         background: #05070a !important;
-        background-image:
-            radial-gradient(white, rgba(255, 255, 255, .2) 1px, transparent 20px),
-            radial-gradient(white, rgba(255, 255, 255, .1) 1px, transparent 30px) !important;
-        background-size: 100px 100px, 200px 200px !important;
+        border-right: 2px solid #00f2ff;
         border-right: 2px solid #00f2ff;
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8);
         z-index: 10000;

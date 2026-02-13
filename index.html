@@ -485,24 +485,38 @@
             padding: 1rem;
         }
 
-        .btn-primary-hero,
+        .btn-primary-hero {
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #fff;
+            border: none;
+            box-shadow: none;
+        }
+
         .btn-outline-hero {
             padding: 1rem 2.5rem;
             border-radius: 9999px;
             font-weight: 600;
             font-size: 1.125rem;
             transition: all 0.3s ease;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
         }
 
         .btn-primary-hero:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
-            background: linear-gradient(90deg, #22c55e, #3b82f6);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.6);
+            filter: brightness(1.1);
         }
 
         .btn-outline-hero:hover {
             background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
         }
 
@@ -1064,8 +1078,8 @@
             </p>
             <div class="hero-buttons flex justify-between w-full max-w-xl mx-auto animate-on-scroll"
                 style="animation-delay: 0.4s; padding: 0 40px;">
-                <a href="#services" class="btn-outline-hero">Explore Services</a>
                 <a href="#contact" class="btn-primary-hero">Get Started</a>
+                <a href="#services" class="btn-outline-hero">Explore Services</a>
             </div>
         </div>
     </section>
@@ -1477,14 +1491,12 @@
             </div>
             <div class="footer-col">
                 <h4>Connect</h4>
-                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="#"><i class="fab fa-github"></i> GitHub</a>
-                <a href="mailto:contact@pinnacleai.biz"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://www.facebook.com/profile.php?id=61561081702737"><i class="fab fa-facebook"></i>
+                    Facebook</a>
+                <a href="https://github.com/PINNACLEAISOLUTIONS"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Pinnacle AI Solutions. Built for the autonomous age.</p>
         </div>
     </footer>
 
@@ -1928,7 +1940,6 @@
                 <h4>Connect</h4>
                 <a href="https://www.facebook.com/profile.php?id=61561081702737"><i class="fab fa-facebook"></i>
                     Facebook</a>
-                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
                 <a href="https://github.com/PINNACLEAISOLUTIONS"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </div>
