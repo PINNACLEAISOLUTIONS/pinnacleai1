@@ -117,19 +117,17 @@ document.addEventListener('DOMContentLoaded', function () {
             chatbotHeader.style.width = '100%';
         }
 
-        // Iframe styles - wider and shifted left to hide sidebar
+        // Iframe styles - full width, no shift
         if (chatbotIframe) {
-            const SIDEBAR_PX = 280; // typical left sidebar width in the chatbot app
-
             chatbotIframe.style.border = 'none';
             chatbotIframe.style.display = 'block';
             chatbotIframe.style.padding = '0';
             chatbotIframe.style.height = '100%';
             chatbotIframe.style.minHeight = '0';
 
-            // Key mobile fix: hide the sidebar by shifting the iframe left
-            chatbotIframe.style.width = `calc(100% + ${SIDEBAR_PX}px)`;
-            chatbotIframe.style.marginLeft = `-${SIDEBAR_PX}px`;
+            // Key mobile fix: allow iframe to handle its own layout
+            chatbotIframe.style.width = '100%';
+            chatbotIframe.style.marginLeft = '0';
 
             // Keep layout stable inside flex
             chatbotIframe.style.flex = '1 1 auto';

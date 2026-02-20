@@ -235,11 +235,11 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
-    /* Step 5: Iframe - wider and shifted left to hide sidebar */
+    /* Step 5: Iframe - full width, no shift */
     #chatbot-container iframe {
         flex: 1 1 auto !important;
-        width: calc(100% + 280px) !important;
-        margin-left: -280px !important;
+        width: 100% !important;
+        margin-left: 0 !important;
         height: 100% !important;
         min-height: 0 !important;
         display: block !important;
