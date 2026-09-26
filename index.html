@@ -887,6 +887,26 @@
             }
         }
     </style>
+    <!-- Raycast-inspired polish layer (from awesome-design-md/raycast): dark surface ladder,
+         hairline borders, keycap-style 3D surfaces, Inter ss03. Neon brand colors kept. -->
+    <style>
+        body{font-feature-settings:"calt","kern","liga","ss03"}
+        /* surface ladder instead of flat slate-gray section breaks */
+        #core-offerings{background:radial-gradient(900px 420px at 50% 0%,rgba(87,193,255,.10),transparent 70%),linear-gradient(180deg,#0a0a2e 0%,#0d0d14 45%,#07080a 100%) !important}
+        #about{background:radial-gradient(800px 400px at 85% 30%,rgba(189,0,255,.10),transparent 70%),#07080a !important}
+        #core-offerings .section-header,#about .section-header,#contact .section-header{border-color:#242728}
+        /* keycap orbs: glossy top light, pressed bottom edge, lift on hover */
+        #core-offerings .animated-circle{box-shadow:inset 0 3px 0 rgba(255,255,255,.45),inset 0 -10px 22px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.14),0 6px 0 rgba(0,0,0,.55),0 30px 60px -20px rgba(87,193,255,.45);transition:transform .25s ease,box-shadow .25s ease}
+        #core-offerings .animated-circle:hover{transform:translateY(-6px);box-shadow:inset 0 3px 0 rgba(255,255,255,.55),inset 0 -10px 22px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.2),0 12px 0 rgba(0,0,0,.5),0 40px 80px -20px rgba(189,0,255,.55)}
+        #core-offerings .animated-circle:active{transform:translateY(2px);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -6px 14px rgba(0,0,0,.35),0 2px 0 rgba(0,0,0,.55)}
+        /* stat tiles: Raycast hairline cards */
+        #about .stat-item{background:linear-gradient(180deg,#121212,#0d0d0d);border:1px solid #242728;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 20px 40px -20px rgba(0,0,0,.8)}
+        #about .stat-item:hover{border-color:rgba(255,255,255,.16)}
+        #about .about-image{border:1px solid #242728;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 70px -25px rgba(87,193,255,.35)}
+        /* contact icons as keycaps */
+        #contact .info-icon{background:linear-gradient(180deg,#1a1b1d,#0d0d0d) !important;border:1px solid #242728;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 3px 0 #000,0 10px 24px -8px rgba(87,193,255,.5) !important;color:#57c1ff !important}
+        #contact a.info-item .info-icon{color:#59d499 !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 3px 0 #000,0 10px 24px -8px rgba(89,212,153,.5) !important}
+    </style>
 </head>
 
 <body class="bg-gray-900 text-gray-200 font-inter">
