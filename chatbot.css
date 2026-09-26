@@ -4,8 +4,8 @@
     left: 20px;
     /* Keeping it on the left as per current layout */
     bottom: calc(20px + env(safe-area-inset-bottom));
-    width: min(750px, calc(100vw - 40px));
-    height: min(640px, calc(100dvh - 140px));
+    width: min(960px, calc(100vw - 40px));
+    height: min(720px, calc(100dvh - 120px));
     z-index: 999999;
     background: rgba(10, 10, 10, 0.98);
     border: 1px solid rgba(0, 243, 255, 0.3);
