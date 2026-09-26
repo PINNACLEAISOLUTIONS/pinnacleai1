@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const fallbackMsg = document.createElement('div');
         fallbackMsg.style.cssText = 'position:fixed; bottom:80px; right:20px; background:#ff4444; color:#fff; padding:5px 10px; border-radius:5px; font-size:10px; z-index:9999; display:none;';
         fallbackMsg.id = 'chatbot-low-compat-notice';
-        fallbackMsg.innerHTML = 'Browsing from TikTok/FB? Chat may be limited. <a href="https://mcpaichatbot-1.onrender.com" target="_blank" style="color:#fff; text-decoration:underline;">Open Direct</a>';
+        fallbackMsg.innerHTML = 'Browsing from TikTok/FB? Chat may be limited. <a href="https://mcpaichatbot-1.onrender.com?brand=pinnacle" target="_blank" style="color:#fff; text-decoration:underline;">Open Direct</a>';
         document.body.appendChild(fallbackMsg);
     }
 
