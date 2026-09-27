@@ -913,8 +913,16 @@
     <!-- Single Clean Top Navigation -->
     <header id="main-header">
         <div class="header-container">
-            <div class="header-logo">
-                <a href="index.html" class="logo-animated">PINNACLE AI SOLUTIONS</a>
+                        <div class="header-logo">
+                <a href="index.html" class="logo-brand-link">
+                    <div class="logo-emblem-wrap">
+                        <img src="pinnacle-emblem.png" alt="Pinnacle AI" class="pinnacle-emblem-img">
+                    </div>
+                    <div class="logo-text-wrap">
+                        <span class="logo-text-primary">PINNACLE <span class="logo-text-ai">AI</span></span>
+                        <span class="logo-text-sub">SOLUTIONS</span>
+                    </div>
+                </a>
             </div>
             <nav class="header-nav-links">
                 <a href="index.html" class="header-link active">HOME</a>
@@ -1981,10 +1989,17 @@
     </footer>
 
     <div class="chatbot-container" id="chatbot-container">
-        <div class="chatbot-header">
-            <span>Pinnacle AI Assistant</span>
-            <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Close Chatbot"><i
-                    class="fas fa-times"></i></button>
+        <div class="chatbot-header" style="display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:linear-gradient(135deg, rgba(8,14,28,0.98), rgba(3,7,18,0.99)); border-bottom:1px solid rgba(0,243,255,0.25);">
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:36px; height:36px; border-radius:10px; background:radial-gradient(circle at 50% 30%, rgba(0,243,255,0.25), rgba(7,12,26,0.98)); border:1.5px solid rgba(0,243,255,0.65); box-shadow:0 0 14px rgba(0,243,255,0.45); display:flex; align-items:center; justify-content:center; padding:2px; box-sizing:border-box;">
+                    <img src="pinnacle-emblem.png" alt="Pinnacle AI" style="width:100%; height:100%; object-fit:contain;">
+                </div>
+                <div style="display:flex; flex-direction:column; line-height:1.1;">
+                    <span style="font-weight:900; letter-spacing:1px; font-size:1.05rem; background:linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #00f3ff 60%, #c084fc 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 12px rgba(0,243,255,0.4));">PINNACLE <span style="color:#00F3FF;">AI</span></span>
+                    <span style="font-size:0.58rem; font-weight:800; letter-spacing:2.5px; color:#94a3b8; text-transform:uppercase;">AUTONOMOUS AGENT</span>
+                </div>
+            </div>
+            <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Close Chatbot"><i class="fas fa-times"></i></button>
         </div>
         <iframe src="https://mcpaichatbot-1.onrender.com?brand=pinnacle" title="Pinnacle AI Chatbot" allow="microphone; autoplay; clipboard-write;"
             sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
