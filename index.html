@@ -7,8 +7,6 @@
     <title>Pinnacle AI Solutions | AI Agents, Lead Scrapers, Auto-Posters &amp; Lead Capture</title>
     <meta name="description"
         content="Pinnacle AI Solutions builds custom AI agents, AI phone receptionists, lead scrapers, auto-posters and lead-capture websites that find, reach and book customers for your business.">
-    <meta name="keywords"
-        content="AI solutions, artificial intelligence, machine learning, deep learning, app development, data scraping, predictive analytics, NLP, computer vision, learn AI, free AI courses">
     <meta name="google-site-verification" content="OGXvmPfPnc-cFfWdTFkJB4no8wlP-XNT2-XN_wOILuk" />
 
     <!-- Open Graph / Social Preview -->
@@ -1004,7 +1002,7 @@
                         <span style="font-size: 2rem;">📱</span>
                         <div>
                             <h4 style="color: var(--neon-cyan); margin-bottom: 5px;">Phone</h4>
-                            <a href="tel:+13522319154" style="color: var(--text-bright); font-size: 1.1rem; font-weight: 600;">(352) 231-9154</a>
+                            <a href="tel:+19046866593" style="color: var(--text-bright); font-size: 1.1rem; font-weight: 600;">(904) 686-6593</a>
                         </div>
                     </div>
                     
@@ -1440,7 +1438,7 @@
                     </div>
                 </div>
                 <div class="about-image relative rounded-xl overflow-hidden shadow-2xl animate-on-scroll slide-right">
-                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+                    <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
                         alt="AI Technology" class="w-full h-full object-cover">
                     <div class="image-overlay absolute inset-0"></div>
                 </div>
@@ -1500,10 +1498,12 @@
                     </div>
                 </a>
             </div>
+            <div id="form-sent" class="form-sent-banner" role="status" hidden>Thanks! Your message was sent. We'll reply shortly.</div>
             <div class="contact-form-glow animate-on-scroll scale-in max-w-3xl mx-auto">
                 <h3 class="text-2xl font-bold text-center mb-6">Or Fill Out The Form</h3>
                 <form action="https://formsubmit.co/futureai4all@gmail.com" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://pinnacleaisolutions.site/?sent=1#contact">
                     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                     <input type="hidden" name="_subject" value="New Contact Form Submission from Pinnacle AI">
                     <input type="hidden" name="_autoresponse"
@@ -1550,14 +1550,6 @@
     </div>
 
     <!-- UI Enhancements -->
-    <div id="modal" class="modal-overlay" style="display:none;">
-        <div class="modal-box glass">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 id="modal-title" class="gradient-text" style="margin-bottom:20px;">Title</h2>
-            <div id="modal-content"></div>
-        </div>
-    </div>
-
     <!-- UI Enhancements -->
     <!-- Floating "Call Us" Button -->
     <a href="tel:9046866593" class="call-us-fab" aria-label="Call Us">
@@ -1992,7 +1984,7 @@
         <div class="chatbot-header" style="display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:linear-gradient(135deg, rgba(8,14,28,0.98), rgba(3,7,18,0.99)); border-bottom:1px solid rgba(0,243,255,0.25);">
             <div style="display:flex; align-items:center; gap:12px;">
                 <div style="width:36px; height:36px; border-radius:10px; background:radial-gradient(circle at 50% 30%, rgba(0,243,255,0.25), rgba(7,12,26,0.98)); border:1.5px solid rgba(0,243,255,0.65); box-shadow:0 0 14px rgba(0,243,255,0.45); display:flex; align-items:center; justify-content:center; padding:2px; box-sizing:border-box;">
-                    <img src="pinnacle-emblem.png" alt="Pinnacle AI" style="width:100%; height:100%; object-fit:contain;">
+                    <img loading="lazy" decoding="async" src="pinnacle-emblem.png" alt="Pinnacle AI" style="width:100%; height:100%; object-fit:contain;">
                 </div>
                 <div style="display:flex; flex-direction:column; line-height:1.1;">
                     <span style="font-weight:900; letter-spacing:1px; font-size:1.05rem; background:linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #00f3ff 60%, #c084fc 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 0 12px rgba(0,243,255,0.4));">PINNACLE <span style="color:#00F3FF;">AI</span></span>
@@ -2024,6 +2016,7 @@
     <button class="back-to-top" aria-label="Back to top">↑</button>
 
     <script src="enhancements.js"></script>
+<script>if(location.search.indexOf("sent=1")>-1){var b=document.getElementById("form-sent");if(b)b.hidden=false;}</script>
 </body>
 
 </html>
