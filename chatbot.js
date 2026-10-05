@@ -179,6 +179,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // --- Offline notice: if the chat server is unreachable, show a phone fallback ---
+    const CHAT_HEALTH_URL = 'https://mcpaichatbot-1.onrender.com/health';
+    function checkBotOnline() {
+        const old = chatbotContainer.querySelector('.chatbot-offline-notice');
+        if (old) old.remove();
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 25000); // free-tier cold start can take ~20s
+        fetch(CHAT_HEALTH_URL, { signal: ctrl.signal, cache: 'no-store' })
+            .then(r => { if (!r.ok) throw new Error('bad status'); })
+            .catch(() => {
+                if (!chatbotContainer.classList.contains('active')) return;
+                const n = document.createElement('div');
+                n.className = 'chatbot-offline-notice';
+                n.style.cssText = 'position:absolute;left:12px;right:12px;bottom:12px;z-index:5;background:#111827;color:#fff;border:1px solid #3b82f6;border-radius:10px;padding:12px;font-size:14px;text-align:center;';
+                n.innerHTML = 'Our chat assistant is temporarily unavailable.<br>Call us at <a href="tel:9046866593" style="color:#60a5fa;font-weight:600;">(904) 686-6593</a> or <a href="#contact" style="color:#60a5fa;">send a message</a>.';
+                chatbotContainer.appendChild(n);
+            })
+            .finally(() => clearTimeout(timer));
+    }
+
     // Toggle Chatbot
     chatbotToggleBtn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -191,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             chatbotContainer.classList.add('active');
+            checkBotOnline();
 
             if (isMobile()) {
                 // Add chatbot-open class to html and body
