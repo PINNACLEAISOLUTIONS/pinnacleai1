@@ -372,6 +372,111 @@
         .preview-modal.active {
             display: flex;
         }
+
+        /* Authenticated VIP HUD Styles */
+        .vip-hud-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 41, 59, 0.72) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .vip-hud-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #38bdf8, #818cf8, #10b981, transparent);
+        }
+        .avatar-glow {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(56, 189, 248, 0.6);
+        }
+        .hud-stat-pill {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+        }
+        .hud-stat-pill:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(15, 23, 42, 0.95);
+            transform: translateY(-2px);
+        }
+        .filter-pill {
+            padding: 7px 16px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            user-select: none;
+        }
+        .filter-pill:hover {
+            color: #ffffff;
+            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(56, 189, 248, 0.08);
+        }
+        .filter-pill.active {
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.3) 0%, rgba(56, 189, 248, 0.2) 100%);
+            border-color: #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+        }
+        .blueprint-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+        .blueprint-card {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(10, 15, 30, 0.9) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .blueprint-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 45px -10px rgba(56, 189, 248, 0.22);
+        }
+        .blueprint-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            opacity: 0.8;
+        }
+        .card-cyan::after { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+        .card-indigo::after { background: linear-gradient(90deg, #6366f1, #a855f7); }
+        .card-emerald::after { background: linear-gradient(90deg, #059669, #34d399); }
+        .card-amber::after { background: linear-gradient(90deg, #d97706, #fbbf24); }
+        .card-purple::after { background: linear-gradient(90deg, #9333ea, #c084fc); }
+
     </style>
 </head>
 
@@ -617,173 +722,340 @@
             </div>
         </div>
 
-        <!-- ======================================================== -->
+                <!-- ======================================================== -->
         <!-- STATE 2: AUTHENTICATED / UNLOCKED RESOURCE VAULT         -->
         <!-- (Visible ONLY after successful registration or sign-in) -->
         <!-- ======================================================== -->
-        <div id="authenticatedView" class="w-full hidden">
-            <!-- Member Status Banner -->
-            <div class="glass-panel p-5 sm:p-6 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4 border border-blue-500/20">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-emerald-400 flex items-center justify-center text-white text-lg font-bold shadow-md shadow-blue-500/20 flex-shrink-0" id="userAvatar">
-                        P
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h2 class="text-lg font-bold text-white" id="userNameGreeting">
-                                Welcome, Member
-                            </h2>
-                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-900/60 text-emerald-300 border border-emerald-500/30">
-                                VERIFIED
+        <div id="authenticatedView" class="w-full hidden pb-12">
+            
+            <!-- ELITE VIP COMMAND HUD BANNER -->
+            <div class="vip-hud-card p-6 sm:p-8 mb-10">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-gray-800">
+                    <!-- User Profile & Status -->
+                    <div class="flex items-center gap-5">
+                        <div class="relative flex-shrink-0">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 flex items-center justify-center text-white text-2xl font-black avatar-glow" id="userAvatar">
+                                P
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-gray-900 flex items-center justify-center" title="Verified Session Active">
+                                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
                             </span>
                         </div>
-                        <p class="text-xs text-gray-400 mt-0.5" id="userEmailDisplay">
-                            Weekly AI Newsletter: <span class="text-emerald-400 font-semibold">Subscribed</span>
-                        </p>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2.5">
+                                <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight" id="userNameGreeting">
+                                    Welcome, Member
+                                </h2>
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/15 border border-amber-400/40 text-amber-300">
+                                    <i class="fas fa-crown text-amber-400 text-[10px]"></i> VIP MEMBER
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/15 border border-emerald-400/30 text-emerald-300">
+                                    <i class="fas fa-database text-[10px]"></i> DB SYNCED
+                                </span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2" id="userEmailDisplay">
+                                <i class="fas fa-envelope-circle-check text-emerald-400"></i>
+                                Weekly AI Newsletter: <span class="text-emerald-400 font-bold">Subscribed & Confirmed</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Command Actions -->
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button onclick="downloadAllBlueprints()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-emerald-500/20 transition flex items-center gap-2 border border-emerald-400/30">
+                            <i class="fas fa-cloud-arrow-down text-sm"></i> Download All 5 PDFs
+                        </button>
+                        <button onclick="handleSignOut()" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white text-xs font-semibold border border-gray-700/80 transition flex items-center gap-2">
+                            <i class="fas fa-arrow-right-from-bracket text-xs"></i> Sign Out
+                        </button>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <button onclick="handleSignOut()" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 border border-gray-700 transition flex items-center gap-2">
-                        <i class="fas fa-arrow-right-from-bracket"></i> Sign Out
+                <!-- Live Metrics Bar -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
+                    <div class="hud-stat-pill">
+                        <div class="w-9 h-9 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 text-sm">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Unlocked Vault</span>
+                            <span class="text-sm font-bold text-white">5 Production Blueprints</span>
+                        </div>
+                    </div>
+
+                    <div class="hud-stat-pill">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-sm">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Weekly AI Dispatch</span>
+                            <span class="text-sm font-bold text-emerald-400">Delivering Tuesdays</span>
+                        </div>
+                    </div>
+
+                    <div class="hud-stat-pill">
+                        <div class="w-9 h-9 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-sm">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Usage License</span>
+                            <span class="text-sm font-bold text-white">Commercial & Agency</span>
+                        </div>
+                    </div>
+
+                    <div class="hud-stat-pill">
+                        <div class="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-sm">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Database Storage</span>
+                            <span class="text-sm font-bold text-white">Cloud Synced & Safe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEARCH & FILTER TOOLBAR -->
+            <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <!-- Category Pills -->
+                <div class="flex flex-wrap items-center gap-2" id="filterPillsContainer">
+                    <button class="filter-pill active" onclick="setCategoryFilter('all', this)">
+                        <i class="fas fa-grid-2 mr-1"></i> All Blueprints (5)
+                    </button>
+                    <button class="filter-pill" onclick="setCategoryFilter('agents', this)">
+                        <i class="fas fa-robot mr-1"></i> AI Agents & IDE (2)
+                    </button>
+                    <button class="filter-pill" onclick="setCategoryFilter('growth', this)">
+                        <i class="fas fa-crosshairs mr-1"></i> Lead Gen (1)
+                    </button>
+                    <button class="filter-pill" onclick="setCategoryFilter('media', this)">
+                        <i class="fas fa-film mr-1"></i> Video & Audio (1)
+                    </button>
+                    <button class="filter-pill" onclick="setCategoryFilter('infra', this)">
+                        <i class="fas fa-network-wired mr-1"></i> Protocols & MCP (1)
                     </button>
                 </div>
-            </div>
 
-            <!-- Vault Section Title -->
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-900/40 text-emerald-400 border border-emerald-700/40 text-xs font-bold uppercase tracking-wider mb-2">
-                    <i class="fas fa-unlock-keyhole text-xs"></i> Unlocked Member Vault
+                <!-- Instant Search Input -->
+                <div class="relative w-full md:w-72">
+                    <i class="fas fa-magnifying-glass absolute left-3.5 top-3 text-gray-500 text-xs"></i>
+                    <input type="text" id="blueprintSearch" oninput="filterBlueprints()" placeholder="Search blueprints or tech stack..."
+                        class="w-full pl-9 pr-4 py-2 bg-gray-900/90 border border-gray-800 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition">
                 </div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                    Production AI Blueprints & Guides
-                </h2>
-                <p class="text-gray-400 text-sm mt-2 leading-relaxed">
-                    Click download to save any blueprint directly as a PDF to your computer, or click Read to inspect it online.
-                </p>
             </div>
 
-            <!-- 5 CLEAN BLUEPRINT CARDS (NO CLUTTER, NO PWSH BOXES, NO PILLS) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 5 ELEVATED BLUEPRINT CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blueprintsGrid">
 
                 <!-- CARD 1: Antigravity IDE Setup Guide -->
-                <div class="blueprint-card">
+                <div class="blueprint-card card-cyan" data-category="agents" data-keywords="antigravity ide setup rules agents skills pair programming cursor python claude">
                     <div>
-                        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
-                            <i class="fas fa-file-pdf text-red-400 text-xl"></i>
+                        <!-- Header with Category Tag & Icon -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center shadow-lg shadow-sky-500/10">
+                                <i class="fas fa-terminal text-sky-400 text-xl"></i>
+                            </div>
+                            <span class="blueprint-tag bg-sky-500/15 text-sky-300 border border-sky-500/30">
+                                Core Environment
+                            </span>
                         </div>
+
                         <h3 class="text-lg font-bold text-white mb-2 leading-snug">
                             Antigravity IDE Complete Setup Guide
                         </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            Architectural walkthrough for zero-latency agentic pair-programming, rules injection, local skill scaffolds, and multi-agent coordination.
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                            Zero-latency agentic pair-programming architecture, automated rules injection, local skill scaffolds, and multi-agent coordination protocols.
                         </p>
+
+                        <!-- Tech Badges -->
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Skills System</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Subagent Workflows</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Zero-Latency CLI</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 pt-2 border-t border-gray-800/80">
+
+                    <!-- Card Actions -->
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
                         <button onclick="downloadBlueprint('Antigravity-IDE-Complete-Setup-Guide.pdf', 'Antigravity IDE Complete Setup Guide')" class="btn-download-action">
-                            <i class="fas fa-download text-xs"></i> Download PDF
+                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
                         </button>
-                        <button onclick="openPreviewModal('Antigravity-IDE-Complete-Setup-Guide.pdf', 'Antigravity IDE Complete Setup Guide')" class="btn-preview-action" title="Read Blueprint">
+                        <button onclick="openPreviewModal('Antigravity-IDE-Complete-Setup-Guide.pdf', 'Antigravity IDE Complete Setup Guide')" class="btn-preview-action" title="Read Blueprint Online">
                             <i class="fas fa-eye text-xs"></i> Read
                         </button>
                     </div>
                 </div>
 
                 <!-- CARD 2: Autonomous Multi-Agent Architecture -->
-                <div class="blueprint-card">
+                <div class="blueprint-card card-indigo" data-category="agents" data-keywords="autonomous multi-agent architecture swarm subagent orchestrator context memory topologies">
                     <div>
-                        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
-                            <i class="fas fa-file-pdf text-red-400 text-xl"></i>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center shadow-lg shadow-indigo-500/10">
+                                <i class="fas fa-network-wired text-indigo-400 text-xl"></i>
+                            </div>
+                            <span class="blueprint-tag bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+                                Swarm Topology
+                            </span>
                         </div>
+
                         <h3 class="text-lg font-bold text-white mb-2 leading-snug">
                             Autonomous Multi-Agent Architecture
                         </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            Master orchestrator, peer subagent topologies, distributed context boundaries, and recursive task decomposition protocols.
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                            Master orchestrator and peer subagent topologies, distributed context boundaries, and recursive task decomposition for scalable autonomous execution.
                         </p>
+
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Master Orchestrator</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Memory Trees</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Subagent Spawning</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 pt-2 border-t border-gray-800/80">
+
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
                         <button onclick="downloadBlueprint('Autonomous-Multi-Agent-Architecture.pdf', 'Autonomous Multi-Agent Architecture')" class="btn-download-action">
-                            <i class="fas fa-download text-xs"></i> Download PDF
+                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
                         </button>
-                        <button onclick="openPreviewModal('Autonomous-Multi-Agent-Architecture.pdf', 'Autonomous Multi-Agent Architecture')" class="btn-preview-action" title="Read Blueprint">
+                        <button onclick="openPreviewModal('Autonomous-Multi-Agent-Architecture.pdf', 'Autonomous Multi-Agent Architecture')" class="btn-preview-action" title="Read Blueprint Online">
                             <i class="fas fa-eye text-xs"></i> Read
                         </button>
                     </div>
                 </div>
 
                 <!-- CARD 3: Enterprise AI Lead Generation Playbook -->
-                <div class="blueprint-card">
+                <div class="blueprint-card card-emerald" data-category="growth" data-keywords="enterprise lead generation craigslist scraping playwright anti-blocking intake sales pipeline leads csv json">
                     <div>
-                        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
-                            <i class="fas fa-file-pdf text-red-400 text-xl"></i>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center shadow-lg shadow-emerald-500/10">
+                                <i class="fas fa-crosshairs text-emerald-400 text-xl"></i>
+                            </div>
+                            <span class="blueprint-tag bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                                Revenue Engine
+                            </span>
                         </div>
+
                         <h3 class="text-lg font-bold text-white mb-2 leading-snug">
                             Enterprise AI Lead Generation Playbook
                         </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            High-velocity prospecting, Craigslist & directory scraping pipelines, anti-blocking heuristics, and real-time CRM ingestion workflows.
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                            High-velocity prospecting, Craigslist & directory scraping pipelines, anti-blocking heuristics, and real-time dual JSON/CSV lead ingestion.
                         </p>
+
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Lead Extraction</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Anti-Detection</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">CRM Dual Export</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 pt-2 border-t border-gray-800/80">
+
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
                         <button onclick="downloadBlueprint('Enterprise-AI-Lead-Generation-Playbook.pdf', 'Enterprise AI Lead Generation Playbook')" class="btn-download-action">
-                            <i class="fas fa-download text-xs"></i> Download PDF
+                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
                         </button>
-                        <button onclick="openPreviewModal('Enterprise-AI-Lead-Generation-Playbook.pdf', 'Enterprise AI Lead Generation Playbook')" class="btn-preview-action" title="Read Blueprint">
+                        <button onclick="openPreviewModal('Enterprise-AI-Lead-Generation-Playbook.pdf', 'Enterprise AI Lead Generation Playbook')" class="btn-preview-action" title="Read Blueprint Online">
                             <i class="fas fa-eye text-xs"></i> Read
                         </button>
                     </div>
                 </div>
 
                 <!-- CARD 4: Kinetic Video & Audio Generation Pipeline -->
-                <div class="blueprint-card">
+                <div class="blueprint-card card-amber" data-category="media" data-keywords="kinetic video audio generation remotion react kokoro tts -14 lufs captions ffmpeg youtube sound">
                     <div>
-                        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
-                            <i class="fas fa-file-pdf text-red-400 text-xl"></i>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center shadow-lg shadow-amber-500/10">
+                                <i class="fas fa-film text-amber-400 text-xl"></i>
+                            </div>
+                            <span class="blueprint-tag bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                                Creative Media
+                            </span>
                         </div>
+
                         <h3 class="text-lg font-bold text-white mb-2 leading-snug">
                             Kinetic Video & Audio Generation Pipeline
                         </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            End-to-end Remotion React composer, Kokoro TTS integration, kinetic subtitle rendering, and YouTube Audio Library bed mastering.
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                            Full-bleed 9:16 Remotion React video composer, Kokoro TTS integration, dynamic kinetic captions, and broadcast-ready -14 LUFS audio mastering.
                         </p>
+
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Remotion React</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Kinetic Captions</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">-14 LUFS Mastering</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 pt-2 border-t border-gray-800/80">
+
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
                         <button onclick="downloadBlueprint('Kinetic-Video-Audio-Generation-Pipeline.pdf', 'Kinetic Video & Audio Generation Pipeline')" class="btn-download-action">
-                            <i class="fas fa-download text-xs"></i> Download PDF
+                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
                         </button>
-                        <button onclick="openPreviewModal('Kinetic-Video-Audio-Generation-Pipeline.pdf', 'Kinetic Video & Audio Generation Pipeline')" class="btn-preview-action" title="Read Blueprint">
+                        <button onclick="openPreviewModal('Kinetic-Video-Audio-Generation-Pipeline.pdf', 'Kinetic Video & Audio Generation Pipeline')" class="btn-preview-action" title="Read Blueprint Online">
                             <i class="fas fa-eye text-xs"></i> Read
                         </button>
                     </div>
                 </div>
 
                 <!-- CARD 5: MCP Server Integration Handbook -->
-                <div class="blueprint-card">
+                <div class="blueprint-card card-purple" data-category="infra" data-keywords="mcp server model context protocol neon postgres database lazy loading tool orchestration api">
                     <div>
-                        <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
-                            <i class="fas fa-file-pdf text-red-400 text-xl"></i>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-400/30 flex items-center justify-center shadow-lg shadow-purple-500/10">
+                                <i class="fas fa-server text-purple-400 text-xl"></i>
+                            </div>
+                            <span class="blueprint-tag bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                                Infrastructure
+                            </span>
                         </div>
+
                         <h3 class="text-lg font-bold text-white mb-2 leading-snug">
                             MCP Server Integration Handbook
                         </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            Full specification for Model Context Protocol servers, Postgres Neon schemas, lazy loading patterns, and secure tool calling orchestration.
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                            Model Context Protocol implementation, Neon Serverless Postgres schemas, lazy tool execution, and zero-latency agentic integrations.
                         </p>
+
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">MCP Standards</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Neon Postgres</span>
+                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Lazy Tool Loading</span>
+                        </div>
                     </div>
-                    <div class="flex items-center gap-2 pt-2 border-t border-gray-800/80">
+
+                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
                         <button onclick="downloadBlueprint('MCP-Server-Integration-Handbook.pdf', 'MCP Server Integration Handbook')" class="btn-download-action">
-                            <i class="fas fa-download text-xs"></i> Download PDF
+                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
                         </button>
-                        <button onclick="openPreviewModal('MCP-Server-Integration-Handbook.pdf', 'MCP Server Integration Handbook')" class="btn-preview-action" title="Read Blueprint">
+                        <button onclick="openPreviewModal('MCP-Server-Integration-Handbook.pdf', 'MCP Server Integration Handbook')" class="btn-preview-action" title="Read Blueprint Online">
                             <i class="fas fa-eye text-xs"></i> Read
                         </button>
                     </div>
                 </div>
 
             </div>
-        </div>
 
+            <!-- NEWSLETTER INTELLIGENCE & CONCIERGE BANNER -->
+            <div class="mt-12 glass-panel p-6 sm:p-8 border border-sky-500/20 bg-gradient-to-r from-blue-950/40 via-gray-900/60 to-purple-950/40">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="space-y-2 text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-400 text-xs font-bold uppercase tracking-wider">
+                            <i class="fas fa-sparkles"></i> Weekly AI Intelligence Dispatch
+                        </div>
+                        <h4 class="text-xl font-extrabold text-white">
+                            Your Exclusive Member Newsletter is Active
+                        </h4>
+                        <p class="text-gray-400 text-xs sm:text-sm max-w-xl leading-relaxed">
+                            Every Tuesday, you receive proprietary breakdowns of new open-source models, subagent workflows, kinetic video automation, and lead generation breakthroughs.
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0 text-center md:text-right">
+                        <a href="mailto:futureai4all@gmail.com?subject=Custom%20AI%20Engineering%20Inquiry%20(VIP%20Member)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-sky-500/25 transition">
+                            <i class="fas fa-comment-dots"></i> Request Custom AI Solution
+                        </a>
+                        <span class="block text-[11px] text-gray-500 mt-2 font-mono">Priority VIP Concierge Routing</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </main>
 
     <!-- FOOTER -->
@@ -1134,12 +1406,101 @@
         }
 
         // Backup lead to browser storage (mirrors Universal Build Doctrine)
-        function saveLeadBackup(user) {
+        // ========================================================
+        // NEWSLETTER & LEAD DATABASE SYNC ENGINE
+        // Transmits registered member records to database & owner inbox
+        // ========================================================
+        async function saveLeadBackup(user) {
+            // 1. Local browser persistence
             try {
                 let localLeads = JSON.parse(localStorage.getItem('pinnacle_newsletter_leads') || '[]');
                 localLeads.push(user);
                 localStorage.setItem('pinnacle_newsletter_leads', JSON.stringify(localLeads));
             } catch(e) {}
+
+            // 2. Centralized Database & Newsletter Submission via FormSubmit API
+            try {
+                const payload = {
+                    name: user.name || 'Pinnacle Member',
+                    email: user.email,
+                    newsletterOptIn: user.newsletterOptIn !== false ? 'YES' : 'NO',
+                    authProvider: user.authProvider || 'Email/Password',
+                    registeredAt: user.registeredAt || new Date().toISOString(),
+                    source: 'Pinnacle AI Solutions Member Portal & Newsletter Registration',
+                    tier: user.tier || 'VIP Member'
+                };
+
+                // Asynchronous submission to owner lead inbox database
+                fetch('https://formsubmit.co/ajax/futureai4all@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                }).then(res => res.json())
+                  .then(data => console.log('Lead database transmission confirmed:', data))
+                  .catch(err => console.warn('Database async sync note:', err));
+            } catch(err) {
+                console.warn('Sync attempt note:', err);
+            }
+        }
+
+        // ========================================================
+        // INTERACTIVE SEARCH & CATEGORY FILTER ENGINE
+        // ========================================================
+        let currentCategory = 'all';
+
+        function setCategoryFilter(category, buttonEl) {
+            currentCategory = category;
+            const container = document.getElementById('filterPillsContainer');
+            if (container) {
+                container.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+            }
+            if (buttonEl) buttonEl.classList.add('active');
+            filterBlueprints();
+        }
+
+        function filterBlueprints() {
+            const query = (document.getElementById('blueprintSearch')?.value || '').toLowerCase().trim();
+            const cards = document.querySelectorAll('#blueprintsGrid .blueprint-card');
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+                const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+                const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
+
+                const matchesCat = (currentCategory === 'all' || category === currentCategory);
+                const matchesQuery = (!query || title.includes(query) || desc.includes(query) || keywords.includes(query));
+
+                if (matchesCat && matchesQuery) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // ========================================================
+        // BULK VAULT DOWNLOAD ENGINE (One-Click Save All)
+        // ========================================================
+        const ALL_BLUEPRINTS = [
+            { file: 'Antigravity-IDE-Complete-Setup-Guide.pdf', title: 'Antigravity IDE Complete Setup Guide' },
+            { file: 'Autonomous-Multi-Agent-Architecture.pdf', title: 'Autonomous Multi-Agent Architecture' },
+            { file: 'Enterprise-AI-Lead-Generation-Playbook.pdf', title: 'Enterprise AI Lead Generation Playbook' },
+            { file: 'Kinetic-Video-Audio-Generation-Pipeline.pdf', title: 'Kinetic Video & Audio Generation Pipeline' },
+            { file: 'MCP-Server-Integration-Handbook.pdf', title: 'MCP Server Integration Handbook' }
+        ];
+
+        async function downloadAllBlueprints() {
+            showToast('Initiating bulk vault download for all 5 blueprints...', 'info');
+            for (let i = 0; i < ALL_BLUEPRINTS.length; i++) {
+                const bp = ALL_BLUEPRINTS[i];
+                setTimeout(() => {
+                    downloadBlueprint(bp.file, bp.title);
+                }, i * 750);
+            }
         }
 
         // ========================================================
