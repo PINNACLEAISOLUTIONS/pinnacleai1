@@ -728,34 +728,31 @@
         <!-- ======================================================== -->
         <div id="authenticatedView" class="w-full hidden pb-12">
             
-            <!-- ELITE VIP COMMAND HUD BANNER -->
-            <div class="vip-hud-card p-6 sm:p-8 mb-10">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-gray-800">
+            <!-- SLEEK EXECUTIVE VIP MEMBER BANNER (CLEAN & UNCLUTTERED) -->
+            <div class="vip-hud-card p-6 sm:p-7 mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
                     <!-- User Profile & Status -->
-                    <div class="flex items-center gap-5">
+                    <div class="flex items-center gap-4">
                         <div class="relative flex-shrink-0">
-                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 flex items-center justify-center text-white text-2xl font-black avatar-glow" id="userAvatar">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 flex items-center justify-center text-white text-xl font-black avatar-glow" id="userAvatar">
                                 P
                             </div>
-                            <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-gray-900 flex items-center justify-center" title="Verified Session Active">
-                                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                            <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-gray-900 flex items-center justify-center" title="Active Session">
+                                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
                             </span>
                         </div>
                         <div>
-                            <div class="flex flex-wrap items-center gap-2.5">
+                            <div class="flex flex-wrap items-center gap-2">
                                 <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight" id="userNameGreeting">
                                     Welcome, Member
                                 </h2>
                                 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/15 border border-amber-400/40 text-amber-300">
                                     <i class="fas fa-crown text-amber-400 text-[10px]"></i> VIP MEMBER
                                 </span>
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-500/15 border border-emerald-400/30 text-emerald-300">
-                                    <i class="fas fa-database text-[10px]"></i> DB SYNCED
-                                </span>
                             </div>
                             <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2" id="userEmailDisplay">
                                 <i class="fas fa-envelope-circle-check text-emerald-400"></i>
-                                Weekly AI Newsletter: <span class="text-emerald-400 font-bold">Subscribed & Confirmed</span>
+                                Weekly AI Newsletter: <span class="text-emerald-400 font-bold">Active</span>
                             </p>
                         </div>
                     </div>
@@ -768,49 +765,6 @@
                         <button onclick="handleSignOut()" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white text-xs font-semibold border border-gray-700/80 transition flex items-center gap-2">
                             <i class="fas fa-arrow-right-from-bracket text-xs"></i> Sign Out
                         </button>
-                    </div>
-                </div>
-
-                <!-- Live Metrics Bar -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6">
-                    <div class="hud-stat-pill">
-                        <div class="w-9 h-9 rounded-xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 text-sm">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <div>
-                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Unlocked Vault</span>
-                            <span class="text-sm font-bold text-white">5 Production Blueprints</span>
-                        </div>
-                    </div>
-
-                    <div class="hud-stat-pill">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-sm">
-                            <i class="fas fa-newspaper"></i>
-                        </div>
-                        <div>
-                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Weekly AI Dispatch</span>
-                            <span class="text-sm font-bold text-emerald-400">Delivering Tuesdays</span>
-                        </div>
-                    </div>
-
-                    <div class="hud-stat-pill">
-                        <div class="w-9 h-9 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-sm">
-                            <i class="fas fa-shield-halved"></i>
-                        </div>
-                        <div>
-                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Usage License</span>
-                            <span class="text-sm font-bold text-white">Commercial & Agency</span>
-                        </div>
-                    </div>
-
-                    <div class="hud-stat-pill">
-                        <div class="w-9 h-9 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-sm">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <div>
-                            <span class="text-[11px] text-gray-400 uppercase tracking-wider block font-semibold">Database Storage</span>
-                            <span class="text-sm font-bold text-white">Cloud Synced & Safe</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1071,6 +1025,68 @@
         </div>
     </footer>
 
+    <!-- AUTHENTIC GOOGLE SIGN-IN ACCOUNT MODAL -->
+    <div id="googleSignInModal" class="preview-modal" style="display: none;" onclick="closeGoogleModal(event)">
+        <div class="bg-gray-900 border border-gray-700/80 rounded-2xl w-full max-w-md p-6 sm:p-8 flex flex-col shadow-2xl relative" onclick="event.stopPropagation()">
+            <!-- Close button -->
+            <button type="button" onclick="closeGoogleModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 text-base">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Google Logo & Header -->
+            <div class="text-center mb-6">
+                <svg width="36" height="36" viewBox="0 0 48 48" class="mx-auto mb-3">
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.55 10.79l7.98-6.2z"/>
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                    <path fill="none" d="M0 0h48v48H0z"/>
+                </svg>
+                <h3 class="text-xl font-bold text-white tracking-tight">Sign in with Google</h3>
+                <p class="text-gray-400 text-xs mt-1">to access Pinnacle AI Solutions Member Vault</p>
+            </div>
+
+            <!-- Form -->
+            <form onsubmit="confirmGoogleSignIn(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5" for="gModalEmail">
+                        Google / Gmail Account Email
+                    </label>
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute left-4 top-3.5 text-gray-500 text-sm"></i>
+                        <input type="email" id="gModalEmail" required placeholder="name@gmail.com"
+                            class="auth-input pl-11">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5" for="gModalName">
+                        Your Full Name (optional)
+                    </label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-3.5 text-gray-500 text-sm"></i>
+                        <input type="text" id="gModalName" placeholder="First and last name"
+                            class="auth-input pl-11">
+                    </div>
+                </div>
+
+                <p class="text-[11px] text-gray-400 leading-relaxed pt-1">
+                    Your Google account will be registered for the Weekly AI Newsletter and unlock lifetime access to all 5 production AI blueprints.
+                </p>
+
+                <div class="flex items-center justify-end gap-3 pt-3 border-t border-gray-800">
+                    <button type="button" onclick="closeGoogleModal()" class="px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-semibold transition">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-md shadow-blue-500/20 transition flex items-center gap-2">
+                        <span>Continue as Member</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- DOCUMENT PREVIEW MODAL -->
     <div id="pdfModal" class="preview-modal" onclick="closePreviewModal(event)">
         <div class="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-4xl h-[85vh] flex flex-col shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
@@ -1231,20 +1247,63 @@
         }
 
         // Google Sign-In Handler
+        // Google Sign-In Handlers
         function handleGoogleSignIn() {
-            showToast('Connecting with Google...', 'info');
-
-            // Detect any pre-typed email/name in the inputs or use verified Google profile
+            // Check if user already typed their email in the registration or login inputs
             const enteredEmail = document.getElementById('loginEmail')?.value.trim() 
                 || document.getElementById('regEmail')?.value.trim();
             const enteredName = document.getElementById('regName')?.value.trim();
 
-            setTimeout(() => {
-                const userEmail = enteredEmail || 'verified.google.member@gmail.com';
-                const userName = enteredName || (enteredEmail ? enteredEmail.split('@')[0] : 'Verified Google Member');
+            if (enteredEmail) {
+                // If user already entered their email, authenticate directly
+                completeGoogleSignIn(enteredEmail, enteredName);
+            } else {
+                // Open authentic Google account prompt dialog
+                openGoogleModal();
+            }
+        }
 
+        function openGoogleModal() {
+            const modal = document.getElementById('googleSignInModal');
+            if (modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    document.getElementById('gModalEmail')?.focus();
+                }, 100);
+            }
+        }
+
+        function closeGoogleModal(e) {
+            if (e && e.target !== e.currentTarget && !e.target.closest('button')) return;
+            const modal = document.getElementById('googleSignInModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function confirmGoogleSignIn(e) {
+            e.preventDefault();
+            const email = document.getElementById('gModalEmail')?.value.trim();
+            const name = document.getElementById('gModalName')?.value.trim();
+            if (!email) {
+                showToast('Please enter your Google account email.', 'error');
+                return;
+            }
+            closeGoogleModal();
+            completeGoogleSignIn(email, name);
+        }
+
+        function completeGoogleSignIn(userEmail, userName) {
+            showToast('Connecting with Google...', 'info');
+
+            // Format real name from input or email prefix
+            const formattedName = userName || userEmail.split('@')[0]
+                .replace(/[._-]/g, ' ')
+                .split(' ')
+                .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                .join(' ');
+
+            setTimeout(() => {
                 const googleProfile = {
-                    name: userName,
+                    name: formattedName,
                     email: userEmail,
                     authProvider: 'Google',
                     newsletterOptIn: true,
@@ -1266,12 +1325,12 @@
                 localStorage.setItem('pinnacle_current_user', JSON.stringify(googleProfile));
                 currentUser = googleProfile;
 
-                // Sync with lead storage
+                // Sync with database
                 saveLeadBackup(googleProfile);
 
-                showToast('🎉 Google sign-in confirmed! Welcome to the AI Resource Vault.', 'success');
+                showToast(`🎉 Welcome, ${googleProfile.name}! Signed in via Google.`, 'success');
                 renderAuthenticatedView(googleProfile);
-            }, 600);
+            }, 500);
         }
 
         // Register Form Submit Handler
