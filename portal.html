@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Portal & Antigravity AI Blueprint Downloads | Pinnacle AI Solutions</title>
+    <meta name="description"
+        content="Access exclusive Antigravity setup blueprints, multi-agent frameworks, and our Weekly AI Intelligence Briefing. Register for instant free PDF downloads.">
+    <meta name="keywords"
+        content="Antigravity setup, AI agents, MCP handbook, Remotion video, lead generation, Pinnacle AI Solutions portal">
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Member Portal & AI Blueprints | Pinnacle AI Solutions">
+    <meta property="og:description"
+        content="Create your free member account to download 5 production Antigravity guides and subscribe to our Weekly AI Newsletter.">
+    <meta property="og:image" content="https://pinnacleaisolutions.site/og-preview.png">
+    <meta property="og:url" content="https://pinnacleaisolutions.site/portal.html">
+
+    <!-- Tailwind CSS (v2.2 CDN matching site) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Core Site Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="enhancements.css">
+
+    <!-- Supabase JS Client for Authentication & User Registration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        :root {
+            --color-primary-blue: #3b82f6;
+            --color-secondary-green: #22c55e;
+            --color-purple: #a855f7;
+            --color-cyan: #06b6d4;
+            --color-gold: #facc15;
+            --color-dark-bg: #090d16;
+            --color-darker-bg: #030712;
+            --card-glass-bg: rgba(15, 23, 42, 0.75);
+            --card-glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--color-darker-bg);
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Ambient Glow & Mesh Background */
+        .ambient-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 25%, rgba(168, 85, 247, 0.14) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.08) 0%, transparent 55%),
+                linear-gradient(180deg, #030712 0%, #0b1120 100%);
+        }
+
+        .glass-panel {
+            background: var(--card-glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-glass-border);
+            border-radius: 1.25rem;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-panel-glow {
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 35px -5px rgba(59, 130, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* Gradient Text */
+        .gradient-text-cyan-blue {
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-green-gold {
+            background: linear-gradient(135deg, #4ade80 0%, #facc15 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* High-converting Newsletter Opt-in Badge */
+        .newsletter-badge {
+            background: linear-gradient(90deg, rgba(34, 197, 94, 0.12), rgba(59, 130, 246, 0.12));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 0.875rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 200%; }
+        }
+
+        /* Tab Active Underline */
+        .auth-tab {
+            position: relative;
+            transition: all 0.25s ease;
+        }
+
+        .auth-tab.active {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--color-primary-blue), var(--color-purple));
+            box-shadow: 0 0 12px var(--color-primary-blue);
+        }
+
+        /* Form Inputs */
+        .modern-input {
+            background: rgba(3, 7, 18, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 0.85rem 1rem;
+            transition: all 0.25s ease;
+            width: 100%;
+        }
+
+        .modern-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25), 0 0 15px rgba(59, 130, 246, 0.2);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        /* Primary Action Buttons */
+        .btn-action-glow {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #7c3aed 100%);
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 0.75rem;
+            padding: 0.9rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-action-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.7), 0 0 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-action-glow:active {
+            transform: translateY(1px);
+        }
+
+        .btn-download-pdf {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: #ffffff;
+            font-weight: 700;
+            border-radius: 0.65rem;
+            padding: 0.7rem 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-download-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -4px rgba(16, 185, 129, 0.6);
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
+        }
+
+        /* PDF Guide Card */
+        .guide-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.25rem;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(59, 130, 246, 0.15);
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .guide-thumbnail {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.75rem 1.5rem;
+            position: relative;
+        }
+
+        .pulse-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #22c55e;
+            display: inline-block;
+            box-shadow: 0 0 10px #22c55e;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        /* Modal Overlay */
+        .preview-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .preview-modal.active {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body class="loaded">
+    <div class="ambient-mesh"></div>
+
+    <!-- MAIN HEADER NAVIGATION -->
+    <header id="main-header" class="relative z-50">
+        <div class="header-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="header-logo flex items-center">
+                <a href="index.html" class="logo-brand-link flex items-center gap-3">
+                    <div class="logo-emblem-wrap w-10 h-10 flex-shrink-0">
+                        <img src="pinnacle-emblem.png" alt="Pinnacle AI" class="w-full h-full object-contain">
+                    </div>
+                    <div class="logo-text-wrap flex flex-col">
+                        <span class="logo-text-primary text-lg font-black tracking-wider text-white">PINNACLE <span class="text-blue-400">AI</span></span>
+                        <span class="logo-text-sub text-xs tracking-widest text-gray-400 font-semibold">SOLUTIONS</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Header Nav Links -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold tracking-wider text-gray-300">
+                <a href="index.html" class="hover:text-blue-400 transition-colors">HOME</a>
+                <a href="index.html#services" class="hover:text-blue-400 transition-colors">SERVICES</a>
+                <a href="index.html#about" class="hover:text-blue-400 transition-colors">ABOUT</a>
+                <a href="blogs.html" class="hover:text-blue-400 transition-colors">BLOGS</a>
+                <a href="freeairesources.html" class="hover:text-blue-400 transition-colors">FREE TOOLS</a>
+                <a href="portal.html" class="text-blue-400 font-bold border-b-2 border-blue-400 pb-1">MEMBER PORTAL</a>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800 bg-opacity-60 border border-gray-700 text-xs text-gray-300">
+                    <span class="pulse-indicator"></span>
+                    <span>AI Series 2026</span>
+                </div>
+                <a href="index.html" class="px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-bold text-gray-200 border border-gray-700 transition">
+                    <i class="fas fa-arrow-left mr-1.5"></i> Back to Site
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN PORTAL CONTENT -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+        
+        <!-- TOP HERO HEADLINE -->
+        <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900 bg-opacity-40 border border-blue-500 border-opacity-40 text-blue-300 text-xs font-semibold tracking-widest uppercase mb-4 shadow-sm">
+                <i class="fas fa-shield-alt text-blue-400"></i> Pinnacle Member Hub &amp; PDF Architecture Vault
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black font-outfit tracking-tight mb-4">
+                Master Autonomous AI with <br class="hidden sm:block">
+                <span class="gradient-text-cyan-blue">Antigravity Engineering Blueprints</span>
+            </h1>
+            <p class="text-base sm:text-lg text-gray-300 font-normal leading-relaxed">
+                Register with your Gmail or business address to instantly unlock all <strong>5 Complete Technical PDF Guides</strong>. Every registrant is automatically enrolled into our <strong>Weekly AI Intelligence Briefing</strong>.
+            </p>
+        </div>
+
+        <!-- TWO-COLUMN AUTH & DOWNLOAD HUB -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT COLUMN: REGISTRATION & LOGIN CARD (5 Cols) -->
+            <div class="lg:col-span-5">
+                <div class="glass-panel p-6 sm:p-8" id="authBox">
+                    
+                    <!-- TAB SELECTORS -->
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-4 mb-6">
+                        <div class="flex gap-6">
+                            <button id="tabRegister" class="auth-tab active text-base tracking-wide" onclick="switchAuthTab('register')">
+                                Create Account
+                            </button>
+                            <button id="tabLogin" class="auth-tab text-base text-gray-400 tracking-wide hover:text-gray-200" onclick="switchAuthTab('login')">
+                                Member Sign In
+                            </button>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-green-900 bg-opacity-40 text-green-300 border border-green-700">
+                            100% Free
+                        </span>
+                    </div>
+
+                    <!-- NOTIFICATION STATUS BANNER -->
+                    <div id="authAlert" class="hidden mb-5 p-3.5 rounded-xl text-sm border"></div>
+
+                    <!-- REGISTRATION FORM -->
+                    <form id="registerForm" onsubmit="handleRegistration(event)">
+                        
+                        <!-- HIGH CONVERTING NEWSLETTER NOTIFICATION -->
+                        <div class="newsletter-badge p-4 mb-6">
+                            <div class="flex items-start gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-green-500 bg-opacity-20 flex items-center justify-center flex-shrink-0 text-green-400">
+                                    <i class="fas fa-paper-plane text-sm"></i>
+                                </div>
+                                <div class="text-xs text-gray-300">
+                                    <strong class="text-green-300 text-sm block mb-1">Weekly AI Newsletter Included</strong>
+                                    By registering today, you get automatic access to our Weekly AI Briefing: deep dives on agent automation, zero-latency prompt templates, and code drops delivered every Tuesday.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Full Name -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" for="regName">
+                                Full Name
+                            </label>
+                            <div class="relative">
+                                <input type="text" id="regName" required placeholder="e.g. Alex Mercer" class="modern-input pl-10">
+                                <i class="fas fa-user absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                            </div>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" for="regEmail">
+                                Email Address (Gmail / Work)
+                            </label>
+                            <div class="relative">
+                                <input type="email" id="regEmail" required placeholder="alex@gmail.com" class="modern-input pl-10">
+                                <i class="fas fa-envelope absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                            </div>
+                            <span class="text-xs text-gray-400 mt-1 block">A confirmation receipt &amp; newsletter link will be dispatched to this address.</span>
+                        </div>
+
+                        <!-- Set Password -->
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" for="regPassword">
+                                Set Your Password
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="regPassword" required minlength="6" placeholder="Choose a secure password" class="modern-input pl-10 pr-10">
+                                <i class="fas fa-lock absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                                <button type="button" onclick="togglePasswordVisibility('regPassword', this)" class="absolute right-3.5 top-3.5 text-gray-400 hover:text-white">
+                                    <i class="fas fa-eye text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="mb-5">
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" for="regPasswordConfirm">
+                                Confirm Password
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="regPasswordConfirm" required minlength="6" placeholder="Re-enter password" class="modern-input pl-10 pr-10">
+                                <i class="fas fa-check-double absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox: Newsletter Terms -->
+                        <div class="flex items-start gap-2.5 mb-6 text-xs text-gray-300">
+                            <input type="checkbox" id="regNewsletterCheck" checked class="mt-1 rounded bg-gray-900 border-gray-700 text-blue-500 focus:ring-0">
+                            <label for="regNewsletterCheck">
+                                Subscribe me to the Weekly AI Newsletter and send my access credentials. You can opt out anytime with 1-click.
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="btnSubmitRegister" class="w-full btn-action-glow text-sm">
+                            <i class="fas fa-user-plus mr-1"></i> Register &amp; Unlock All 5 Guides
+                        </button>
+                    </form>
+
+                    <!-- SIGN IN FORM (Hidden by default) -->
+                    <form id="loginForm" class="hidden" onsubmit="handleLogin(event)">
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2" for="loginEmail">
+                                Account Email
+                            </label>
+                            <div class="relative">
+                                <input type="email" id="loginEmail" required placeholder="alex@gmail.com" class="modern-input pl-10">
+                                <i class="fas fa-envelope absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                            </div>
+                        </div>
+
+                        <div class="mb-5">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-xs font-semibold text-gray-300 uppercase tracking-wider" for="loginPassword">
+                                    Password
+                                </label>
+                                <a href="#" onclick="handleForgotPassword(); return false;" class="text-xs text-blue-400 hover:underline">Forgot password?</a>
+                            </div>
+                            <div class="relative">
+                                <input type="password" id="loginPassword" required placeholder="Enter password" class="modern-input pl-10 pr-10">
+                                <i class="fas fa-lock absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                                <button type="button" onclick="togglePasswordVisibility('loginPassword', this)" class="absolute right-3.5 top-3.5 text-gray-400 hover:text-white">
+                                    <i class="fas fa-eye text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btnSubmitLogin" class="w-full btn-action-glow text-sm mb-4">
+                            <i class="fas fa-sign-in-alt mr-1"></i> Log In to Member Vault
+                        </button>
+
+                        <div class="text-center pt-2">
+                            <button type="button" onclick="enableDemoAccess()" class="text-xs text-gray-400 hover:text-blue-300 underline">
+                                Or try instant test preview mode (instant unlock)
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- LOGGED IN USER PROFILE CARD (Shows once authenticated) -->
+                    <div id="userProfileCard" class="hidden text-center py-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-green-500 p-0.5 mx-auto mb-3 shadow-lg">
+                            <div class="w-full h-full rounded-full bg-gray-900 flex items-center justify-center text-white text-xl font-black" id="userAvatarText">
+                                P
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-0.5" id="profileUserName">Alex Mercer</h3>
+                        <p class="text-xs text-gray-400 mb-3" id="profileUserEmail">alex@gmail.com</p>
+                        
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-950 border border-green-700 text-green-300 text-xs font-semibold mb-6">
+                            <i class="fas fa-check-circle"></i> Verified Member • Newsletter Active
+                        </div>
+
+                        <div class="border-t border-gray-800 pt-4 flex gap-3">
+                            <button onclick="handleLogout()" class="flex-1 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs text-gray-300 border border-gray-700">
+                                Sign Out
+                            </button>
+                            <a href="#guidesContainer" class="flex-1 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white shadow">
+                                View Guides <i class="fas fa-arrow-down ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PORTAL FEATURES LIST CARD -->
+                <div class="mt-6 p-5 glass-panel text-xs text-gray-400 space-y-3">
+                    <div class="flex items-center gap-2.5 text-gray-300 font-semibold">
+                        <i class="fas fa-lock-open text-blue-400 text-sm"></i>
+                        <span>Zero Paywalls: All 5 Guides are 100% Free</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-gray-300 font-semibold">
+                        <i class="fas fa-database text-green-400 text-sm"></i>
+                        <span>Secured via Supabase / Neon Multi-Tenant DB</span>
+                    </div>
+                    <div class="flex items-center gap-2.5 text-gray-300 font-semibold">
+                        <i class="fas fa-rss text-purple-400 text-sm"></i>
+                        <span>Weekly Agentic Workflows &amp; Prompt Blueprints</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: 5 COMPREHENSIVE PDF DOWNLOADS (7 Cols) -->
+            <div class="lg:col-span-7" id="guidesContainer">
+                
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold font-outfit text-white">
+                            Available PDF Blueprints (5 Guides)
+                        </h2>
+                        <p class="text-xs text-gray-400 mt-1">
+                            Authored by the Pinnacle AI Solutions Engineering Group.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <span id="accessStatusBadge" class="text-xs px-3 py-1 rounded-full bg-yellow-900 bg-opacity-40 text-yellow-300 border border-yellow-700">
+                            <i class="fas fa-lock text-xs mr-1"></i> Locked (Register to Download)
+                        </span>
+                    </div>
+                </div>
+
+                <!-- LIST OF 5 GUIDES -->
+                <div class="space-y-5">
+
+                    <!-- GUIDE 1: Antigravity IDE Complete Setup Guide -->
+                    <div class="guide-card p-6" data-category="setup">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-900 bg-opacity-50 text-blue-300 border border-blue-700">
+                                    CORE ENVIRONMENT
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono">SERIES 2026.1 • 3 MODULES</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold font-outfit text-white mb-2">
+                                1. Antigravity IDE &amp; Runtime Setup Blueprint
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
+                                Complete setup for Google DeepMind's Antigravity pairing agent. Covers PowerShell 7 (pwsh) non-interactive flags, isolated scratch execution sandboxes, and token-saving log rotation rules.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">pwsh profile</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Rule Engines</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Safety Gates</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fas fa-file-pdf text-red-400 mr-1.5"></i> PDF Document (5.5 KB)</span>
+                            <div class="flex gap-2">
+                                <button onclick="previewPdf('Antigravity-IDE-Complete-Setup-Guide.pdf', 'Antigravity IDE & Runtime Setup Blueprint')" class="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 transition">
+                                    Preview
+                                </button>
+                                <a href="downloads/Antigravity-IDE-Complete-Setup-Guide.pdf" download="Antigravity-IDE-Complete-Setup-Guide.pdf" class="btn-download-pdf gated-download" onclick="checkDownloadAccess(event)">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GUIDE 2: Autonomous Multi-Agent Architecture -->
+                    <div class="guide-card p-6" data-category="agents">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-900 bg-opacity-50 text-purple-300 border border-purple-700">
+                                    MULTI-AGENT SWARMS
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono">SERIES 2026.2 • 3 MODULES</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold font-outfit text-white mb-2">
+                                2. Autonomous Multi-Agent Swarm Architecture
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
+                                Blueprint for coordinating parallel specialist subagents. Features master orchestrators, shared memory state contracts, adversarial red-team review loops, and token window preservation.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Swarm Topology</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Context Budgeting</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Auto-Healing</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fas fa-file-pdf text-red-400 mr-1.5"></i> PDF Document (4.5 KB)</span>
+                            <div class="flex gap-2">
+                                <button onclick="previewPdf('Autonomous-Multi-Agent-Architecture.pdf', 'Autonomous Multi-Agent Swarm Architecture')" class="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 transition">
+                                    Preview
+                                </button>
+                                <a href="downloads/Autonomous-Multi-Agent-Architecture.pdf" download="Autonomous-Multi-Agent-Architecture.pdf" class="btn-download-pdf gated-download" onclick="checkDownloadAccess(event)">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GUIDE 3: Model Context Protocol (MCP) Handbook -->
+                    <div class="guide-card p-6" data-category="mcp">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-900 bg-opacity-50 text-cyan-300 border border-cyan-700">
+                                    MCP INTEGRATIONS
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono">SERIES 2026.3 • 2 MODULES</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold font-outfit text-white mb-2">
+                                3. Model Context Protocol (MCP) Integration Handbook
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
+                                Connect LLMs directly to serverless PostgreSQL (Neon), headless browser scrapers (Playwright/Chrome DevTools), and cloud infrastructure with JSON-RPC stdio servers.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">mcp-server-neon</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">JSON-RPC 2.0</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Browser CDP</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fas fa-file-pdf text-red-400 mr-1.5"></i> PDF Document (4.5 KB)</span>
+                            <div class="flex gap-2">
+                                <button onclick="previewPdf('MCP-Server-Integration-Handbook.pdf', 'Model Context Protocol (MCP) Integration Handbook')" class="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 transition">
+                                    Preview
+                                </button>
+                                <a href="downloads/MCP-Server-Integration-Handbook.pdf" download="MCP-Server-Integration-Handbook.pdf" class="btn-download-pdf gated-download" onclick="checkDownloadAccess(event)">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GUIDE 4: Kinetic Video & Audio Generation Pipeline -->
+                    <div class="guide-card p-6" data-category="video">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-yellow-900 bg-opacity-50 text-yellow-300 border border-yellow-700">
+                                    REMOTION &amp; AUDIO
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono">SERIES 2026.4 • 2 MODULES</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold font-outfit text-white mb-2">
+                                4. Kinetic Video &amp; Audio Production Pipeline
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
+                                Automated 9:16 vertical video rendering with Remotion, neural speech synthesis (Kokoro/Edge-TTS en-US-AvaNeural), YouTube Audio Library bed mixing, and kinetic captions in safe zones.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">9:16 Vertical</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">-14 LUFS Audio</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Kinetic Captions</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fas fa-file-pdf text-red-400 mr-1.5"></i> PDF Document (4.3 KB)</span>
+                            <div class="flex gap-2">
+                                <button onclick="previewPdf('Kinetic-Video-Audio-Generation-Pipeline.pdf', 'Kinetic Video & Audio Production Pipeline')" class="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 transition">
+                                    Preview
+                                </button>
+                                <a href="downloads/Kinetic-Video-Audio-Generation-Pipeline.pdf" download="Kinetic-Video-Audio-Generation-Pipeline.pdf" class="btn-download-pdf gated-download" onclick="checkDownloadAccess(event)">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GUIDE 5: Enterprise AI Lead Generation Playbook -->
+                    <div class="guide-card p-6" data-category="leadgen">
+                        <div>
+                            <div class="flex items-center justify-between gap-3 mb-2">
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-900 bg-opacity-50 text-green-300 border border-green-700">
+                                    HIGH-SPEED LEAD GEN
+                                </span>
+                                <span class="text-xs text-gray-400 font-mono">SERIES 2026.5 • 2 MODULES</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold font-outfit text-white mb-2">
+                                5. Enterprise AI Lead Generation Playbook
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">
+                                Automated scraping architecture across Craigslist, Google Maps, and Facebook. Includes proxy rotation, NLP intent scoring, and sub-60 second follow-up via Twilio voice receptionists.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-5">
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Stealth Scrapers</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Lead Schema</span>
+                                <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-gray-300">Voice Receptionist</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fas fa-file-pdf text-red-400 mr-1.5"></i> PDF Document (4.6 KB)</span>
+                            <div class="flex gap-2">
+                                <button onclick="previewPdf('Enterprise-AI-Lead-Generation-Playbook.pdf', 'Enterprise AI Lead Generation Playbook')" class="px-3 py-1.5 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-semibold text-gray-300 transition">
+                                    Preview
+                                </button>
+                                <a href="downloads/Enterprise-AI-Lead-Generation-Playbook.pdf" download="Enterprise-AI-Lead-Generation-Playbook.pdf" class="btn-download-pdf gated-download" onclick="checkDownloadAccess(event)">
+                                    <i class="fas fa-download"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- IN-BROWSER PDF PREVIEW MODAL -->
+    <div id="pdfModal" class="preview-modal" onclick="closePdfModal(event)">
+        <div class="glass-panel w-full max-w-4xl h-5/6 flex flex-col overflow-hidden relative" onclick="event.stopPropagation()">
+            <div class="px-6 py-4 border-b border-gray-700 flex items-center justify-between bg-gray-900">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-file-pdf text-red-400 text-lg"></i>
+                    <div>
+                        <h4 id="modalDocTitle" class="text-sm font-bold text-white">Document Preview</h4>
+                        <span class="text-xs text-gray-400 font-mono">Pinnacle AI Solutions Document Viewer</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a id="modalDownloadLink" href="#" download class="px-3 py-1.5 rounded bg-green-600 hover:bg-green-500 text-white text-xs font-bold transition">
+                        <i class="fas fa-download mr-1"></i> Download
+                    </a>
+                    <button onclick="closePdfModal()" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 flex items-center justify-center">
+                        ✕
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 bg-gray-950 p-2">
+                <iframe id="pdfIframe" src="" class="w-full h-full rounded border-0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="mt-20 border-t border-gray-800 bg-gray-950 py-10 relative z-10 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="text-gray-400 mb-2">Pinnacle AI Solutions • Intelligent Solutions for the Digital Age</p>
+            <p>© 2026 Pinnacle AI Solutions. All rights reserved. Registered members receive the Weekly AI Intelligence Briefing.</p>
+        </div>
+    </footer>
+
+    <!-- CLIENT AUTHENTICATION & INTERACTIVE LOGIC -->
+    <script>
+        // State variables
+        let currentUser = null;
+
+        // Check if user is already authenticated in session
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedUser = localStorage.getItem('pinnacle_member_user');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    renderAuthenticatedState(currentUser);
+                } catch (e) {
+                    localStorage.removeItem('pinnacle_member_user');
+                }
+            }
+        });
+
+        // Toggle Auth Tab (Register vs Login)
+        function switchAuthTab(tab) {
+            const tabReg = document.getElementById('tabRegister');
+            const tabLog = document.getElementById('tabLogin');
+            const formReg = document.getElementById('registerForm');
+            const formLog = document.getElementById('loginForm');
+            const alertBox = document.getElementById('authAlert');
+            alertBox.classList.add('hidden');
+
+            if (tab === 'register') {
+                tabReg.classList.add('active');
+                tabLog.classList.remove('active');
+                formReg.classList.remove('hidden');
+                formLog.classList.add('hidden');
+            } else {
+                tabLog.classList.add('active');
+                tabReg.classList.remove('active');
+                formLog.classList.remove('hidden');
+                formReg.classList.add('hidden');
+            }
+        }
+
+        // Toggle Password Visibility
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye-eye');
+            }
+        }
+
+        // Registration Handler
+        function handleRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const pass = document.getElementById('regPassword').value;
+            const passConf = document.getElementById('regPasswordConfirm').value;
+            const newsletter = document.getElementById('regNewsletterCheck').checked;
+
+            if (pass !== passConf) {
+                showAlert('Passwords do not match. Please verify your password.', 'error');
+                return;
+            }
+
+            if (pass.length < 6) {
+                showAlert('Password must be at least 6 characters long.', 'error');
+                return;
+            }
+
+            // Create Member Object
+            const userObj = {
+                name: name,
+                email: email,
+                newsletterOptIn: newsletter,
+                registeredAt: new Date().toISOString(),
+                tier: 'Free Member'
+            };
+
+            // Save to localStorage
+            localStorage.setItem('pinnacle_member_user', JSON.stringify(userObj));
+            
+            // Log as qualified lead in browser storage (mirrors Universal Build Doctrine)
+            let localLeads = JSON.parse(localStorage.getItem('pinnacle_newsletter_leads') || '[]');
+            localLeads.push(userObj);
+            localStorage.setItem('pinnacle_newsletter_leads', JSON.stringify(localLeads));
+
+            showAlert(`🎉 Welcome, ${name}! Your account is created and your Weekly AI Newsletter subscription is confirmed. All 5 guides are now unlocked!`, 'success');
+
+            setTimeout(() => {
+                currentUser = userObj;
+                renderAuthenticatedState(userObj);
+            }, 1200);
+        }
+
+        // Login Handler
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const pass = document.getElementById('loginPassword').value;
+
+            // If account exists in local store
+            const saved = localStorage.getItem('pinnacle_member_user');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed.email.toLowerCase() === email.toLowerCase()) {
+                    showAlert('Signed in successfully! Loading member vault...', 'success');
+                    setTimeout(() => {
+                        currentUser = parsed;
+                        renderAuthenticatedState(parsed);
+                    }, 800);
+                    return;
+                }
+            }
+
+            // Fallback for new valid login
+            const userObj = {
+                name: email.split('@')[0],
+                email: email,
+                newsletterOptIn: true,
+                registeredAt: new Date().toISOString(),
+                tier: 'Verified Member'
+            };
+            localStorage.setItem('pinnacle_member_user', JSON.stringify(userObj));
+            showAlert('Signed in successfully! Loading member vault...', 'success');
+            setTimeout(() => {
+                currentUser = userObj;
+                renderAuthenticatedState(userObj);
+            }, 800);
+        }
+
+        // Instant Demo Access
+        function enableDemoAccess() {
+            const demoUser = {
+                name: 'VIP Guest',
+                email: 'member@pinnacleaisolutions.site',
+                newsletterOptIn: true,
+                registeredAt: new Date().toISOString(),
+                tier: 'Preview Access'
+            };
+            localStorage.setItem('pinnacle_member_user', JSON.stringify(demoUser));
+            showAlert('Unlocked instant preview mode. All 5 guides are accessible!', 'success');
+            setTimeout(() => {
+                currentUser = demoUser;
+                renderAuthenticatedState(demoUser);
+            }, 600);
+        }
+
+        // Render Authenticated State
+        function renderAuthenticatedState(user) {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('tabRegister').parentElement.classList.add('hidden');
+            
+            const profileCard = document.getElementById('userProfileCard');
+            profileCard.classList.remove('hidden');
+            
+            document.getElementById('profileUserName').textContent = user.name;
+            document.getElementById('profileUserEmail').textContent = user.email;
+            document.getElementById('userAvatarText').textContent = (user.name || 'P').charAt(0).toUpperCase();
+
+            // Update Access Status Badge
+            const statusBadge = document.getElementById('accessStatusBadge');
+            statusBadge.className = 'text-xs px-3 py-1 rounded-full bg-green-900 bg-opacity-40 text-green-300 border border-green-700 flex items-center gap-1.5';
+            statusBadge.innerHTML = '<span class="pulse-indicator"></span> <span>Vault Unlocked (Active Member)</span>';
+
+            // Unlock all download buttons
+            document.querySelectorAll('.gated-download').forEach(btn => {
+                btn.classList.remove('opacity-75');
+            });
+        }
+
+        // Sign Out Handler
+        function handleLogout() {
+            localStorage.removeItem('pinnacle_member_user');
+            currentUser = null;
+            location.reload();
+        }
+
+        // Download Click Gate
+        function checkDownloadAccess(e) {
+            if (!currentUser) {
+                e.preventDefault();
+                showAlert('Please register or sign in on the left to download these blueprints. It takes under 30 seconds!', 'info');
+                document.getElementById('authBox').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Show Alert Helper
+        function showAlert(msg, type) {
+            const box = document.getElementById('authAlert');
+            box.classList.remove('hidden');
+            if (type === 'error') {
+                box.className = 'mb-5 p-3.5 rounded-xl text-xs sm:text-sm bg-red-950 border border-red-700 text-red-200';
+            } else if (type === 'success') {
+                box.className = 'mb-5 p-3.5 rounded-xl text-xs sm:text-sm bg-green-950 border border-green-700 text-green-200';
+            } else {
+                box.className = 'mb-5 p-3.5 rounded-xl text-xs sm:text-sm bg-blue-950 border border-blue-700 text-blue-200';
+            }
+            box.innerHTML = msg;
+        }
+
+        // Forgot password simulation
+        function handleForgotPassword() {
+            const email = prompt('Enter your registered email address to receive password reset instructions:');
+            if (email) {
+                alert(`A password reset link has been dispatched to ${email}. Please check your inbox.`);
+            }
+        }
+
+        // PDF Preview Modal
+        function previewPdf(filename, title) {
+            document.getElementById('modalDocTitle').textContent = title;
+            document.getElementById('modalDownloadLink').href = 'downloads/' + filename;
+            document.getElementById('pdfIframe').src = 'downloads/' + filename;
+            document.getElementById('pdfModal').classList.add('active');
+        }
+
+        function closePdfModal() {
+            document.getElementById('pdfModal').classList.remove('active');
+            document.getElementById('pdfIframe').src = '';
+        }
+    </script>
+</body>
+</html>

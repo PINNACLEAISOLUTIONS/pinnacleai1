@@ -905,7 +905,105 @@
         #contact .info-icon{background:linear-gradient(180deg,#1a1b1d,#0d0d0d) !important;border:1px solid #242728;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 3px 0 #000,0 10px 24px -8px rgba(87,193,255,.5) !important;color:#57c1ff !important}
         #contact a.info-item .info-icon{color:#59d499 !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 3px 0 #000,0 10px 24px -8px rgba(89,212,153,.5) !important}
     </style>
+
+    <!-- Member Portal Navigation Styles -->
+    <style>
+        .nav-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-dropdown-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown:focus-within .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: rgba(15, 23, 42, 0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 14px;
+            padding: 8px;
+            min-width: 270px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 9999;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: #f1f5f9;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+        .dropdown-item:hover {
+            background: rgba(56, 189, 248, 0.14);
+            color: #38bdf8;
+            transform: translateX(4px);
+        }
+        .dropdown-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .dropdown-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #f8fafc;
+            display: block;
+        }
+        .dropdown-sub {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            margin-top: 2px;
+            display: block;
+        }
+        .mobile-portal-section {
+            padding: 14px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 12px;
+            text-align: left;
+        }
+        .mobile-portal-header {
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            color: #38bdf8;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .mobile-portal-link {
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0 !important;
+            font-size: 0.95rem !important;
+            color: #e2e8f0 !important;
+            text-decoration: none;
+        }
+        .mobile-portal-link:hover {
+            color: #38bdf8 !important;
+        }
+    </style>
 </head>
+
 
 <body class="bg-gray-900 text-gray-200 font-inter">
     <!-- Single Clean Top Navigation -->
@@ -928,6 +1026,34 @@
                 <a href="#about" class="header-link">ABOUT</a>
                 <a href="#contact" class="header-link">CONTACT</a>
                 <a href="blogs.html" class="header-link">BLOGS</a>
+                <div class="nav-dropdown">
+                    <a href="portal.html" target="_blank" class="header-link nav-dropdown-trigger" style="color: #38bdf8; font-weight: 600;">
+                        MEMBER PORTAL <span style="font-size: 0.65em; margin-left: 3px;">▼</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="portal.html#register" target="_blank" class="dropdown-item">
+                            <span class="dropdown-icon">✨</span>
+                            <div>
+                                <span class="dropdown-title">Register & Newsletter</span>
+                                <span class="dropdown-sub">Weekly AI updates & community</span>
+                            </div>
+                        </a>
+                        <a href="portal.html#login" target="_blank" class="dropdown-item">
+                            <span class="dropdown-icon">🔐</span>
+                            <div>
+                                <span class="dropdown-title">Member Login</span>
+                                <span class="dropdown-sub">Unlock member benefits & vault</span>
+                            </div>
+                        </a>
+                        <a href="portal.html#resources" target="_blank" class="dropdown-item">
+                            <span class="dropdown-icon">📚</span>
+                            <div>
+                                <span class="dropdown-title">5 Free AI Blueprints</span>
+                                <span class="dropdown-sub">Antigravity, Remotion & Swarms</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </nav>
             <div class="header-shader-spacer shader-pill" id="middleShaderWrapper">
                 <canvas id="headerShaderCanvas"></canvas>
@@ -954,6 +1080,18 @@
         <a href="#about" class="mobile-nav-link">ABOUT</a>
         <a href="#" class="mobile-nav-link" onclick="openModal('contact'); return false;">CONTACT</a>
         <a href="blogs.html" class="mobile-nav-link">BLOGS</a>
+        <div class="mobile-portal-section">
+            <div class="mobile-portal-header">MEMBER VAULT (OPENS IN NEW TAB)</div>
+            <a href="portal.html#register" target="_blank" class="mobile-portal-link">
+                <span>✨</span> Register & Newsletter
+            </a>
+            <a href="portal.html#login" target="_blank" class="mobile-portal-link">
+                <span>🔐</span> Member Sign-in
+            </a>
+            <a href="portal.html#resources" target="_blank" class="mobile-portal-link">
+                <span>📚</span> 5 Free AI Blueprints (PDFs)
+            </a>
+        </div>
     </div>
 
     <!-- Mobile Quick Actions Bar (Visible on Mobile Only) -->
