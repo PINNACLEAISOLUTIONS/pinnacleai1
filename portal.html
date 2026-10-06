@@ -828,24 +828,38 @@
     <div id="toastContainer"></div>
 
     <!-- CLIENT LOGIC & ROBUST AUTH / DOWNLOAD ENGINE -->
+    <!-- Supabase JS Setup -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        const SUPABASE_URL = 'https://gclsgeihhoihlquxidgt.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjbHNnZWloaGhvaWhscXV4aWRndCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzU5Nzg4MDE4LCJleHAiOjIwNzUzNjQwMTh9.dC_WKj5Xe5ClfFjl1rPF7nppppff4_FoSy_Kx81dWxtM';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
         let currentUser = null;
 
         // Initialize portal state on load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check existing session in localStorage
-            const savedUser = localStorage.getItem('pinnacle_current_user');
-            if (savedUser) {
-                try {
-                    currentUser = JSON.parse(savedUser);
-                    renderAuthenticatedView(currentUser);
-                } catch(e) {
-                    localStorage.removeItem('pinnacle_current_user');
-                    renderUnauthenticatedView();
-                }
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check existing session
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session && session.user) {
+                currentUser = session.user;
+                currentUser.name = session.user.user_metadata?.name || session.user.email.split('@')[0];
+                renderAuthenticatedView(currentUser);
             } else {
                 renderUnauthenticatedView();
             }
+
+            // Listen for auth changes
+            supabase.auth.onAuthStateChange((event, session) => {
+                if (event === 'SIGNED_IN') {
+                    currentUser = session.user;
+                    currentUser.name = session.user.user_metadata?.name || session.user.email.split('@')[0];
+                    renderAuthenticatedView(currentUser);
+                } else if (event === 'SIGNED_OUT') {
+                    currentUser = null;
+                    renderUnauthenticatedView();
+                }
+            });
 
             // Check URL hash (#login or #register)
             if (window.location.hash === '#login') {
@@ -938,7 +952,7 @@
         }
 
         // Register Form Submit Handler
-        function handleRegisterSubmit(e) {
+        async function handleRegisterSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
@@ -950,41 +964,33 @@
                 return;
             }
 
-            // Create Member Object
-            const newMember = {
-                name: name,
+            showToast('Creating account...', 'info');
+
+            const { data, error } = await supabase.auth.signUp({
                 email: email,
-                newsletterOptIn: newsletter,
-                registeredAt: new Date().toISOString(),
-                tier: 'Free Member'
-            };
+                password: pass,
+                options: {
+                    data: {
+                        name: name,
+                        newsletterOptIn: newsletter
+                    }
+                }
+            });
 
-            // Save into registered accounts directory
-            let accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
-            const existingIdx = accounts.findIndex(a => a.email.toLowerCase() === email.toLowerCase());
-            if (existingIdx !== -1) {
-                accounts[existingIdx] = newMember;
-            } else {
-                accounts.push(newMember);
+            if (error) {
+                showToast(error.message, 'error');
+                return;
             }
-            localStorage.setItem('pinnacle_registered_accounts', JSON.stringify(accounts));
 
-            // Set current logged-in user
-            localStorage.setItem('pinnacle_current_user', JSON.stringify(newMember));
-            currentUser = newMember;
+            // Save lead backup locally
+            saveLeadBackup({ name, email, newsletterOptIn: newsletter });
 
-            // Save lead backup
-            saveLeadBackup(newMember);
-
-            showToast(`🎉 Welcome, ${name}! Your Weekly AI Newsletter subscription is active. All blueprints unlocked!`, 'success');
-            
-            setTimeout(() => {
-                renderAuthenticatedView(newMember);
-            }, 500);
+            showToast(`🎉 Welcome, ${name}! Your account has been created.`, 'success');
+            // Supabase auth change listener will handle the UI update
         }
 
-        // Login Form Submit Handler (STRICT VALIDATION: CANNOT LOGIN WITHOUT REGISTERING)
-        function handleLoginSubmit(e) {
+        // Login Form Submit Handler
+        async function handleLoginSubmit(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
             const pass = document.getElementById('loginPassword').value;
@@ -994,32 +1000,25 @@
                 return;
             }
 
-            // Check registered accounts list
-            const accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
-            const account = accounts.find(a => a.email.toLowerCase() === email.toLowerCase());
+            showToast('Signing in...', 'info');
 
-            if (!account) {
-                // Inform user they must register first!
-                showToast('⚠️ No account found for this email. Please click "Create Account" to register or continue with Google!', 'error');
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: pass
+            });
+
+            if (error) {
+                showToast(error.message || 'Invalid login credentials.', 'error');
                 return;
             }
 
-            // Account exists - sign in
-            localStorage.setItem('pinnacle_current_user', JSON.stringify(account));
-            currentUser = account;
-
-            showToast(`Welcome back, ${account.name}! Opening your blueprint vault...`, 'success');
-            setTimeout(() => {
-                renderAuthenticatedView(account);
-            }, 500);
+            showToast(`Welcome back! Opening your blueprint vault...`, 'success');
         }
 
         // Sign Out
-        function handleSignOut() {
-            localStorage.removeItem('pinnacle_current_user');
-            currentUser = null;
+        async function handleSignOut() {
+            await supabase.auth.signOut();
             showToast('You have been signed out.', 'info');
-            renderUnauthenticatedView();
             switchToAuthTab('login');
         }
 
