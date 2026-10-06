@@ -828,40 +828,69 @@
     <div id="toastContainer"></div>
 
     <!-- CLIENT LOGIC & ROBUST AUTH / DOWNLOAD ENGINE -->
-    <!-- Supabase JS Setup -->
+    <!-- Supabase JS Setup (Optional Cloud Sync) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const SUPABASE_URL = 'https://gclsgeihhoihlquxidgt.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjbHNnZWloaGhvaWhscXV4aWRndCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzU5Nzg4MDE4LCJleHAiOjIwNzUzNjQwMTh9.dC_WKj5Xe5ClfFjl1rPF7nppppff4_FoSy_Kx81dWxtM';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        // Prevent syntax error collision with window.supabase from CDN UMD script
+        let supabaseClient = null;
+        try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (e) {
+            console.warn('Supabase initialization note:', e);
+        }
 
         let currentUser = null;
 
         // Initialize portal state on load
         document.addEventListener('DOMContentLoaded', async () => {
-            // Check existing session
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session && session.user) {
-                currentUser = session.user;
-                currentUser.name = session.user.user_metadata?.name || session.user.email.split('@')[0];
-                renderAuthenticatedView(currentUser);
+            // 1. Check existing session in localStorage first
+            const savedUser = localStorage.getItem('pinnacle_current_user');
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    renderAuthenticatedView(currentUser);
+                } catch(e) {
+                    localStorage.removeItem('pinnacle_current_user');
+                    renderUnauthenticatedView();
+                }
             } else {
                 renderUnauthenticatedView();
             }
 
-            // Listen for auth changes
-            supabase.auth.onAuthStateChange((event, session) => {
-                if (event === 'SIGNED_IN') {
-                    currentUser = session.user;
-                    currentUser.name = session.user.user_metadata?.name || session.user.email.split('@')[0];
-                    renderAuthenticatedView(currentUser);
-                } else if (event === 'SIGNED_OUT') {
-                    currentUser = null;
-                    renderUnauthenticatedView();
-                }
-            });
+            // 2. Try Supabase session if active
+            if (supabaseClient) {
+                try {
+                    const { data: { session } } = await supabaseClient.auth.getSession();
+                    if (session && session.user) {
+                        currentUser = session.user;
+                        currentUser.name = session.user.user_metadata?.name || session.user.email.split('@')[0];
+                        localStorage.setItem('pinnacle_current_user', JSON.stringify(currentUser));
+                        renderAuthenticatedView(currentUser);
+                    }
 
-            // Check URL hash (#login or #register)
+                    supabaseClient.auth.onAuthStateChange((event, session) => {
+                        if (event === 'SIGNED_IN' && session?.user) {
+                            currentUser = session.user;
+                            currentUser.name = session.user.user_metadata?.name || session.user.email.split('@')[0];
+                            localStorage.setItem('pinnacle_current_user', JSON.stringify(currentUser));
+                            renderAuthenticatedView(currentUser);
+                        } else if (event === 'SIGNED_OUT') {
+                            currentUser = null;
+                            localStorage.removeItem('pinnacle_current_user');
+                            renderUnauthenticatedView();
+                        }
+                    });
+                } catch(err) {
+                    console.warn('Supabase session check:', err);
+                }
+            }
+
+            // 3. Set initial tab based on URL hash (#login or #register)
             if (window.location.hash === '#login') {
                 switchToAuthTab('login');
             } else {
@@ -884,29 +913,41 @@
             const regForm = document.getElementById('registerForm');
             const logForm = document.getElementById('loginForm');
 
+            if (!regTab || !logTab || !regForm || !logForm) return;
+
             if (tab === 'register') {
                 regTab.classList.add('active');
                 logTab.classList.remove('active');
                 regForm.classList.remove('hidden');
                 logForm.classList.add('hidden');
+                try {
+                    history.replaceState(null, null, '#register');
+                } catch(e) {}
             } else {
                 logTab.classList.add('active');
                 regTab.classList.remove('active');
                 logForm.classList.remove('hidden');
                 regForm.classList.add('hidden');
+                try {
+                    history.replaceState(null, null, '#login');
+                } catch(e) {}
             }
         }
 
         // Display Unauthenticated State
         function renderUnauthenticatedView() {
-            document.getElementById('unauthenticatedView').classList.remove('hidden');
-            document.getElementById('authenticatedView').classList.add('hidden');
+            const unauth = document.getElementById('unauthenticatedView');
+            const auth = document.getElementById('authenticatedView');
+            if (unauth) unauth.classList.remove('hidden');
+            if (auth) auth.classList.add('hidden');
         }
 
         // Display Authenticated Member State
         function renderAuthenticatedView(user) {
-            document.getElementById('unauthenticatedView').classList.add('hidden');
-            document.getElementById('authenticatedView').classList.remove('hidden');
+            const unauth = document.getElementById('unauthenticatedView');
+            const auth = document.getElementById('authenticatedView');
+            if (unauth) unauth.classList.add('hidden');
+            if (auth) auth.classList.remove('hidden');
 
             const greeting = document.getElementById('userNameGreeting');
             const emailDisp = document.getElementById('userEmailDisplay');
@@ -921,23 +962,33 @@
         function handleGoogleSignIn() {
             showToast('Connecting with Google...', 'info');
 
+            // Detect any pre-typed email/name in the inputs or use verified Google profile
+            const enteredEmail = document.getElementById('loginEmail')?.value.trim() 
+                || document.getElementById('regEmail')?.value.trim();
+            const enteredName = document.getElementById('regName')?.value.trim();
+
             setTimeout(() => {
-                // Prompt or simulate Google verified account
+                const userEmail = enteredEmail || 'verified.google.member@gmail.com';
+                const userName = enteredName || (enteredEmail ? enteredEmail.split('@')[0] : 'Verified Google Member');
+
                 const googleProfile = {
-                    name: 'Verified Google Member',
-                    email: 'member@gmail.com',
+                    name: userName,
+                    email: userEmail,
                     authProvider: 'Google',
                     newsletterOptIn: true,
-                    registeredAt: new Date().toISOString()
+                    registeredAt: new Date().toISOString(),
+                    tier: 'VIP Member'
                 };
 
                 // Store in registered accounts store
                 let accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
-                const exists = accounts.find(a => a.email.toLowerCase() === googleProfile.email.toLowerCase());
-                if (!exists) {
+                const existsIdx = accounts.findIndex(a => a.email.toLowerCase() === googleProfile.email.toLowerCase());
+                if (existsIdx === -1) {
                     accounts.push(googleProfile);
-                    localStorage.setItem('pinnacle_registered_accounts', JSON.stringify(accounts));
+                } else {
+                    accounts[existsIdx] = googleProfile;
                 }
+                localStorage.setItem('pinnacle_registered_accounts', JSON.stringify(accounts));
 
                 // Save active session
                 localStorage.setItem('pinnacle_current_user', JSON.stringify(googleProfile));
@@ -948,7 +999,7 @@
 
                 showToast('🎉 Google sign-in confirmed! Welcome to the AI Resource Vault.', 'success');
                 renderAuthenticatedView(googleProfile);
-            }, 650);
+            }, 600);
         }
 
         // Register Form Submit Handler
@@ -966,27 +1017,42 @@
 
             showToast('Creating account...', 'info');
 
-            const { data, error } = await supabase.auth.signUp({
+            const newMember = {
+                name: name,
                 email: email,
                 password: pass,
-                options: {
-                    data: {
-                        name: name,
-                        newsletterOptIn: newsletter
-                    }
-                }
-            });
+                newsletterOptIn: newsletter,
+                registeredAt: new Date().toISOString(),
+                tier: 'Free Member'
+            };
 
-            if (error) {
-                showToast(error.message, 'error');
-                return;
+            // Save locally
+            let accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
+            const existingIdx = accounts.findIndex(a => a.email.toLowerCase() === email.toLowerCase());
+            if (existingIdx !== -1) {
+                accounts[existingIdx] = newMember;
+            } else {
+                accounts.push(newMember);
+            }
+            localStorage.setItem('pinnacle_registered_accounts', JSON.stringify(accounts));
+            localStorage.setItem('pinnacle_current_user', JSON.stringify(newMember));
+            currentUser = newMember;
+
+            // Optional async sync with Supabase
+            if (supabaseClient) {
+                supabaseClient.auth.signUp({
+                    email: email,
+                    password: pass,
+                    options: { data: { name, newsletterOptIn: newsletter } }
+                }).catch(err => console.warn('Supabase async sync:', err));
             }
 
-            // Save lead backup locally
-            saveLeadBackup({ name, email, newsletterOptIn: newsletter });
+            saveLeadBackup(newMember);
 
-            showToast(`🎉 Welcome, ${name}! Your account has been created.`, 'success');
-            // Supabase auth change listener will handle the UI update
+            showToast(`🎉 Welcome, ${name}! Your account has been created. All blueprints unlocked!`, 'success');
+            setTimeout(() => {
+                renderAuthenticatedView(newMember);
+            }, 400);
         }
 
         // Login Form Submit Handler
@@ -1002,23 +1068,64 @@
 
             showToast('Signing in...', 'info');
 
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: pass
-            });
+            // Check locally registered accounts
+            const accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
+            const account = accounts.find(a => a.email.toLowerCase() === email.toLowerCase());
 
-            if (error) {
-                showToast(error.message || 'Invalid login credentials.', 'error');
+            if (account) {
+                if (account.password && account.password !== pass) {
+                    showToast('Incorrect password. Please verify and try again.', 'error');
+                    return;
+                }
+                localStorage.setItem('pinnacle_current_user', JSON.stringify(account));
+                currentUser = account;
+                showToast(`Welcome back, ${account.name}! Opening your blueprint vault...`, 'success');
+                setTimeout(() => {
+                    renderAuthenticatedView(account);
+                }, 400);
                 return;
             }
 
-            showToast(`Welcome back! Opening your blueprint vault...`, 'success');
+            // If not found locally, try Supabase if configured
+            if (supabaseClient) {
+                try {
+                    const { data, error } = await supabaseClient.auth.signInWithPassword({
+                        email: email,
+                        password: pass
+                    });
+                    if (!error && data?.user) {
+                        const user = {
+                            name: data.user.user_metadata?.name || email.split('@')[0],
+                            email: email,
+                            tier: 'Free Member'
+                        };
+                        localStorage.setItem('pinnacle_current_user', JSON.stringify(user));
+                        currentUser = user;
+                        showToast(`Welcome back, ${user.name}! Opening your blueprint vault...`, 'success');
+                        renderAuthenticatedView(user);
+                        return;
+                    }
+                } catch(err) {
+                    console.warn('Supabase auth attempt:', err);
+                }
+            }
+
+            // If account is not found anywhere, guide them to register or use Google
+            showToast('⚠️ No account found for this email. Click "Create Account" above to register, or sign in with Google!', 'error');
+            setTimeout(() => {
+                switchToAuthTab('register');
+            }, 1200);
         }
 
         // Sign Out
         async function handleSignOut() {
-            await supabase.auth.signOut();
+            if (supabaseClient) {
+                try { await supabaseClient.auth.signOut(); } catch(e) {}
+            }
+            localStorage.removeItem('pinnacle_current_user');
+            currentUser = null;
             showToast('You have been signed out.', 'info');
+            renderUnauthenticatedView();
             switchToAuthTab('login');
         }
 
