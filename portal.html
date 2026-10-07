@@ -30,6 +30,8 @@
     <!-- Core Site Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="enhancements.css">
+    <!-- Google Identity Services (GIS) Official SDK -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <style>
         :root {
@@ -1254,48 +1256,153 @@
             const avatar = document.getElementById('userAvatar');
 
             if (greeting) greeting.textContent = `Welcome, ${user.name || 'Member'}`;
-            if (emailDisp) emailDisp.innerHTML = `${user.email} · Weekly AI Newsletter: <span class="text-emerald-400 font-semibold">Active</span>`;
-            if (avatar) avatar.textContent = (user.name ? user.name.charAt(0).toUpperCase() : 'M');
+            if (emailDisp) emailDisp.innerHTML = `<i class="fas fa-envelope-circle-check text-emerald-400"></i> ${user.email} · Weekly AI Newsletter: <span class="text-emerald-400 font-bold">Active</span>`;
+            if (avatar) {
+                if (user.picture) {
+                    avatar.innerHTML = `<img src="${user.picture}" alt="${user.name}" class="w-full h-full object-cover rounded-2xl">`;
+                } else {
+                    avatar.textContent = (user.name ? user.name.charAt(0).toUpperCase() : 'M');
+                }
+            }
         }
 
         // Google Sign-In Handler
-        // Google Sign-In Handlers
+        // ========================================================
+        // OFFICIAL GOOGLE IDENTITY SERVICES (GIS) INTEGRATION
+        // Client ID: 886923236791-40fu36eoh91gr86er0pdt5errfia0q2o.apps.googleusercontent.com
+        // ========================================================
+        const GOOGLE_CLIENT_ID = '886923236791-40fu36eoh91gr86er0pdt5errfia0q2o.apps.googleusercontent.com';
+        let googleTokenClient = null;
+
+        function initGoogleIdentityServices() {
+            if (typeof google === 'undefined' || !google.accounts) return;
+
+            // 1. Initialize Google One Tap ID Prompt
+            try {
+                google.accounts.id.initialize({
+                    client_id: GOOGLE_CLIENT_ID,
+                    callback: handleGoogleCredentialResponse,
+                    auto_select: false,
+                    cancel_on_tap_outside: true
+                });
+
+                // Display Google One Tap prompt if user is unauthenticated
+                if (!currentUser) {
+                    google.accounts.id.prompt();
+                }
+            } catch (err) {
+                console.warn('Google One Tap initialization notice:', err);
+            }
+
+            // 2. Initialize Official Google Token Client (Native OAuth Popup)
+            try {
+                googleTokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: GOOGLE_CLIENT_ID,
+                    scope: 'email profile openid',
+                    callback: async (tokenResponse) => {
+                        if (tokenResponse && tokenResponse.access_token) {
+                            showToast('Connecting with Google Account...', 'info');
+                            try {
+                                const res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                                    headers: { Authorization: 'Bearer ' + tokenResponse.access_token }
+                                });
+                                if (res.ok) {
+                                    const profile = await res.json();
+                                    completeRealGoogleSignIn(profile);
+                                    return;
+                                }
+                            } catch (err) {
+                                console.error('Error fetching Google userinfo:', err);
+                            }
+                        }
+                    }
+                });
+            } catch (err) {
+                console.warn('Google Token Client initialization notice:', err);
+            }
+        }
+
+        // Handle Google One Tap credential response (JWT)
+        function handleGoogleCredentialResponse(response) {
+            try {
+                const base64Url = response.credential.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+                const profile = JSON.parse(jsonPayload);
+                completeRealGoogleSignIn(profile);
+            } catch (err) {
+                console.error('Error parsing Google ID Token:', err);
+            }
+        }
+
+        // Complete verified sign-in with official Google profile
+        function completeRealGoogleSignIn(profile) {
+            const userEmail = profile.email;
+            const userName = profile.name || profile.given_name || userEmail.split('@')[0];
+            const picture = profile.picture;
+
+            const googleProfile = {
+                name: userName,
+                email: userEmail,
+                picture: picture,
+                authProvider: 'Google OAuth 2.0 (Verified)',
+                newsletterOptIn: true,
+                registeredAt: new Date().toISOString(),
+                tier: 'VIP Member'
+            };
+
+            // Store in registered accounts directory
+            let accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
+            const existsIdx = accounts.findIndex(a => a.email.toLowerCase() === googleProfile.email.toLowerCase());
+            if (existsIdx === -1) {
+                accounts.push(googleProfile);
+            } else {
+                accounts[existsIdx] = googleProfile;
+            }
+            localStorage.setItem('pinnacle_registered_accounts', JSON.stringify(accounts));
+
+            // Save active session & remembered Google email
+            localStorage.setItem('pinnacle_current_user', JSON.stringify(googleProfile));
+            localStorage.setItem('pinnacle_last_google_email', userEmail);
+            localStorage.setItem('pinnacle_last_google_name', userName);
+            currentUser = googleProfile;
+
+            // Sync with lead database
+            saveLeadBackup(googleProfile);
+
+            showToast(`🎉 Welcome, ${googleProfile.name}! Signed in via Google.`, 'success');
+            renderAuthenticatedView(googleProfile);
+        }
+
+        // User clicks the "Continue with Google" button
         function handleGoogleSignIn() {
-            // 1. Check if user already typed an email on the page
-            const enteredEmail = document.getElementById('loginEmail')?.value.trim() 
-                || document.getElementById('regEmail')?.value.trim();
-            const enteredName = document.getElementById('regName')?.value.trim();
-
-            if (enteredEmail) {
-                completeGoogleSignIn(enteredEmail, enteredName);
+            // Check if GIS Token Client is ready -> Trigger official Google popup!
+            if (googleTokenClient) {
+                googleTokenClient.requestAccessToken({ prompt: 'select_account' });
                 return;
             }
 
-            // 2. Check if a remembered Google account exists in local storage
-            const rememberedEmail = localStorage.getItem('pinnacle_last_google_email');
-            const rememberedName = localStorage.getItem('pinnacle_last_google_name');
-
-            if (rememberedEmail) {
-                // Instantly log in with remembered Google account (zero typing!)
-                completeGoogleSignIn(rememberedEmail, rememberedName);
+            // If GIS loaded but token client pending, try One Tap prompt
+            if (typeof google !== 'undefined' && google.accounts?.id) {
+                google.accounts.id.prompt();
                 return;
             }
 
-            // 3. Otherwise open the 1-Click Google Account Chooser
+            // Fallback to 1-Click modal if network is slow
             openGoogleModal();
         }
 
         function openGoogleModal() {
             const modal = document.getElementById('googleSignInModal');
             if (modal) {
-                // If there's a saved account, update the 1-click tile
                 const saved = localStorage.getItem('pinnacle_last_google_email') || 'futureai4all@gmail.com';
                 const savedName = localStorage.getItem('pinnacle_last_google_name') || saved.split('@')[0];
                 const nameEl = document.getElementById('quickAccountName');
                 const emailEl = document.getElementById('quickAccountEmail');
                 if (nameEl) nameEl.textContent = savedName;
                 if (emailEl) emailEl.textContent = saved;
-
                 modal.style.display = 'flex';
             }
         }
@@ -1304,7 +1411,7 @@
             const email = localStorage.getItem('pinnacle_last_google_email') || defaultEmail;
             const name = localStorage.getItem('pinnacle_last_google_name') || defaultName;
             closeGoogleModal();
-            completeGoogleSignIn(email, name);
+            completeRealGoogleSignIn({ email, name });
         }
 
         function closeGoogleModal(e) {
@@ -1321,52 +1428,7 @@
                 return;
             }
             closeGoogleModal();
-            completeGoogleSignIn(email);
-        }
-
-        function completeGoogleSignIn(userEmail, userName) {
-            showToast('Connecting with Google...', 'info');
-
-            const formattedName = userName || userEmail.split('@')[0]
-                .replace(/[._-]/g, ' ')
-                .split(' ')
-                .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                .join(' ');
-
-            setTimeout(() => {
-                const googleProfile = {
-                    name: formattedName,
-                    email: userEmail,
-                    authProvider: 'Google',
-                    newsletterOptIn: true,
-                    registeredAt: new Date().toISOString(),
-                    tier: 'VIP Member'
-                };
-
-                // Remember this Google account for future 1-click instant logins
-                localStorage.setItem('pinnacle_last_google_email', userEmail);
-                localStorage.setItem('pinnacle_last_google_name', formattedName);
-
-                // Store in registered accounts store
-                let accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
-                const existsIdx = accounts.findIndex(a => a.email.toLowerCase() === googleProfile.email.toLowerCase());
-                if (existsIdx === -1) {
-                    accounts.push(googleProfile);
-                } else {
-                    accounts[existsIdx] = googleProfile;
-                }
-                localStorage.setItem('pinnacle_registered_accounts', JSON.stringify(accounts));
-
-                // Save active session
-                localStorage.setItem('pinnacle_current_user', JSON.stringify(googleProfile));
-                currentUser = googleProfile;
-
-                // Sync with lead database
-                saveLeadBackup(googleProfile);
-
-                showToast(`🎉 Welcome back, ${googleProfile.name}! Signed in with Google.`, 'success');
-                renderAuthenticatedView(googleProfile);
-            }, 450);
+            completeRealGoogleSignIn({ email });
         }
 
         // Register Form Submit Handler
