@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="enhancements.css">
     <!-- Google Identity Services (GIS) Official SDK -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer onload="initGoogleIdentityServices()"></script>
 
     <style>
         :root {
@@ -1378,6 +1378,9 @@
 
         // User clicks the "Continue with Google" button
         function handleGoogleSignIn() {
+            if (!googleTokenClient && typeof google !== 'undefined' && google.accounts) {
+                initGoogleIdentityServices();
+            }
             // Check if GIS Token Client is ready -> Trigger official Google popup!
             if (googleTokenClient) {
                 googleTokenClient.requestAccessToken({ prompt: 'select_account' });
