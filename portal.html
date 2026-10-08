@@ -11,6 +11,8 @@
         content="Antigravity setup, AI agents, MCP handbook, Remotion video, lead generation, voice AI, local LLMs, Pinnacle AI Solutions portal">
 
     <!-- Open Graph / Social Preview -->
+    <link rel="canonical" href="https://pinnacleaisolution.site/portal.html" />
+    <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website">
     <meta property="og:title" content="VIP Member Portal & AI Blueprint Vault | Pinnacle AI Solutions">
     <meta property="og:description"
@@ -527,6 +529,188 @@
         .pulse-beacon {
             animation: pulseRing 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
+    
+        /* ========================================================
+           3D PAI 2026 BADGE - DIMENSIONAL BEVEL & GLOW
+           ======================================================== */
+        .pai-badge-3d {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #38bdf8 0%, #2563eb 50%, #9333ea 100%);
+            box-shadow: 
+                0 4px 14px -2px rgba(56, 189, 248, 0.55),
+                0 8px 24px -4px rgba(37, 99, 235, 0.4),
+                0 1px 0 rgba(255, 255, 255, 0.7) inset,
+                0 -2px 0 rgba(0, 0, 0, 0.4) inset;
+            transform: perspective(600px) translateZ(0);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: default;
+            user-select: none;
+        }
+        .pai-badge-3d:hover {
+            transform: perspective(600px) translateY(-2px) scale(1.04);
+            box-shadow: 
+                0 6px 20px -2px rgba(56, 189, 248, 0.7),
+                0 12px 30px -4px rgba(37, 99, 235, 0.55),
+                0 1px 0 rgba(255, 255, 255, 0.9) inset;
+        }
+        .pai-badge-inner {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 4px 13px;
+            border-radius: 9999px;
+            background: linear-gradient(180deg, #0f172a 0%, #060b18 100%);
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -2px 3px rgba(0, 0, 0, 0.65);
+        }
+        .pai-badge-gem {
+            width: 7.5px;
+            height: 7.5px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffffff 0%, #38bdf8 45%, #0284c7 100%);
+            box-shadow: 0 0 10px #38bdf8, 0 0 3px #ffffff;
+            flex-shrink: 0;
+            animation: pulseGem 2.5s infinite ease-in-out;
+        }
+        @keyframes pulseGem {
+            0%, 100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 6px #38bdf8); }
+            50% { transform: scale(1.2); opacity: 0.85; filter: drop-shadow(0 0 12px #38bdf8); }
+        }
+        .pai-badge-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 11.5px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 15%, #bae6fd 65%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+        }
+
+        /* ========================================================
+           BLUEPRINT VAULT SHOWCASE STAGE (ENHANCED CARDS BACKDROP)
+           ======================================================== */
+        .blueprint-vault-stage {
+            position: relative;
+            background: radial-gradient(ellipse 120% 75% at 50% -10%, #0d1a33 0%, #080f20 40%, #040813 100%);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 28px;
+            padding: 32px 24px 36px;
+            box-shadow: 
+                0 30px 80px -20px rgba(0, 0, 0, 0.95),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 60px rgba(56, 189, 248, 0.08);
+            overflow: hidden;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Architectural precision blueprint grid */
+        .stage-mesh-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(rgba(56, 189, 248, 0.18) 1.2px, transparent 1.2px),
+                radial-gradient(rgba(139, 92, 246, 0.12) 1.2px, transparent 1.2px),
+                linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 32px 32px, 64px 64px, 64px 64px, 64px 64px;
+            background-position: 0 0, 16px 16px, 0 0, 0 0;
+            pointer-events: none;
+            opacity: 0.9;
+            z-index: 1;
+        }
+
+        /* Dynamic Chromatic Aurora Glows Matching Card Accents */
+        .stage-aurora {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(85px);
+            pointer-events: none;
+            opacity: 0.38;
+            z-index: 0;
+        }
+        .aurora-cyan {
+            top: -60px;
+            left: 5%;
+            width: 480px;
+            height: 340px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, transparent 70%);
+        }
+        .aurora-amber {
+            top: 25%;
+            left: 40%;
+            width: 520px;
+            height: 380px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.35) 0%, transparent 70%);
+        }
+        .aurora-purple {
+            top: -40px;
+            right: 5%;
+            width: 460px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+        }
+        .aurora-emerald {
+            bottom: -60px;
+            left: 15%;
+            width: 500px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.35) 0%, transparent 70%);
+        }
+        .aurora-indigo {
+            bottom: -50px;
+            right: 15%;
+            width: 520px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.38) 0%, transparent 70%);
+        }
+
+        /* Stage Framing Header */
+        .stage-header-strip {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+        }
+        .stage-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.96rem;
+            font-weight: 700;
+            color: #e2e8f0;
+            letter-spacing: 0.03em;
+        }
+        .stage-pill-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: ui-monospace, monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 3px 10px;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+        }
+
     </style>
 </head>
 
@@ -812,21 +996,21 @@
                                 </span>
                             </div>
                             <div>
-                                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                                <div class="flex flex-wrap items-center gap-3">
                                     <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight" id="userNameGreeting">
                                         Welcome, Member
                                     </h2>
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-bold bg-amber-500/15 border border-amber-400/40 text-amber-300">
-                                        <i class="fas fa-crown text-amber-400 text-[10px]"></i> VIP MEMBER
-                                    </span>
-                                    <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-gray-800 text-gray-400 border border-gray-700/60" id="userMemberId">
-                                        #PAI-2026-VIP
+                                    <!-- 3D PAI 2026 Chromatic Shield Badge -->
+                                    <span class="pai-badge-3d" id="userMemberId" title="Pinnacle AI Verified 2026 Member">
+                                        <span class="pai-badge-inner">
+                                            <span class="pai-badge-gem"></span>
+                                            <span class="pai-badge-text">PAI 2026</span>
+                                        </span>
                                     </span>
                                 </div>
-                                <p class="text-xs sm:text-sm text-gray-400 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1" id="userEmailDisplay">
-                                    <span><i class="fas fa-envelope-circle-check text-emerald-400 mr-1"></i> <span id="userEmailText">member@pinnacleai.site</span></span>
-                                    <span class="text-gray-600">•</span>
-                                    <span class="text-emerald-400 font-semibold"><i class="fas fa-paper-plane text-xs mr-1"></i> Weekly AI Intelligence: Active</span>
+                                <p class="text-xs sm:text-sm text-gray-400 mt-1.5 flex items-center gap-2" id="userEmailDisplay">
+                                    <i class="fas fa-envelope text-sky-400 text-xs"></i>
+                                    <span id="userEmailText" class="text-gray-300 font-medium tracking-wide">member@pinnacleai.site</span>
                                 </p>
                             </div>
                         </div>
@@ -929,15 +1113,37 @@
                 </div>
             </div>
 
-            <!-- RESULTS STATUS STRIP -->
-            <div class="mb-4 flex items-center justify-between text-xs text-gray-400 px-1">
-                <span id="resultsCountNotice">Showing all 10 production blueprints</span>
-                <span class="text-gray-500 hidden sm:inline"><i class="fas fa-sparkles text-sky-400 mr-1"></i> Click "Key Insights" on any card for an instant executive breakdown</span>
-            </div>
+            <!-- ENHANCED BLUEPRINT VAULT STAGE (CHROMATIC SHOWROOM BACKDROP) -->
+            <div class="blueprint-vault-stage">
+                <!-- Architectural Mesh & Coordinate Matrix -->
+                <div class="stage-mesh-pattern"></div>
 
-            <!-- 10 GAPLESS BENTO BLUEPRINT CARDS -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blueprintsGrid">
-                <!-- Dynamically rendered via renderAllBlueprintCards() for clean consistency and instant reactivity -->
+                <!-- Aurora Chromatic Ambient Halos Matching Cards Accent Palette -->
+                <div class="stage-aurora aurora-cyan"></div>
+                <div class="stage-aurora aurora-amber"></div>
+                <div class="stage-aurora aurora-purple"></div>
+                <div class="stage-aurora aurora-emerald"></div>
+                <div class="stage-aurora aurora-indigo"></div>
+
+                <!-- Stage Header Strip -->
+                <div class="stage-header-strip">
+                    <div class="stage-header-title">
+                        <i class="fas fa-microchip text-sky-400 text-sm"></i>
+                        <span>AI Systems Architecture Catalog</span>
+                        <span class="stage-pill-live">
+                            <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                            VAULT ACTIVE
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-gray-400">
+                        <span id="resultsCountNotice" class="font-medium text-slate-300">Showing all 10 production blueprints</span>
+                    </div>
+                </div>
+
+                <!-- 10 GAPLESS BENTO BLUEPRINT CARDS -->
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blueprintsGrid">
+                    <!-- Dynamically rendered via renderAllBlueprintCards() for clean consistency and instant reactivity -->
+                </div>
             </div>
 
             <!-- EMPTY SEARCH FALLBACK -->
@@ -1268,8 +1474,8 @@
                 categoryLabel: 'Core Environment',
                 accentClass: 'accent-cyan',
                 icon: 'fa-terminal',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Complete setup guide for Antigravity IDE, configuring project workspace rules, custom modular skills, and local pair-programming workflows.',
                 briefInsights: 'Standardize project rules, streamline local tool execution, and enforce automated browser verification before deploying code.'
             },
@@ -1281,8 +1487,8 @@
                 categoryLabel: 'Swarm Topology',
                 accentClass: 'accent-indigo',
                 icon: 'fa-network-wired',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 isPaid: true,
                 price: 10,
                 priceDisplay: '$10 USD',
@@ -1298,8 +1504,8 @@
                 categoryLabel: 'Voice & Telephony',
                 accentClass: 'accent-violet',
                 icon: 'fa-phone-volume',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Low-latency conversational voice assistant architecture with WebRTC, SIP trunking, natural speech interruption, and live CRM appointment booking.',
                 briefInsights: 'Achieve sub-500ms conversational turn-taking, configure reliable SIP telephony trunks, and handle natural caller interruptions gracefully.'
             },
@@ -1311,8 +1517,8 @@
                 categoryLabel: 'Creative Media',
                 accentClass: 'accent-amber',
                 icon: 'fa-film',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Automated 9:16 vertical short-form video generation using Remotion React, high-contrast kinetic captions, and broadcast audio mastering.',
                 briefInsights: 'Generate programmatic video compositions with frame-accurate kinetic captions, dynamic word highlighting, and -14 LUFS audio mastering.'
             },
@@ -1324,8 +1530,8 @@
                 categoryLabel: 'Web Automation',
                 accentClass: 'accent-emerald',
                 icon: 'fa-globe',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Headless browser automation with stealth fingerprinting, residential proxy rotation, anti-bot bypass, and structured DOM data extraction.',
                 briefInsights: 'Bypass modern bot detection and Cloudflare Turnstile using CDP execution, natural cursor physics, and resilient semantic selectors.'
             },
@@ -1337,8 +1543,8 @@
                 categoryLabel: 'Revenue Engine',
                 accentClass: 'accent-teal',
                 icon: 'fa-crosshairs',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 isPaid: true,
                 price: 10,
                 priceDisplay: '$10 USD',
@@ -1354,8 +1560,8 @@
                 categoryLabel: 'Local AI Compute',
                 accentClass: 'accent-orange',
                 icon: 'fa-microchip',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Deploying private open-weight models locally with Ollama, vLLM continuous batching, 4-bit GPU quantization, and QLoRA adapter training.',
                 briefInsights: 'Run 32B+ models efficiently on consumer GPUs using AWQ quantization, continuous batching, and lightweight LoRA fine-tuning.'
             },
@@ -1367,8 +1573,8 @@
                 categoryLabel: 'Cognitive Patterns',
                 accentClass: 'accent-rose',
                 icon: 'fa-brain',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Production reasoning frameworks, chain-of-thought scratchpads, strict JSON schema validation, and prompt caching strategies.',
                 briefInsights: 'Eliminate non-deterministic LLM hallucinations, enforce strict JSON schemas with Zod/Pydantic, and reduce token bills by up to 80% with prompt caching.'
             },
@@ -1380,8 +1586,8 @@
                 categoryLabel: 'Infrastructure',
                 accentClass: 'accent-purple',
                 icon: 'fa-server',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Model Context Protocol architecture, building secure Stdio and SSE servers, and integrating Neon serverless Postgres for agentic tooling.',
                 briefInsights: 'Expose enterprise databases and external tools to AI assistants safely using standardized MCP protocols and read-only guardrails.'
             },
@@ -1393,8 +1599,8 @@
                 categoryLabel: 'Knowledge Retrieval',
                 accentClass: 'accent-sky',
                 icon: 'fa-database',
-                pages: '2 Pages',
-                format: 'Executive PDF',
+                pages: '5 Pages',
+                format: '5-Page Master Blueprint',
                 description: 'Enterprise retrieval-augmented generation with pgvector, BM25 lexical search, semantic chunking, and Reciprocal Rank Fusion (RRF).',
                 briefInsights: 'Combine dense vector search with lexical BM25 keywords and cross-encoder re-ranking to deliver grounded, hallucination-free answers.'
             }
@@ -1422,7 +1628,7 @@
             
             // Populate Checkout State
             document.getElementById('purchaseModalTitle').textContent = bp.title;
-            document.getElementById('purchaseModalSpecs').textContent = '2-Page Executive PDF • Complete Tactical Guide';
+            document.getElementById('purchaseModalSpecs').textContent = '5-Page Master Technical Blueprint • Complete Tactical Guide';
             
             // Set GoDaddy pay link button
             const godaddyBtn = document.getElementById('purchaseModalGoDaddyBtn');
@@ -1481,7 +1687,7 @@
                 document.getElementById('successProductTitle').textContent = data.productTitle;
                 const bp = ALL_BLUEPRINTS.find(b => b.id === activePurchaseProductId);
                 if (bp) {
-                    document.getElementById('successProductSpecs').textContent = '2-Page Executive PDF • Instant Access';
+                    document.getElementById('successProductSpecs').textContent = '5-Page Master Technical Blueprint • Instant Access';
                 }
 
                 activeDownloadUrl = window.location.origin + data.downloadUrl;
@@ -1661,7 +1867,7 @@
 
                             <div class="flex items-center gap-2 text-[11px] text-gray-400 mb-3 font-medium">
                                 <span class="inline-flex items-center gap-1.5 text-sky-400 whitespace-nowrap">
-                                    <i class="fas fa-file-pdf text-rose-400"></i> 2-Page Executive PDF
+                                    <i class="fas fa-file-pdf text-rose-400"></i> 5-Page Master Blueprint
                                 </span>
                                 <span class="text-gray-600 font-bold">•</span>
                                 <span class="text-gray-300 whitespace-nowrap">${bp.categoryLabel}</span>
@@ -1789,7 +1995,7 @@
         }
 
         async function downloadBlueprint(id, filename, title, btnElement) {
-            const filePath = 'downloads/' + filename;
+            const filePath = 'downloads/' + filename + '?v=' + Date.now();
             showToast(`Downloading: ${title}...`, 'info');
 
             // Button loading animation
@@ -1963,9 +2169,9 @@
                 return;
             }
 
-            const filePath = 'downloads/' + bp.file;
+            const filePath = 'downloads/' + bp.file + '?v=' + Date.now();
             document.getElementById('modalTitle').textContent = bp.title;
-            document.getElementById('modalMeta').textContent = `${bp.categoryLabel} • 2-Page Executive PDF • Pinnacle AI Solutions`;
+            document.getElementById('modalMeta').textContent = `${bp.categoryLabel} • 5-Page Master Technical Blueprint • Pinnacle AI Solutions`;
             
             const iframe = document.getElementById('modalIframe');
             iframe.src = filePath;
