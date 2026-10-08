@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Portal & AI Blueprints | Pinnacle AI Solutions</title>
+    <title>VIP Member Portal & AI Blueprint Vault | Pinnacle AI Solutions</title>
     <meta name="description"
-        content="Join Pinnacle AI Solutions. Get our Weekly AI Newsletter and unlock our complete library of production AI Blueprints.">
+        content="Official Member Portal for Pinnacle AI Solutions. Access 10 production AI blueprints, autonomous agent architectures, and our Weekly AI Intelligence Dispatch.">
     <meta name="keywords"
-        content="Antigravity setup, AI agents, MCP handbook, Remotion video, lead generation, Pinnacle AI Solutions portal">
+        content="Antigravity setup, AI agents, MCP handbook, Remotion video, lead generation, voice AI, local LLMs, Pinnacle AI Solutions portal">
 
     <!-- Open Graph / Social Preview -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Member Portal & AI Blueprints | Pinnacle AI Solutions">
+    <meta property="og:title" content="VIP Member Portal & AI Blueprint Vault | Pinnacle AI Solutions">
     <meta property="og:description"
-        content="Create your free member account to download 5 production AI blueprints and receive our Weekly AI Newsletter.">
+        content="Unlock 10 complete production AI blueprints, multi-agent orchestrators, and weekly AI engineering intelligence.">
     <meta property="og:image" content="https://pinnacleaisolution.site/og-preview.png">
     <meta property="og:url" content="https://pinnacleaisolution.site/portal.html">
 
-    <!-- Tailwind CSS (v2.2 CDN matching site) -->
+    <!-- Tailwind CSS (v2.2 CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Font Awesome 6 -->
+    <!-- Font Awesome 6 Pro / Free CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts: Inter & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Core Site Styles -->
     <link rel="stylesheet" href="style.css">
@@ -38,10 +38,13 @@
             --brand-primary: #38bdf8;
             --brand-accent: #818cf8;
             --brand-success: #10b981;
-            --brand-dark: #060913;
-            --brand-card: rgba(15, 23, 42, 0.78);
+            --brand-amber: #f59e0b;
+            --brand-dark: #05070f;
+            --brand-surface: rgba(13, 19, 36, 0.82);
+            --brand-card: rgba(15, 23, 42, 0.75);
             --brand-border: rgba(255, 255, 255, 0.08);
             --brand-glow: rgba(56, 189, 248, 0.25);
+            --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         body {
@@ -51,40 +54,99 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            background-image: 
+                radial-gradient(1000px circle at 15% 10%, rgba(56, 189, 248, 0.10), transparent 70%),
+                radial-gradient(900px circle at 85% 15%, rgba(129, 140, 248, 0.08), transparent 70%),
+                radial-gradient(900px circle at 50% 85%, rgba(16, 185, 129, 0.05), transparent 70%),
+                radial-gradient(600px circle at 80% 65%, rgba(245, 158, 11, 0.04), transparent 60%);
+            background-attachment: fixed;
         }
 
         h1, h2, h3, h4, .font-heading {
             font-family: 'Outfit', sans-serif;
         }
 
-        /* Ambient Radiant Background */
-        .ambient-mesh {
+        /* Subtle grid background overlay */
+        .grid-mesh-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
             z-index: 0;
-            background: 
-                radial-gradient(800px circle at 15% 15%, rgba(56, 189, 248, 0.12), transparent 70%),
-                radial-gradient(900px circle at 85% 20%, rgba(129, 140, 248, 0.10), transparent 70%),
-                radial-gradient(800px circle at 50% 80%, rgba(16, 185, 129, 0.06), transparent 70%),
-                #060913;
         }
 
-        /* Subtle grid pattern overlay */
-        .ambient-mesh::after {
+        /* Double-Bezel Architecture (High-End Visual Design) */
+        .double-bezel {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 24px;
+            padding: 1.5px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 1px 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.35s var(--ease-fluid);
+        }
+        .double-bezel:hover {
+            border-color: rgba(56, 189, 248, 0.35);
+            box-shadow: 0 30px 70px -15px rgba(56, 189, 248, 0.18), 0 0 25px rgba(56, 189, 248, 0.12);
+        }
+
+        .double-bezel-inner {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.88) 0%, rgba(9, 14, 28, 0.96) 100%);
+            border-radius: 22.5px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Ambient spotlight follow effect */
+        .spotlight-card {
+            position: relative;
+        }
+        .spotlight-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 48px 48px;
+            border-radius: inherit;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(56, 189, 248, 0.08),
+                transparent 40%
+            );
             pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
         }
 
-        /* Unified Navigation Styles (matching index.html) */
+        /* Top Accent Lines for Blueprint Categories */
+        .card-accent-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            z-index: 2;
+        }
+        .accent-cyan { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+        .accent-indigo { background: linear-gradient(90deg, #4f46e5, #818cf8); }
+        .accent-violet { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+        .accent-emerald { background: linear-gradient(90deg, #059669, #34d399); }
+        .accent-teal { background: linear-gradient(90deg, #0d9488, #2dd4bf); }
+        .accent-amber { background: linear-gradient(90deg, #d97706, #fbbf24); }
+        .accent-orange { background: linear-gradient(90deg, #ea580c, #fb923c); }
+        .accent-purple { background: linear-gradient(90deg, #9333ea, #c084fc); }
+        .accent-rose { background: linear-gradient(90deg, #e11d48, #fb7185); }
+        .accent-sky { background: linear-gradient(90deg, #0369a1, #38bdf8); }
+
+        /* Unified Navigation Styles */
         .nav-dropdown {
             position: relative;
             display: inline-flex;
@@ -117,7 +179,7 @@
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.2);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.22s var(--ease-fluid);
             z-index: 9999;
         }
         .dropdown-item {
@@ -136,195 +198,280 @@
             color: #38bdf8;
             transform: translateX(4px);
         }
-        .dropdown-icon {
-            font-size: 1.15rem;
-            flex-shrink: 0;
+
+        /* Segmented Tabs (Auth) */
+        .segmented-control {
+            background: rgba(8, 12, 24, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 4px;
+            display: flex;
+            position: relative;
         }
-        .dropdown-title {
+        .segmented-btn {
+            flex: 1;
+            padding: 11px 18px;
+            border-radius: 12px;
             font-size: 0.88rem;
-            font-weight: 600;
-            color: #f8fafc;
-            display: block;
-        }
-        .dropdown-sub {
-            font-size: 0.72rem;
+            font-weight: 700;
             color: #94a3b8;
-            margin-top: 2px;
-            display: block;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.24s var(--ease-fluid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .segmented-btn:hover {
+            color: #ffffff;
+        }
+        .segmented-btn.active {
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.35) 0%, rgba(56, 189, 248, 0.25) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
         }
 
-        /* Glassmorphic Cards */
-        .glass-panel {
-            background: var(--brand-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--brand-border);
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        /* Obsidian Input Controls (Fix stark white inputs) */
+        .auth-input-group {
+            position: relative;
+        }
+        .auth-input {
+            width: 100%;
+            background: rgba(9, 14, 28, 0.88) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            color: #ffffff !important;
+            border-radius: 14px;
+            padding: 13px 16px 13px 44px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.22s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        .auth-input:focus {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+            background: rgba(12, 18, 36, 0.98) !important;
+        }
+        .auth-input::placeholder {
+            color: #64748b;
         }
 
-        /* Auth Card Specifics */
-        .auth-container {
-            max-width: 500px;
-            margin: 0 auto;
+        /* Island Button Pattern (High-End Visual Design) */
+        .island-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.92rem;
+            padding: 13px 22px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+            border: none;
+            cursor: pointer;
+            transition: all 0.24s var(--ease-fluid);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+        .island-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(56, 189, 248, 0.5);
+            filter: brightness(1.06);
+            color: #ffffff;
+        }
+        .island-btn-primary:active {
+            transform: translateY(0);
+        }
+        .island-icon-wrap {
+            width: 28px;
+            height: 28px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.24s var(--ease-fluid);
+        }
+        .island-btn-primary:hover .island-icon-wrap {
+            transform: translateX(3px);
         }
 
         /* Google Sign In Button */
-        .btn-google {
+        .btn-google-satin {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
             width: 100%;
             background: #ffffff;
-            color: #1f2937;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 13px 20px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .btn-google:hover {
-            background: #f8fafc;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
-        }
-        .btn-google:active {
-            transform: translateY(0);
-        }
-
-        /* Tab Controls */
-        .auth-tab-btn {
-            flex: 1;
-            padding: 10px 16px;
-            font-weight: 600;
-            font-size: 0.88rem;
-            text-align: center;
-            border-radius: 10px;
-            color: #94a3b8;
-            background: transparent;
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .auth-tab-btn.active {
-            color: #ffffff;
-            background: rgba(56, 189, 248, 0.16);
-            border-color: rgba(56, 189, 248, 0.35);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-        }
-
-        /* Form Inputs */
-        .auth-input {
-            width: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #f8fafc;
-            border-radius: 12px;
-            padding: 12px 16px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-        .auth-input:focus {
-            border-color: #38bdf8;
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
-            background: rgba(15, 23, 42, 1);
-        }
-
-        /* Primary Action Buttons */
-        .btn-gradient-submit {
-            width: 100%;
-            background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-            color: #ffffff;
+            color: #0f172a;
             font-weight: 700;
             font-size: 0.95rem;
             padding: 13px 20px;
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 4px 18px rgba(56, 189, 248, 0.35);
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
             cursor: pointer;
-            transition: all 0.22s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            transition: all 0.22s var(--ease-fluid);
         }
-        .btn-gradient-submit:hover {
+        .btn-google-satin:hover {
+            background: #f8fafc;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
-            filter: brightness(1.08);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        }
+        .btn-google-satin:active {
+            transform: translateY(0);
         }
 
-        /* Blueprint Card Styling (Clean, no clutter, no pills) */
-        .blueprint-card {
-            background: var(--brand-card);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--brand-border);
-            border-radius: 18px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.26s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
+        /* Filter Pills */
+        .filter-pill {
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .blueprint-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(56, 189, 248, 0.35);
-            box-shadow: 0 16px 36px -10px rgba(56, 189, 248, 0.22);
+        .filter-pill:hover {
+            color: #ffffff;
+            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(56, 189, 248, 0.08);
+        }
+        .filter-pill.active {
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.35) 0%, rgba(56, 189, 248, 0.22) 100%);
+            border-color: #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
         }
 
-        /* Direct Download Button (Reliable Instant Action) */
+        /* Card Action Buttons */
         .btn-download-action {
             background: linear-gradient(135deg, #059669 0%, #10b981 100%);
             color: #ffffff;
-            font-weight: 600;
-            font-size: 0.88rem;
-            padding: 11px 18px;
-            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.84rem;
+            padding: 10px 16px;
+            border-radius: 12px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 7px;
             cursor: pointer;
             border: none;
             text-decoration: none;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.28);
+            transition: all 0.22s var(--ease-fluid);
             flex: 1;
         }
         .btn-download-action:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.42);
             filter: brightness(1.08);
             color: #ffffff;
         }
+        .btn-download-action.downloaded-state {
+            background: linear-gradient(135deg, #047857 0%, #059669 100%);
+            border: 1px solid rgba(52, 211, 153, 0.4);
+        }
 
-        .btn-preview-action {
+        .btn-read-action {
             background: rgba(255, 255, 255, 0.05);
             color: #cbd5e1;
             font-weight: 600;
-            font-size: 0.88rem;
-            padding: 11px 16px;
-            border-radius: 10px;
+            font-size: 0.84rem;
+            padding: 10px 14px;
+            border-radius: 12px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
             border: 1px solid rgba(255, 255, 255, 0.12);
             transition: all 0.2s ease;
         }
-        .btn-preview-action:hover {
+        .btn-read-action:hover {
             background: rgba(56, 189, 248, 0.12);
             color: #38bdf8;
-            border-color: rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.35);
+        }
+
+        
+        /* Buy PDF • $10 Button (Stripe / Linear Clean Style) */
+        .btn-buy-action {
+            background: #f59e0b;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #0f172a;
+            font-weight: 700;
+            font-size: 0.84rem;
+            padding: 10px 16px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            cursor: pointer;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+        .btn-buy-action:hover {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+            color: #000000;
+        }
+        .btn-buy-action:active {
+            transform: translateY(0);
+        }
+
+        /* Purchase Modal Glassmorphism */
+        .purchase-modal-box {
+            background: linear-gradient(180deg, rgba(17, 24, 39, 0.98) 0%, rgba(9, 14, 28, 0.99) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 35px rgba(245, 158, 11, 0.15);
+        }
+
+        .countdown-timer-pill {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* PDF Preview Modal */
+        .preview-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+        }
+        .preview-modal.active {
+            display: flex;
         }
 
         /* Toast Notifications */
@@ -340,152 +487,53 @@
         }
         .toast-msg {
             pointer-events: auto;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 23, 42, 0.96);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 14px;
             padding: 14px 20px;
             color: #ffffff;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             display: flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            animation: slideInToast 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            max-width: 420px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+            animation: slideInToast 0.3s var(--ease-fluid);
+            max-width: 440px;
         }
         @keyframes slideInToast {
             from { transform: translateX(50px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
 
-        /* PDF Preview Modal */
-        .preview-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(3, 7, 18, 0.85);
-            backdrop-filter: blur(16px);
-            z-index: 10000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
+        /* Key Takeaways Accordion */
+        .takeaways-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s var(--ease-fluid), opacity 0.3s ease;
+            opacity: 0;
         }
-        .preview-modal.active {
-            display: flex;
+        .takeaways-drawer.open {
+            max-height: 250px;
+            opacity: 1;
         }
 
-        /* Authenticated VIP HUD Styles */
-        .vip-hud-card {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 41, 59, 0.72) 100%);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            border-radius: 24px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+        /* Pulse ring for session active */
+        @keyframes pulseRing {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 0.3; }
+            100% { transform: scale(0.95); opacity: 0.8; }
         }
-        .vip-hud-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #38bdf8, #818cf8, #10b981, transparent);
+        .pulse-beacon {
+            animation: pulseRing 2.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
-        .avatar-glow {
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(56, 189, 248, 0.6);
-        }
-        .hud-stat-pill {
-            background: rgba(15, 23, 42, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.2s ease;
-        }
-        .hud-stat-pill:hover {
-            border-color: rgba(56, 189, 248, 0.3);
-            background: rgba(15, 23, 42, 0.95);
-            transform: translateY(-2px);
-        }
-        .filter-pill {
-            padding: 7px 16px;
-            border-radius: 12px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #94a3b8;
-            user-select: none;
-        }
-        .filter-pill:hover {
-            color: #ffffff;
-            border-color: rgba(56, 189, 248, 0.4);
-            background: rgba(56, 189, 248, 0.08);
-        }
-        .filter-pill.active {
-            color: #ffffff;
-            background: linear-gradient(135deg, rgba(2, 132, 199, 0.3) 0%, rgba(56, 189, 248, 0.2) 100%);
-            border-color: #38bdf8;
-            box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
-        }
-        .blueprint-tag {
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            padding: 3px 8px;
-            border-radius: 6px;
-        }
-        .blueprint-card {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(10, 15, 30, 0.9) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 26px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .blueprint-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 20px 45px -10px rgba(56, 189, 248, 0.22);
-        }
-        .blueprint-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            opacity: 0.8;
-        }
-        .card-cyan::after { background: linear-gradient(90deg, #0284c7, #38bdf8); }
-        .card-indigo::after { background: linear-gradient(90deg, #6366f1, #a855f7); }
-        .card-emerald::after { background: linear-gradient(90deg, #059669, #34d399); }
-        .card-amber::after { background: linear-gradient(90deg, #d97706, #fbbf24); }
-        .card-purple::after { background: linear-gradient(90deg, #9333ea, #c084fc); }
-
     </style>
 </head>
 
 <body class="loaded">
-    <div class="ambient-mesh"></div>
+    <div class="grid-mesh-overlay"></div>
 
-    <!-- MAIN UNIFIED HEADER NAVIGATION (IDENTICAL TO SITE) -->
+    <!-- MAIN UNIFIED HEADER NAVIGATION -->
     <header id="main-header" class="relative z-50">
         <div class="header-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <!-- Brand Logo -->
@@ -514,17 +562,17 @@
                     </a>
                     <div class="nav-dropdown-menu">
                         <a href="javascript:void(0)" onclick="switchToAuthTab('register')" class="dropdown-item">
-                            <span class="dropdown-icon">✨</span>
+                            <i class="fas fa-sparkles text-blue-400 text-sm"></i>
                             <div>
-                                <span class="dropdown-title">Register & Newsletter</span>
-                                <span class="dropdown-sub">Weekly AI updates & blueprints</span>
+                                <span class="font-bold text-white text-xs block">Register & Newsletter</span>
+                                <span class="text-[11px] text-gray-400 block">Weekly AI updates & 10 blueprints</span>
                             </div>
                         </a>
                         <a href="javascript:void(0)" onclick="switchToAuthTab('login')" class="dropdown-item">
-                            <span class="dropdown-icon">🔐</span>
+                            <i class="fas fa-lock text-indigo-400 text-sm"></i>
                             <div>
-                                <span class="dropdown-title">Member Sign In</span>
-                                <span class="dropdown-sub">Unlock member benefits & vault</span>
+                                <span class="font-bold text-white text-xs block">Member Sign In</span>
+                                <span class="text-[11px] text-gray-400 block">Unlock member vault access</span>
                             </div>
                         </a>
                     </div>
@@ -533,498 +581,401 @@
 
             <!-- Header Right Buttons -->
             <div class="hidden sm:flex items-center gap-3">
-                <a href="ai-programs.html" class="px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-bold text-gray-200 border border-gray-700 transition">
+                <a href="ai-programs.html" class="px-4 py-2 rounded-xl bg-gray-900 hover:bg-gray-800 text-xs font-bold text-gray-200 border border-gray-700/80 transition">
                     AI Solutions
                 </a>
-                <a href="freeairesources.html" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition shadow">
+                <a href="freeairesources.html" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition shadow-lg shadow-blue-500/20">
                     FREE AI RESOURCES
                 </a>
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button class="md:hidden text-gray-300 hover:text-white focus:outline-none" id="mobileMenuToggle" onclick="toggleMobileNav()">
+            <button class="md:hidden text-gray-300 hover:text-white focus:outline-none" id="mobileMenuToggle" onclick="toggleMobileNav()" aria-label="Toggle navigation menu">
                 <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
 
         <!-- Mobile Drawer -->
-        <div id="mobileDrawer" class="hidden md:hidden bg-gray-900 border-b border-gray-800 px-6 py-4 space-y-3">
+        <div id="mobileDrawer" class="hidden md:hidden bg-gray-950/95 backdrop-blur-2xl border-b border-gray-800 px-6 py-5 space-y-3">
             <a href="index.html" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">HOME</a>
             <a href="index.html#services" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">SERVICES</a>
             <a href="index.html#about" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">ABOUT</a>
             <a href="blogs.html" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">BLOGS</a>
             <a href="freeairesources.html" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">FREE TOOLS</a>
-            <div class="pt-2 border-t border-gray-800 space-y-2">
-                <a href="javascript:void(0)" onclick="switchToAuthTab('register'); toggleMobileNav();" class="block text-blue-400 text-sm font-bold">✨ Register & Newsletter</a>
-                <a href="javascript:void(0)" onclick="switchToAuthTab('login'); toggleMobileNav();" class="block text-gray-300 hover:text-white text-sm font-semibold">🔐 Member Sign In</a>
+            <div class="pt-3 border-t border-gray-800 space-y-2">
+                <a href="javascript:void(0)" onclick="switchToAuthTab('register'); toggleMobileNav();" class="block text-blue-400 text-sm font-bold">
+                    <i class="fas fa-sparkles mr-1.5"></i> Register & Newsletter
+                </a>
+                <a href="javascript:void(0)" onclick="switchToAuthTab('login'); toggleMobileNav();" class="block text-gray-300 hover:text-white text-sm font-semibold">
+                    <i class="fas fa-lock mr-1.5"></i> Member Sign In
+                </a>
             </div>
         </div>
     </header>
 
     <!-- MAIN PORTAL CONTENT -->
-    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 min-h-[75vh] flex flex-col justify-center">
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 min-h-[78vh] flex flex-col justify-center">
 
         <!-- ======================================================== -->
         <!-- STATE 1: UNAUTHENTICATED / REGISTRATION & SIGN-IN VIEW   -->
-        <!-- (Exclusively focused on Auth; Blueprints completely hidden) -->
+        <!-- (High-End Glassmorphic Double-Bezel Auth Terminal)       -->
         <!-- ======================================================== -->
-        <div id="unauthenticatedView" class="auth-container w-full py-6">
-            <!-- Brand Badge & Header -->
+        <div id="unauthenticatedView" class="w-full max-w-xl mx-auto py-6">
+            
+            <!-- Terminal Header -->
             <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-500 bg-opacity-10 border border-blue-400 border-opacity-30 mb-4 shadow-lg shadow-blue-500/10">
-                    <img src="pinnacle-emblem.png" alt="Pinnacle Emblem" class="w-10 h-10 object-contain">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-400/30 mb-4 shadow-xl shadow-sky-500/10">
+                    <img src="pinnacle-emblem.png" alt="Pinnacle AI Emblem" class="w-10 h-10 object-contain">
                 </div>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2.5">
                     Member Access & AI Vault
                 </h1>
-                <p class="text-gray-400 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-                    Create your free account to receive our Weekly AI Newsletter and unlock our 5 complete production AI blueprints.
+                <p class="text-gray-400 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+                    Create your free account to receive our Weekly AI Intelligence Dispatch and instantly unlock 10 complete production AI blueprints.
                 </p>
+                <!-- Vault Unlocked Counter Teaser -->
+                <div class="mt-4 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-400/25 text-blue-300 text-xs font-semibold">
+                    <i class="fas fa-sparkles text-sky-400"></i> 10 Production Blueprints Ready for Direct Download
+                </div>
             </div>
 
-            <!-- Auth Box Panel -->
-            <div class="glass-panel p-6 sm:p-8">
-                <!-- Tabs: Register / Login -->
-                <div class="flex items-center p-1 rounded-xl bg-gray-900 bg-opacity-80 border border-gray-800 mb-6">
-                    <button id="tabRegister" class="auth-tab-btn active" onclick="switchToAuthTab('register')">
-                        <i class="fas fa-user-plus mr-1.5 text-xs"></i> Create Account
-                    </button>
-                    <button id="tabLogin" class="auth-tab-btn" onclick="switchToAuthTab('login')">
-                        <i class="fas fa-arrow-right-to-bracket mr-1.5 text-xs"></i> Member Sign-In
-                    </button>
-                </div>
-
-                <!-- Google Sign In Button (Official Multi-color SVG) -->
-                <button type="button" class="btn-google mb-5" onclick="handleGoogleSignIn()">
-                    <svg width="20" height="20" viewBox="0 0 48 48" class="flex-shrink-0">
-                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.55 10.79l7.98-6.2z"/>
-                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                        <path fill="none" d="M0 0h48v48H0z"/>
-                    </svg>
-                    <span>Continue with Google</span>
-                </button>
-
-                <!-- Divider -->
-                <div class="relative flex items-center justify-center my-5">
-                    <div class="border-t border-gray-800 w-full"></div>
-                    <span class="bg-gray-900 px-3 text-xs uppercase tracking-wider text-gray-500 font-semibold absolute">
-                        or with email
-                    </span>
-                </div>
-
-                <!-- FORM 1: REGISTER & NEWSLETTER -->
-                <form id="registerForm" onsubmit="handleRegisterSubmit(event)" class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5" for="regName">
-                            Full Name
-                        </label>
-                        <div class="relative">
-                            <i class="fas fa-user absolute left-4 top-3.5 text-gray-500 text-sm"></i>
-                            <input type="text" id="regName" required placeholder="John Doe"
-                                class="auth-input pl-11">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5" for="regEmail">
-                            Email Address
-                        </label>
-                        <div class="relative">
-                            <i class="fas fa-envelope absolute left-4 top-3.5 text-gray-500 text-sm"></i>
-                            <input type="email" id="regEmail" required placeholder="name@company.com"
-                                class="auth-input pl-11">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-1.5" for="regPassword">
-                            Create Password
-                        </label>
-                        <div class="relative">
-                            <i class="fas fa-lock absolute left-4 top-3.5 text-gray-500 text-sm"></i>
-                            <input type="password" id="regPassword" required placeholder="••••••••" minlength="6"
-                                class="auth-input pl-11">
-                        </div>
-                    </div>
-
-                    <!-- Newsletter Guarantee Checkbox -->
-                    <div class="p-3.5 rounded-xl bg-gray-900 bg-opacity-70 border border-gray-800 flex items-start gap-3">
-                        <input type="checkbox" id="newsletterCheck" checked required
-                            class="mt-1 h-4 w-4 rounded border-gray-700 text-blue-500 focus:ring-blue-400 bg-gray-800 cursor-pointer">
-                        <label for="newsletterCheck" class="text-xs text-gray-300 leading-relaxed cursor-pointer select-none">
-                            <strong class="text-white">Weekly AI Newsletter:</strong> Send me weekly breakthroughs in autonomous agents, kinetic video, and production AI workflows. Unsubscribe anytime.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn-gradient-submit mt-2">
-                        <span>Create Account & Unlock Blueprints</span>
-                        <i class="fas fa-arrow-right text-xs"></i>
-                    </button>
-
-                    <p class="text-center text-xs text-gray-500 pt-2">
-                        Already registered? 
-                        <a href="javascript:void(0)" onclick="switchToAuthTab('login')" class="text-blue-400 hover:underline font-semibold">
-                            Sign in here
-                        </a>
-                    </p>
-                </form>
-
-                <!-- FORM 2: MEMBER LOGIN -->
-                <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-6 hidden group relative">
-                    <!-- Subtle ambient glow behind form -->
-                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-50 transition duration-1000 group-hover:opacity-100"></div>
+            <!-- Double-Bezel Auth Container -->
+            <div class="double-bezel">
+                <div class="double-bezel-inner p-6 sm:p-8">
                     
-                    <div class="relative bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-gray-800/60 shadow-2xl space-y-5">
-                        
-                        <!-- Header -->
-                        <div class="text-center mb-6">
-                            <h4 class="text-lg font-bold text-white tracking-wide">Welcome Back</h4>
-                            <p class="text-xs text-gray-400 mt-1">Sign in to access your Pinnacle AI Member Vault</p>
-                        </div>
+                    <!-- Segmented Controls: Register / Login -->
+                    <div class="segmented-control mb-6">
+                        <button id="tabRegister" class="segmented-btn active" onclick="switchToAuthTab('register')">
+                            <i class="fas fa-user-plus text-xs"></i> Create Free Account
+                        </button>
+                        <button id="tabLogin" class="segmented-btn" onclick="switchToAuthTab('login')">
+                            <i class="fas fa-arrow-right-to-bracket text-xs"></i> Member Sign-In
+                        </button>
+                    </div>
 
-                        <!-- Email Input -->
-                        <div class="space-y-1.5">
-                            <label class="block text-[11px] font-bold text-indigo-300/80 uppercase tracking-widest" for="loginEmail">
-                                Email Address
+                    <!-- Google 1-Click Sign-In Button -->
+                    <button type="button" class="btn-google-satin mb-5" onclick="handleGoogleSignIn()">
+                        <svg width="20" height="20" viewBox="0 0 48 48" class="flex-shrink-0">
+                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.55 10.79l7.98-6.2z"/>
+                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                            <path fill="none" d="M0 0h48v48H0z"/>
+                        </svg>
+                        <span>Continue with Google</span>
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="relative flex items-center justify-center my-5">
+                        <div class="border-t border-gray-800 w-full"></div>
+                        <span class="bg-gray-900 px-3 text-[11px] uppercase tracking-wider text-gray-500 font-bold absolute">
+                            or with email
+                        </span>
+                    </div>
+
+                    <!-- FORM 1: REGISTER & NEWSLETTER -->
+                    <form id="registerForm" onsubmit="handleRegisterSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5" for="regName">
+                                Full Name
                             </label>
-                            <div class="relative group/input">
-                                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within/input:text-indigo-400 transition-colors duration-300"></i>
-                                <input type="email" id="loginEmail" required placeholder="name@company.com"
-                                    class="w-full bg-black/40 border border-gray-700/50 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/60 transition-all duration-300 shadow-inner">
+                            <div class="auth-input-group">
+                                <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                                <input type="text" id="regName" required placeholder="Alex Vance" class="auth-input">
                             </div>
                         </div>
 
-                        <!-- Password Input -->
-                        <div class="space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <label class="text-[11px] font-bold text-indigo-300/80 uppercase tracking-widest" for="loginPassword">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5" for="regEmail">
+                                Email Address
+                            </label>
+                            <div class="auth-input-group">
+                                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                                <input type="email" id="regEmail" required placeholder="name@company.com" class="auth-input">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5" for="regPassword">
+                                Create Password
+                            </label>
+                            <div class="auth-input-group">
+                                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                                <input type="password" id="regPassword" required placeholder="••••••••" minlength="6" class="auth-input">
+                                <button type="button" onclick="togglePasswordVisibility('regPassword', this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 text-sm" aria-label="Toggle password view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Newsletter Guarantee Checkbox -->
+                        <div class="p-4 rounded-xl bg-gray-900/80 border border-gray-800/90 flex items-start gap-3">
+                            <input type="checkbox" id="newsletterCheck" checked required
+                                class="mt-1 h-4 w-4 rounded border-gray-700 text-blue-500 focus:ring-blue-400 bg-gray-800 cursor-pointer">
+                            <label for="newsletterCheck" class="text-xs text-gray-300 leading-relaxed cursor-pointer select-none">
+                                <strong class="text-white">Weekly AI Intelligence Dispatch:</strong> Receive proprietary weekly breakthroughs on autonomous agents, kinetic video, and production AI workflows. Unsubscribe anytime.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="island-btn-primary w-full mt-2">
+                            <span>Create Account & Unlock All 10 Blueprints</span>
+                            <div class="island-icon-wrap">
+                                <i class="fas fa-arrow-right text-xs"></i>
+                            </div>
+                        </button>
+
+                        <p class="text-center text-xs text-gray-500 pt-2">
+                            Already registered? 
+                            <a href="javascript:void(0)" onclick="switchToAuthTab('login')" class="text-blue-400 hover:text-blue-300 font-bold ml-1">
+                                Sign in here
+                            </a>
+                        </p>
+                    </form>
+
+                    <!-- FORM 2: MEMBER LOGIN -->
+                    <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-4 hidden">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5" for="loginEmail">
+                                Registered Email
+                            </label>
+                            <div class="auth-input-group">
+                                <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                                <input type="email" id="loginEmail" required placeholder="name@company.com" class="auth-input">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-1.5">
+                                <label class="text-xs font-bold text-gray-300 uppercase tracking-wider" for="loginPassword">
                                     Password
                                 </label>
-                                <a href="javascript:void(0)" onclick="handleForgotPassword()" class="text-[11px] text-gray-400 hover:text-indigo-300 transition-colors duration-300">
+                                <a href="javascript:void(0)" onclick="handleForgotPassword()" class="text-xs text-blue-400 hover:text-blue-300">
                                     Forgot password?
                                 </a>
                             </div>
-                            <div class="relative group/input">
-                                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within/input:text-indigo-400 transition-colors duration-300"></i>
-                                <input type="password" id="loginPassword" required placeholder="••••••••"
-                                    class="w-full bg-black/40 border border-gray-700/50 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/60 transition-all duration-300 shadow-inner">
+                            <div class="auth-input-group">
+                                <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                                <input type="password" id="loginPassword" required placeholder="••••••••" class="auth-input">
+                                <button type="button" onclick="togglePasswordVisibility('loginPassword', this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 text-sm" aria-label="Toggle password view">
+                                    <i class="fas fa-eye"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <!-- Submit Button -->
-                        <button type="submit" class="relative w-full overflow-hidden group/btn rounded-xl p-[1px] mt-2">
-                            <span class="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 rounded-xl opacity-70 group-hover/btn:opacity-100 transition-opacity duration-500 bg-[length:200%_auto] animate-gradient-x"></span>
-                            <div class="relative flex items-center justify-center space-x-2 bg-gray-900/90 rounded-xl px-4 py-3.5 transition-all duration-300 group-hover/btn:bg-gray-900/50">
-                                <span class="text-sm font-bold text-white tracking-wide">Sign In to Member Vault</span>
-                                <i class="fas fa-arrow-right-to-bracket text-xs text-indigo-300 group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                        <button type="submit" class="island-btn-primary w-full mt-2">
+                            <span>Sign In to Member Vault</span>
+                            <div class="island-icon-wrap">
+                                <i class="fas fa-arrow-right text-xs"></i>
                             </div>
                         </button>
 
-                        <p class="text-center text-[11px] text-gray-400 pt-3 border-t border-gray-800/50 mt-5">
+                        <p class="text-center text-xs text-gray-500 pt-2">
                             Don't have an account yet? 
-                            <a href="javascript:void(0)" onclick="switchToAuthTab('register')" class="text-indigo-400 hover:text-indigo-300 font-bold ml-1 transition-colors">
-                                Register free
+                            <a href="javascript:void(0)" onclick="switchToAuthTab('register')" class="text-blue-400 hover:text-blue-300 font-bold ml-1">
+                                Create free account
                             </a>
                         </p>
-                    </div>
-                </form>
-            </div>
+                    </form>
 
-            <!-- Trust Bar (Clean, no cheesy bullet points) -->
-            <div class="mt-6 text-center text-xs text-gray-500 flex items-center justify-center gap-4">
-                <span><i class="fas fa-shield-halved text-gray-400 mr-1"></i> 256-Bit SSL Secure</span>
-                <span>•</span>
-                <span><i class="fas fa-lock text-gray-400 mr-1"></i> Verified Members Only</span>
-                <span>•</span>
-                <span><i class="fas fa-file-pdf text-gray-400 mr-1"></i> Direct PDF Downloads</span>
-            </div>
-        </div>
-
-                <!-- ======================================================== -->
-        <!-- STATE 2: AUTHENTICATED / UNLOCKED RESOURCE VAULT         -->
-        <!-- (Visible ONLY after successful registration or sign-in) -->
-        <!-- ======================================================== -->
-        <div id="authenticatedView" class="w-full hidden pb-12">
-            
-            <!-- SLEEK EXECUTIVE VIP MEMBER BANNER (CLEAN & UNCLUTTERED) -->
-            <div class="vip-hud-card p-6 sm:p-7 mb-8">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-                    <!-- User Profile & Status -->
-                    <div class="flex items-center gap-4">
-                        <div class="relative flex-shrink-0">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-emerald-400 flex items-center justify-center text-white text-xl font-black avatar-glow" id="userAvatar">
-                                P
-                            </div>
-                            <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-gray-900 flex items-center justify-center" title="Active Session">
-                                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                            </span>
-                        </div>
-                        <div>
-                            <div class="flex flex-wrap items-center gap-2">
-                                <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight" id="userNameGreeting">
-                                    Welcome, Member
-                                </h2>
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/15 border border-amber-400/40 text-amber-300">
-                                    <i class="fas fa-crown text-amber-400 text-[10px]"></i> VIP MEMBER
-                                </span>
-                            </div>
-                            <p class="text-xs sm:text-sm text-gray-400 mt-1 flex items-center gap-2" id="userEmailDisplay">
-                                <i class="fas fa-envelope-circle-check text-emerald-400"></i>
-                                Weekly AI Newsletter: <span class="text-emerald-400 font-bold">Active</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Quick Command Actions -->
-                    <div class="flex flex-wrap items-center gap-3">
-                        <button onclick="downloadAllBlueprints()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-emerald-500/20 transition flex items-center gap-2 border border-emerald-400/30">
-                            <i class="fas fa-cloud-arrow-down text-sm"></i> Download All 5 PDFs
-                        </button>
-                        <button onclick="handleSignOut()" class="px-4 py-2.5 rounded-xl bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white text-xs font-semibold border border-gray-700/80 transition flex items-center gap-2">
-                            <i class="fas fa-arrow-right-from-bracket text-xs"></i> Sign Out
-                        </button>
-                    </div>
                 </div>
             </div>
 
-            <!-- SEARCH & FILTER TOOLBAR -->
-            <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <!-- Category Pills -->
+            <!-- Trust Bar (Clean, professional SVG icons) -->
+            <div class="mt-6 text-center text-xs text-gray-500 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                <span class="flex items-center gap-1.5"><i class="fas fa-shield-halved text-gray-400"></i> 256-Bit SSL Encrypted</span>
+                <span>•</span>
+                <span class="flex items-center gap-1.5"><i class="fas fa-crown text-amber-400"></i> VIP Member Vault</span>
+                <span>•</span>
+                <span class="flex items-center gap-1.5"><i class="fas fa-file-pdf text-red-400"></i> 10 Direct PDFs</span>
+            </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- STATE 2: AUTHENTICATED / UNLOCKED RESOURCE VAULT         -->
+        <!-- (Executive VIP Member HUD + 10 Production Blueprints)     -->
+        <!-- ======================================================== -->
+        <div id="authenticatedView" class="w-full hidden pb-12">
+            
+            <!-- EXECUTIVE VIP MEMBER HUD BANNER (DOUBLE-BEZEL) -->
+            <div class="double-bezel mb-8">
+                <div class="double-bezel-inner p-6 sm:p-8">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                        
+                        <!-- User Profile & VIP Status -->
+                        <div class="flex items-center gap-4 sm:gap-5">
+                            <div class="relative flex-shrink-0">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-500 via-indigo-600 to-emerald-400 flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-sky-500/20" id="userAvatar">
+                                    P
+                                </div>
+                                <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-gray-900 flex items-center justify-center" title="Active VIP Session">
+                                    <span class="w-2 h-2 rounded-full bg-white pulse-beacon"></span>
+                                </span>
+                            </div>
+                            <div>
+                                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                                    <h2 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight" id="userNameGreeting">
+                                        Welcome, Member
+                                    </h2>
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-bold bg-amber-500/15 border border-amber-400/40 text-amber-300">
+                                        <i class="fas fa-crown text-amber-400 text-[10px]"></i> VIP MEMBER
+                                    </span>
+                                    <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-gray-800 text-gray-400 border border-gray-700/60" id="userMemberId">
+                                        #PAI-2026-VIP
+                                    </span>
+                                </div>
+                                <p class="text-xs sm:text-sm text-gray-400 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1" id="userEmailDisplay">
+                                    <span><i class="fas fa-envelope-circle-check text-emerald-400 mr-1"></i> <span id="userEmailText">member@pinnacleai.site</span></span>
+                                    <span class="text-gray-600">•</span>
+                                    <span class="text-emerald-400 font-semibold"><i class="fas fa-paper-plane text-xs mr-1"></i> Weekly AI Intelligence: Active</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Command Actions -->
+                        <div class="flex flex-wrap items-center gap-3">
+                            <button onclick="downloadAllBlueprints()" id="btnDownloadAll" class="px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold shadow-lg shadow-emerald-500/25 transition-all flex items-center gap-2 border border-emerald-400/30">
+                                <i class="fas fa-cloud-arrow-down text-sm"></i> 
+                                <span id="btnDownloadAllText">Download All 10 PDFs</span>
+                            </button>
+                            <button onclick="handleSignOut()" class="px-4 py-3 rounded-xl bg-gray-900/90 hover:bg-gray-800 text-gray-300 hover:text-white text-xs font-semibold border border-gray-700/80 transition flex items-center gap-2">
+                                <i class="fas fa-arrow-right-from-bracket text-xs"></i> Sign Out
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- HUD STATS METRICS BAR -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 pt-6 border-t border-gray-800/80">
+                        <div class="p-3.5 rounded-xl bg-gray-900/60 border border-gray-800/80 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400">
+                                <i class="fas fa-book-sparkles text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] text-gray-400 font-medium block">Blueprint Vault</span>
+                                <span class="text-sm font-bold text-white">10 of 10 Unlocked</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-gray-900/60 border border-gray-800/80 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                                <i class="fas fa-circle-check text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] text-gray-400 font-medium block">Downloaded</span>
+                                <span class="text-sm font-bold text-emerald-400" id="hudDownloadCounter">0 of 10 Saved</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-gray-900/60 border border-gray-800/80 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                                <i class="fas fa-award text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] text-gray-400 font-medium block">Access Tier</span>
+                                <span class="text-sm font-bold text-indigo-300">Lifetime VIP</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-gray-900/60 border border-gray-800/80 flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
+                                <i class="fas fa-clock-rotate-left text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] text-gray-400 font-medium block">Library Update</span>
+                                <span class="text-sm font-bold text-purple-300">October 2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SEARCH, FILTERS & METER TOOLBAR -->
+            <div class="mb-8 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                
+                <!-- Category Filters -->
                 <div class="flex flex-wrap items-center gap-2" id="filterPillsContainer">
                     <button class="filter-pill active" onclick="setCategoryFilter('all', this)">
-                        <i class="fas fa-grid-2 mr-1"></i> All Blueprints (5)
+                        <i class="fas fa-layer-group text-xs"></i> All Blueprints (10)
                     </button>
                     <button class="filter-pill" onclick="setCategoryFilter('agents', this)">
-                        <i class="fas fa-robot mr-1"></i> AI Agents & IDE (2)
+                        <i class="fas fa-robot text-xs"></i> Agents & IDE (2)
                     </button>
-                    <button class="filter-pill" onclick="setCategoryFilter('growth', this)">
-                        <i class="fas fa-crosshairs mr-1"></i> Lead Gen (1)
+                    <button class="filter-pill" onclick="setCategoryFilter('voice-media', this)">
+                        <i class="fas fa-microphone-lines text-xs"></i> Voice & Video (2)
                     </button>
-                    <button class="filter-pill" onclick="setCategoryFilter('media', this)">
-                        <i class="fas fa-film mr-1"></i> Video & Audio (1)
+                    <button class="filter-pill" onclick="setCategoryFilter('automation-growth', this)">
+                        <i class="fas fa-crosshairs text-xs"></i> Scraping & Growth (2)
                     </button>
-                    <button class="filter-pill" onclick="setCategoryFilter('infra', this)">
-                        <i class="fas fa-network-wired mr-1"></i> Protocols & MCP (1)
+                    <button class="filter-pill" onclick="setCategoryFilter('models-reasoning', this)">
+                        <i class="fas fa-brain text-xs"></i> Models & Logic (2)
+                    </button>
+                    <button class="filter-pill" onclick="setCategoryFilter('infra-rag', this)">
+                        <i class="fas fa-network-wired text-xs"></i> Infra & RAG (2)
+                    </button>
+                    <button class="filter-pill" onclick="toggleDownloadedFilter(this)">
+                        <i class="fas fa-check-double text-xs"></i> In My Library
                     </button>
                 </div>
 
                 <!-- Instant Search Input -->
-                <div class="relative w-full md:w-72">
-                    <i class="fas fa-magnifying-glass absolute left-3.5 top-3 text-gray-500 text-xs"></i>
-                    <input type="text" id="blueprintSearch" oninput="filterBlueprints()" placeholder="Search blueprints or tech stack..."
-                        class="w-full pl-9 pr-4 py-2 bg-gray-900/90 border border-gray-800 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition">
+                <div class="relative w-full lg:w-80">
+                    <i class="fas fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
+                    <input type="text" id="blueprintSearch" oninput="filterBlueprints()" placeholder="Search 10 blueprints or tech..."
+                        class="w-full pl-9 pr-8 py-2.5 bg-gray-900/90 border border-gray-800 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400 transition shadow-inner">
+                    <button type="button" onclick="clearSearch()" id="btnClearSearch" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white text-xs" aria-label="Clear search">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
             </div>
 
-            <!-- 5 ELEVATED BLUEPRINT CARDS -->
+            <!-- RESULTS STATUS STRIP -->
+            <div class="mb-4 flex items-center justify-between text-xs text-gray-400 px-1">
+                <span id="resultsCountNotice">Showing all 10 production blueprints</span>
+                <span class="text-gray-500 hidden sm:inline"><i class="fas fa-sparkles text-sky-400 mr-1"></i> Click "Key Insights" on any card for an instant executive breakdown</span>
+            </div>
+
+            <!-- 10 GAPLESS BENTO BLUEPRINT CARDS -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="blueprintsGrid">
+                <!-- Dynamically rendered via renderAllBlueprintCards() for clean consistency and instant reactivity -->
+            </div>
 
-                <!-- CARD 1: Antigravity IDE Setup Guide -->
-                <div class="blueprint-card card-cyan" data-category="agents" data-keywords="antigravity ide setup rules agents skills pair programming cursor python claude">
-                    <div>
-                        <!-- Header with Category Tag & Icon -->
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 border border-sky-400/30 flex items-center justify-center shadow-lg shadow-sky-500/10">
-                                <i class="fas fa-terminal text-sky-400 text-xl"></i>
-                            </div>
-                            <span class="blueprint-tag bg-sky-500/15 text-sky-300 border border-sky-500/30">
-                                Core Environment
-                            </span>
-                        </div>
-
-                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">
-                            Antigravity IDE Complete Setup Guide
-                        </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                            Zero-latency agentic pair-programming architecture, automated rules injection, local skill scaffolds, and multi-agent coordination protocols.
-                        </p>
-
-                        <!-- Tech Badges -->
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Skills System</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Subagent Workflows</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Zero-Latency CLI</span>
-                        </div>
-                    </div>
-
-                    <!-- Card Actions -->
-                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
-                        <button onclick="downloadBlueprint('Antigravity-IDE-Complete-Setup-Guide.pdf', 'Antigravity IDE Complete Setup Guide')" class="btn-download-action">
-                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
-                        </button>
-                        <button onclick="openPreviewModal('Antigravity-IDE-Complete-Setup-Guide.pdf', 'Antigravity IDE Complete Setup Guide')" class="btn-preview-action" title="Read Blueprint Online">
-                            <i class="fas fa-eye text-xs"></i> Read
-                        </button>
-                    </div>
+            <!-- EMPTY SEARCH FALLBACK -->
+            <div id="noResultsState" class="hidden double-bezel p-12 text-center my-6">
+                <div class="w-16 h-16 rounded-2xl bg-gray-900 border border-gray-800 flex items-center justify-center mx-auto mb-4 text-gray-500 text-2xl">
+                    <i class="fas fa-file-magnifying-glass"></i>
                 </div>
-
-                <!-- CARD 2: Autonomous Multi-Agent Architecture -->
-                <div class="blueprint-card card-indigo" data-category="agents" data-keywords="autonomous multi-agent architecture swarm subagent orchestrator context memory topologies">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-400/30 flex items-center justify-center shadow-lg shadow-indigo-500/10">
-                                <i class="fas fa-network-wired text-indigo-400 text-xl"></i>
-                            </div>
-                            <span class="blueprint-tag bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
-                                Swarm Topology
-                            </span>
-                        </div>
-
-                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">
-                            Autonomous Multi-Agent Architecture
-                        </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                            Master orchestrator and peer subagent topologies, distributed context boundaries, and recursive task decomposition for scalable autonomous execution.
-                        </p>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Master Orchestrator</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Memory Trees</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Subagent Spawning</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
-                        <button onclick="downloadBlueprint('Autonomous-Multi-Agent-Architecture.pdf', 'Autonomous Multi-Agent Architecture')" class="btn-download-action">
-                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
-                        </button>
-                        <button onclick="openPreviewModal('Autonomous-Multi-Agent-Architecture.pdf', 'Autonomous Multi-Agent Architecture')" class="btn-preview-action" title="Read Blueprint Online">
-                            <i class="fas fa-eye text-xs"></i> Read
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CARD 3: Enterprise AI Lead Generation Playbook -->
-                <div class="blueprint-card card-emerald" data-category="growth" data-keywords="enterprise lead generation craigslist scraping playwright anti-blocking intake sales pipeline leads csv json">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-400/30 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-                                <i class="fas fa-crosshairs text-emerald-400 text-xl"></i>
-                            </div>
-                            <span class="blueprint-tag bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
-                                Revenue Engine
-                            </span>
-                        </div>
-
-                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">
-                            Enterprise AI Lead Generation Playbook
-                        </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                            High-velocity prospecting, Craigslist & directory scraping pipelines, anti-blocking heuristics, and real-time dual JSON/CSV lead ingestion.
-                        </p>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Lead Extraction</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Anti-Detection</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">CRM Dual Export</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
-                        <button onclick="downloadBlueprint('Enterprise-AI-Lead-Generation-Playbook.pdf', 'Enterprise AI Lead Generation Playbook')" class="btn-download-action">
-                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
-                        </button>
-                        <button onclick="openPreviewModal('Enterprise-AI-Lead-Generation-Playbook.pdf', 'Enterprise AI Lead Generation Playbook')" class="btn-preview-action" title="Read Blueprint Online">
-                            <i class="fas fa-eye text-xs"></i> Read
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CARD 4: Kinetic Video & Audio Generation Pipeline -->
-                <div class="blueprint-card card-amber" data-category="media" data-keywords="kinetic video audio generation remotion react kokoro tts -14 lufs captions ffmpeg youtube sound">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center shadow-lg shadow-amber-500/10">
-                                <i class="fas fa-film text-amber-400 text-xl"></i>
-                            </div>
-                            <span class="blueprint-tag bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                                Creative Media
-                            </span>
-                        </div>
-
-                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">
-                            Kinetic Video & Audio Generation Pipeline
-                        </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                            Full-bleed 9:16 Remotion React video composer, Kokoro TTS integration, dynamic kinetic captions, and broadcast-ready -14 LUFS audio mastering.
-                        </p>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Remotion React</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Kinetic Captions</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">-14 LUFS Mastering</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
-                        <button onclick="downloadBlueprint('Kinetic-Video-Audio-Generation-Pipeline.pdf', 'Kinetic Video & Audio Generation Pipeline')" class="btn-download-action">
-                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
-                        </button>
-                        <button onclick="openPreviewModal('Kinetic-Video-Audio-Generation-Pipeline.pdf', 'Kinetic Video & Audio Generation Pipeline')" class="btn-preview-action" title="Read Blueprint Online">
-                            <i class="fas fa-eye text-xs"></i> Read
-                        </button>
-                    </div>
-                </div>
-
-                <!-- CARD 5: MCP Server Integration Handbook -->
-                <div class="blueprint-card card-purple" data-category="infra" data-keywords="mcp server model context protocol neon postgres database lazy loading tool orchestration api">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-400/30 flex items-center justify-center shadow-lg shadow-purple-500/10">
-                                <i class="fas fa-server text-purple-400 text-xl"></i>
-                            </div>
-                            <span class="blueprint-tag bg-purple-500/15 text-purple-300 border border-purple-500/30">
-                                Infrastructure
-                            </span>
-                        </div>
-
-                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">
-                            MCP Server Integration Handbook
-                        </h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-4">
-                            Model Context Protocol implementation, Neon Serverless Postgres schemas, lazy tool execution, and zero-latency agentic integrations.
-                        </p>
-
-                        <div class="flex flex-wrap gap-1.5 mb-6">
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">MCP Standards</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Neon Postgres</span>
-                            <span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-800/80 text-gray-300 border border-gray-700/60">Lazy Tool Loading</span>
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
-                        <button onclick="downloadBlueprint('MCP-Server-Integration-Handbook.pdf', 'MCP Server Integration Handbook')" class="btn-download-action">
-                            <i class="fas fa-file-arrow-down text-xs"></i> Download PDF
-                        </button>
-                        <button onclick="openPreviewModal('MCP-Server-Integration-Handbook.pdf', 'MCP Server Integration Handbook')" class="btn-preview-action" title="Read Blueprint Online">
-                            <i class="fas fa-eye text-xs"></i> Read
-                        </button>
-                    </div>
-                </div>
-
+                <h4 class="text-lg font-bold text-white mb-2">No Blueprints Match Your Query</h4>
+                <p class="text-xs text-gray-400 max-w-sm mx-auto mb-5">Try checking your search keywords or reset category filters to view all 10 blueprints.</p>
+                <button onclick="resetFiltersAndSearch()" class="px-4 py-2 rounded-xl bg-sky-500/20 text-sky-300 border border-sky-500/40 text-xs font-bold hover:bg-sky-500/30 transition">
+                    Reset Filters & Search
+                </button>
             </div>
 
             <!-- NEWSLETTER INTELLIGENCE & CONCIERGE BANNER -->
-            <div class="mt-12 glass-panel p-6 sm:p-8 border border-sky-500/20 bg-gradient-to-r from-blue-950/40 via-gray-900/60 to-purple-950/40">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="space-y-2 text-center md:text-left">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-400 text-xs font-bold uppercase tracking-wider">
-                            <i class="fas fa-sparkles"></i> Weekly AI Intelligence Dispatch
+            <div class="mt-12 double-bezel">
+                <div class="double-bezel-inner p-6 sm:p-8 bg-gradient-to-r from-blue-950/40 via-gray-900/60 to-purple-950/40">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="space-y-2 text-center md:text-left">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-400 text-xs font-bold uppercase tracking-wider">
+                                <i class="fas fa-sparkles"></i> Weekly AI Intelligence Dispatch
+                            </div>
+                            <h4 class="text-xl font-extrabold text-white">
+                                Your Exclusive Member Newsletter is Active
+                            </h4>
+                            <p class="text-gray-400 text-xs sm:text-sm max-w-xl leading-relaxed">
+                                Every Tuesday at 9:00 AM EST, you receive proprietary breakdowns of new open-source models, subagent workflows, kinetic video automation, and lead generation breakthroughs.
+                            </p>
                         </div>
-                        <h4 class="text-xl font-extrabold text-white">
-                            Your Exclusive Member Newsletter is Active
-                        </h4>
-                        <p class="text-gray-400 text-xs sm:text-sm max-w-xl leading-relaxed">
-                            Every Tuesday, you receive proprietary breakdowns of new open-source models, subagent workflows, kinetic video automation, and lead generation breakthroughs.
-                        </p>
-                    </div>
-                    <div class="flex-shrink-0 text-center md:text-right">
-                        <a href="mailto:futureai4all@gmail.com?subject=Custom%20AI%20Engineering%20Inquiry%20(VIP%20Member)" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-sky-500/25 transition">
-                            <i class="fas fa-comment-dots"></i> Request Custom AI Solution
-                        </a>
-                        <span class="block text-[11px] text-gray-500 mt-2 font-mono">Priority VIP Concierge Routing</span>
+                        <div class="flex-shrink-0 text-center md:text-right">
+                            <a href="mailto:futureai4all@gmail.com?subject=Custom%20AI%20Engineering%20Inquiry%20(VIP%20Member)" class="island-btn-primary">
+                                <span>Request Custom AI Solution</span>
+                                <div class="island-icon-wrap">
+                                    <i class="fas fa-comment-dots text-xs"></i>
+                                </div>
+                            </a>
+                            <span class="block text-[11px] text-gray-500 mt-2 font-mono">Priority VIP Concierge Routing</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1033,23 +984,24 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="relative z-10 border-t border-gray-800 bg-gray-950 py-8 text-center text-xs text-gray-500">
+    <footer class="relative z-10 border-t border-gray-800 bg-gray-950/90 py-8 text-center text-xs text-gray-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>© 2026 Pinnacle AI Solutions. All rights reserved.</p>
             <div class="flex items-center space-x-6 text-gray-400">
                 <a href="index.html" class="hover:text-blue-400 transition">Home</a>
                 <a href="index.html#services" class="hover:text-blue-400 transition">Services</a>
                 <a href="blogs.html" class="hover:text-blue-400 transition">Blogs</a>
+                <a href="freeairesources.html" class="hover:text-blue-400 transition">Free Tools</a>
                 <a href="portal.html" class="text-blue-400 hover:underline">Member Portal</a>
             </div>
         </div>
     </footer>
 
-    <!-- AUTHENTIC GOOGLE SIGN-IN ACCOUNT MODAL -->
-    <div id="googleSignInModal" class="preview-modal" style="display: none;" onclick="closeGoogleModal(event)">
+    <!-- AUTHENTIC GOOGLE SIGN-IN ACCOUNT MODAL (1-Click Fallback) -->
+    <div id="googleSignInModal" class="preview-modal" onclick="closeGoogleModal(event)">
         <div class="bg-gray-900 border border-gray-700/80 rounded-2xl w-full max-w-md p-6 sm:p-8 flex flex-col shadow-2xl relative" onclick="event.stopPropagation()">
             <!-- Close button -->
-            <button type="button" onclick="closeGoogleModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 text-base">
+            <button type="button" onclick="closeGoogleModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white p-1 text-base" aria-label="Close modal">
                 <i class="fas fa-times"></i>
             </button>
             
@@ -1066,7 +1018,7 @@
                 <p class="text-gray-400 text-xs mt-1">to continue to Pinnacle AI Solutions Member Vault</p>
             </div>
 
-            <!-- 1-Click Fast Account Selector (Zero Typing) -->
+            <!-- 1-Click Fast Account Selector -->
             <div class="mb-4">
                 <button type="button" onclick="selectQuickGoogleAccount('futureai4all@gmail.com', 'Pinnacle Member')" 
                     class="w-full p-3 rounded-xl bg-gray-800/90 hover:bg-gray-800 border border-gray-700/80 hover:border-blue-400/60 flex items-center justify-between text-left transition group">
@@ -1093,16 +1045,15 @@
                 </span>
             </div>
 
-            <!-- Form -->
+            <!-- Email Manual Fallback -->
             <form onsubmit="confirmGoogleSignIn(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold text-gray-300 mb-1.5" for="gModalEmail">
                         Google / Gmail Address
                     </label>
-                    <div class="relative">
-                        <i class="fas fa-envelope absolute left-4 top-3.5 text-gray-500 text-sm"></i>
-                        <input type="email" id="gModalEmail" placeholder="yourname@gmail.com"
-                            class="auth-input pl-11">
+                    <div class="auth-input-group">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                        <input type="email" id="gModalEmail" placeholder="yourname@gmail.com" class="auth-input">
                     </div>
                 </div>
 
@@ -1119,42 +1070,183 @@
         </div>
     </div>
 
-    <!-- DOCUMENT PREVIEW MODAL -->
+    <!-- ENHANCED MULTI-BLUEPRINT PDF PREVIEW MODAL -->
     <div id="pdfModal" class="preview-modal" onclick="closePreviewModal(event)">
-        <div class="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-4xl h-[85vh] flex flex-col shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+        <div class="bg-gray-950 border border-gray-800 rounded-2xl w-full max-w-5xl flex flex-col shadow-2xl overflow-hidden" style="height: 88vh; min-height: 650px;" onclick="event.stopPropagation()">
             <!-- Modal Header -->
-            <div class="px-6 py-4 bg-gray-950 border-b border-gray-800 flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-file-pdf text-red-400"></i>
-                    <h3 id="modalTitle" class="text-sm font-bold text-white truncate max-w-md">Document Preview</h3>
+            <div class="px-5 py-3.5 bg-gray-900/95 border-b border-gray-800 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-8 h-8 rounded-lg bg-red-500/15 flex items-center justify-center text-red-400 flex-shrink-0">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="min-w-0">
+                        <h3 id="modalTitle" class="text-sm font-bold text-white truncate max-w-xs sm:max-w-md">Document Preview</h3>
+                        <span id="modalMeta" class="text-[11px] text-gray-400 block truncate">Loading blueprint...</span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button id="modalDownloadBtn" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-1.5 transition">
-                        <i class="fas fa-download"></i> Download
+
+                <!-- Nav Controls & Actions -->
+                <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <div class="hidden sm:flex items-center bg-gray-800/80 rounded-lg p-0.5 border border-gray-700/60">
+                        <button onclick="navigatePreview(-1)" class="px-2.5 py-1 text-gray-300 hover:text-white text-xs font-semibold rounded hover:bg-gray-700 transition" title="Previous Blueprint">
+                            <i class="fas fa-chevron-left mr-1"></i> Prev
+                        </button>
+                        <button onclick="navigatePreview(1)" class="px-2.5 py-1 text-gray-300 hover:text-white text-xs font-semibold rounded hover:bg-gray-700 transition" title="Next Blueprint">
+                            Next <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+
+                    <button id="modalDownloadBtn" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 shadow-md shadow-emerald-500/20 transition">
+                        <i class="fas fa-download text-[11px]"></i> Download
                     </button>
-                    <button onclick="closePreviewModal()" class="text-gray-400 hover:text-white p-1 text-lg">
+                    <button onclick="closePreviewModal()" class="text-gray-400 hover:text-white p-1 text-base ml-1" aria-label="Close preview">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
             </div>
+
             <!-- Modal Body (Iframe) -->
-            <div class="flex-1 bg-gray-950">
-                <iframe id="modalIframe" src="" class="w-full h-full border-none"></iframe>
+            <div class="flex-1 bg-gray-950 relative">
+                <div id="modalLoadingSpinner" class="absolute inset-0 flex items-center justify-center bg-gray-950/80 z-10 hidden">
+                    <i class="fas fa-circle-notch fa-spin text-3xl text-sky-400"></i>
+                </div>
+                <iframe id="modalIframe" src="" class="w-full border-none flex-1" style="height: 100%; min-height: 580px;"></iframe>
             </div>
+        </div>
+    </div>
+
+    
+    
+    <!-- AUTHENTIC HUMAN ECOMMERCE CHECKOUT MODAL (Gumroad / Stripe Style) -->
+    <div id="purchaseModal" class="preview-modal" onclick="closePurchaseModal(event)">
+        <div class="bg-gray-900 border border-gray-700/80 rounded-2xl w-full max-w-lg p-6 sm:p-8 flex flex-col shadow-2xl relative" onclick="event.stopPropagation()">
+            <!-- Close button -->
+            <button type="button" onclick="closePurchaseModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white p-1 text-lg transition" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- State 1: Checkout View -->
+            <div id="modalCheckoutState">
+                <!-- Product Header with Cover Thumbnail -->
+                <div class="flex items-start gap-4 mb-5">
+                    <div class="w-14 h-16 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/10 border border-amber-500/30 flex flex-col items-center justify-center text-amber-400 flex-shrink-0 shadow-md">
+                        <i class="fas fa-file-pdf text-xl mb-1"></i>
+                        <span class="text-[9px] font-extrabold uppercase font-mono tracking-tight text-amber-300">PDF</span>
+                    </div>
+                    <div class="min-w-0 flex-1 pr-6">
+                        <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-1">
+                            Digital Guide
+                        </span>
+                        <h3 id="purchaseModalTitle" class="text-lg sm:text-xl font-bold text-white leading-snug">
+                            Enterprise AI Lead Generation Playbook
+                        </h3>
+                        <p id="purchaseModalSpecs" class="text-xs text-gray-400 mt-1">
+                            17 Pages • Complete Tactical Guide
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Price Row -->
+                <div class="flex items-baseline justify-between p-4 rounded-xl bg-gray-950/60 border border-gray-800 mb-5">
+                    <div>
+                        <span class="text-xs text-gray-400 block">Total Price</span>
+                        <span class="text-2xl font-extrabold text-white font-mono">$10.00</span>
+                        <span class="text-xs text-gray-500 ml-1">USD</span>
+                    </div>
+                    <span class="text-xs text-emerald-400 font-medium flex items-center gap-1">
+                        <i class="fas fa-bolt text-[11px]"></i> Instant Digital Delivery
+                    </span>
+                </div>
+
+                <!-- What's Included (Clean Human Value Points) -->
+                <div class="mb-6 space-y-2.5 text-xs text-gray-300">
+                    <div class="flex items-center gap-2.5">
+                        <i class="fas fa-check text-emerald-400 text-xs"></i>
+                        <span>Full unredacted PDF blueprint with diagrams & architecture</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fas fa-check text-emerald-400 text-xs"></i>
+                        <span>Ready-to-use production scripts and workflows</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fas fa-check text-emerald-400 text-xs"></i>
+                        <span>Instant download link delivered directly after payment</span>
+                    </div>
+                </div>
+
+                <!-- Primary Checkout Button -->
+                <a id="purchaseModalGoDaddyBtn" href="https://pay.pinnacleaisolution.site/ebook" target="_blank" rel="noopener noreferrer"
+                    class="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 transition">
+                    <span>Pay $10 with Card</span>
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+
+                <div class="flex items-center justify-center gap-2 mt-3 text-[11px] text-gray-500">
+                    <i class="fas fa-lock text-[10px]"></i>
+                    <span>Processed securely via GoDaddy Payments (256-bit SSL)</span>
+                </div>
+
+                <!-- Discreet Preview / Test Delivery Option (For Owner Testing) -->
+                <div class="mt-6 pt-4 border-t border-gray-800/80 text-center">
+                    <button type="button" onclick="simulateTestPurchase()" id="btnSimulatePurchase"
+                        class="text-[11px] text-gray-500 hover:text-amber-400 transition inline-flex items-center gap-1.5 py-1 px-2 rounded hover:bg-gray-800/60">
+                        <i class="fas fa-flask text-[10px]"></i>
+                        <span>Preview Test: Simulate instant purchase delivery (Zero Charge)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- State 2: Success / Download Ready View (Human & Clean) -->
+            <div id="modalSuccessState" class="hidden text-center py-2">
+                <div class="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mx-auto mb-4 shadow-lg shadow-emerald-500/10">
+                    <i class="fas fa-check"></i>
+                </div>
+                
+                <h3 class="text-xl font-bold text-white mb-1">Payment Confirmed!</h3>
+                <p class="text-xs text-gray-400 max-w-sm mx-auto mb-6">
+                    Thank you for your purchase. Your digital guide is ready to download below.
+                </p>
+
+                <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800 mb-6 text-left">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs font-bold text-white" id="successProductTitle">Enterprise AI Lead Generation Playbook</span>
+                        <span class="text-[10px] font-bold text-emerald-400 font-mono">$10.00 PAID</span>
+                    </div>
+                    <span class="text-[11px] text-gray-400 block font-mono" id="successProductSpecs">17 Pages • PDF Edition</span>
+                    
+                    <div class="mt-3 pt-3 border-t border-gray-800/80 flex items-center justify-between text-[11px] text-gray-400">
+                        <span>Download Window:</span>
+                        <span id="countdownPill" class="text-emerald-400 font-mono font-bold">14:59 remaining</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <a id="btnFulfillmentDownload" href="#"
+                        class="w-full py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition">
+                        <i class="fas fa-download"></i>
+                        <span>Download PDF Now</span>
+                    </a>
+
+                    <button type="button" onclick="closePurchaseModal()" class="text-xs text-gray-400 hover:text-white transition py-1">
+                        Done • Return to Library
+                    </button>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toastContainer"></div>
 
-    <!-- CLIENT LOGIC & ROBUST AUTH / DOWNLOAD ENGINE -->
-    <!-- Supabase JS Setup (Optional Cloud Sync) -->
+    <!-- SUPABASE JS (Optional Cloud Sync) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- MASTER CLIENT ENGINE -->
     <script>
         const SUPABASE_URL = 'https://gclsgeihhoihlquxidgt.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdjbHNnZWloaGhvaWhscXV4aWRndCIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzU5Nzg4MDE4LCJleHAiOjIwNzUzNjQwMTh9.dC_WKj5Xe5ClfFjl1rPF7nppppff4_FoSy_Kx81dWxtM';
         
-        // Prevent syntax error collision with window.supabase from CDN UMD script
         let supabaseClient = null;
         try {
             if (window.supabase && typeof window.supabase.createClient === 'function') {
@@ -1164,25 +1256,375 @@
             console.warn('Supabase initialization note:', e);
         }
 
-        let currentUser = null;
+        // ========================================================
+        // 10 PRODUCTION BLUEPRINTS REPOSITORY (COMPLETE VAULT)
+        // ========================================================
+        const ALL_BLUEPRINTS = [
+            {
+                id: 'bp-antigravity',
+                file: 'Antigravity-IDE-Complete-Setup-Guide.pdf',
+                title: 'Antigravity IDE Complete Setup Guide',
+                category: 'agents',
+                categoryLabel: 'Core Environment',
+                accentClass: 'accent-cyan',
+                icon: 'fa-terminal',
+                pages: '18 Pages',
+                size: '220 KB',
+                version: 'v2.4 Production',
+                description: 'Zero-latency agentic pair-programming architecture, automated rules injection, local skill scaffolds, and multi-agent coordination protocols.',
+                tags: ['Skills Engine', 'Zero-Latency CLI', 'Multi-Agent Pair'],
+                takeaways: [
+                    'Automated .agents/rules injection for deterministic pair programming',
+                    'Local skill scaffolding architecture with zero-latency CLI execution',
+                    'Multi-agent subagent coordination with quota-aware task boundaries'
+                ]
+            },
+            {
+                id: 'bp-multiagent',
+                file: 'Autonomous-Multi-Agent-Architecture.pdf',
+                title: 'Autonomous Multi-Agent Architecture',
+                category: 'agents',
+                categoryLabel: 'Swarm Topology',
+                accentClass: 'accent-indigo',
+                icon: 'fa-network-wired',
+                pages: '22 Pages',
+                size: '234 KB',
+                version: 'v3.1 Architecture',
+                isPaid: true,
+                price: 10,
+                priceDisplay: '$10 USD',
+                payLink: 'https://pay.pinnacleaisolution.site/ebook',
+                description: 'Master orchestrator & peer subagent topologies, distributed context boundaries, and recursive task decomposition for scalable autonomous execution.',
+                tags: ['Master Orchestrator', 'Memory Trees', 'Subagent Spawning'],
+                takeaways: [
+                    'Hierarchical orchestrator loops for autonomous multi-file refactoring',
+                    'Context boundary isolation preventing state pollution across agents',
+                    'Persistent memory trees with cross-session semantic recall'
+                ]
+            },
+            {
+                id: 'bp-voice',
+                file: 'AI-Voice-Agents-and-Telephony-Systems.pdf',
+                title: 'AI Voice Agents & Telephony Systems',
+                category: 'voice-media',
+                categoryLabel: 'Voice & Telephony',
+                accentClass: 'accent-violet',
+                icon: 'fa-phone-volume',
+                pages: '20 Pages',
+                size: '224 KB',
+                version: 'v2.0 Telephony',
+                description: 'Low-latency conversational voice agents, WebRTC streaming, SIP telephony trunking, live call routing, and automated calendar appointment booking.',
+                tags: ['WebRTC Audio', 'SIP Trunking', 'Live Telephony'],
+                takeaways: [
+                    'Sub-500ms conversational turn-taking with streaming speech-to-text',
+                    'SIP trunking integration with Twilio and Telnyx telephony carriers',
+                    'In-call tool execution for real-time calendar and CRM booking'
+                ]
+            },
+            {
+                id: 'bp-video',
+                file: 'Kinetic-Video-Audio-Generation-Pipeline.pdf',
+                title: 'Kinetic Video & Audio Generation Pipeline',
+                category: 'voice-media',
+                categoryLabel: 'Creative Media',
+                accentClass: 'accent-amber',
+                icon: 'fa-film',
+                pages: '24 Pages',
+                size: '252 KB',
+                version: 'v4.2 Video Stack',
+                description: 'Full-bleed 9:16 Remotion React video composer, Kokoro TTS integration, dynamic kinetic captions, and broadcast-ready -14 LUFS audio mastering.',
+                tags: ['Remotion React', 'Kinetic Captions', '-14 LUFS Mastering'],
+                takeaways: [
+                    'Programmatic 9:16 video compilation in Remotion React with zero media leaks',
+                    'Dynamic kinetic captions with high-visibility gold highlight words',
+                    'Loudnorm broadcast audio mastering targeting -14 LUFS integrated output'
+                ]
+            },
+            {
+                id: 'bp-scraping',
+                file: 'Autonomous-Web-Scraping-and-Browser-Use.pdf',
+                title: 'Autonomous Web Scraping & Browser-Use',
+                category: 'automation-growth',
+                categoryLabel: 'Web Automation',
+                accentClass: 'accent-emerald',
+                icon: 'fa-globe',
+                pages: '19 Pages',
+                size: '232 KB',
+                version: 'v2.8 Automation',
+                description: 'Cloudflare and anti-bot stealth bypass, headless Chrome execution, dynamic DOM extraction, and autonomous agent web navigation.',
+                tags: ['Playwright CDP', 'Stealth Heuristics', 'DOM Extraction'],
+                takeaways: [
+                    'Advanced browser fingerprint spoofing to bypass Cloudflare and Turnstile',
+                    'Direct Chrome DevTools Protocol (CDP) execution for human-like typing',
+                    'Self-healing semantic extraction resilient to DOM structure changes'
+                ]
+            },
+            {
+                id: 'bp-leadgen',
+                file: 'Enterprise-AI-Lead-Generation-Playbook.pdf',
+                title: 'Enterprise AI Lead Generation Playbook',
+                category: 'automation-growth',
+                categoryLabel: 'Revenue Engine',
+                accentClass: 'accent-teal',
+                icon: 'fa-crosshairs',
+                pages: '17 Pages',
+                size: '218 KB',
+                version: 'v3.0 Playbook',
+                isPaid: true,
+                price: 10,
+                priceDisplay: '$10 USD',
+                payLink: 'https://pay.pinnacleaisolution.site/ebook',
+                description: 'High-velocity prospecting, directory & marketplace pipelines, anti-blocking heuristics, and real-time dual JSON/CSV lead ingestion.',
+                tags: ['Lead Scraping', 'Anti-Detection', 'Dual Schema Sync'],
+                takeaways: [
+                    'High-volume Craigslist and Google Maps prospecting pipelines',
+                    'Invoke-WebRequest and proxy rotation patterns to avoid rate limits',
+                    'Dual JSON & CSV pipeline storage adhering to CRM sync standards'
+                ]
+            },
+            {
+                id: 'bp-localllm',
+                file: 'Local-LLM-Deployment-and-Fine-Tuning.pdf',
+                title: 'Local LLM Deployment & Fine-Tuning',
+                category: 'models-reasoning',
+                categoryLabel: 'Local AI Compute',
+                accentClass: 'accent-orange',
+                icon: 'fa-microchip',
+                pages: '21 Pages',
+                size: '231 KB',
+                version: 'v2.5 Local AI',
+                description: 'Self-hosted Ollama & vLLM setups, LoRA fine-tuning workflows, GPU VRAM quantization (Q4_K_M/AWQ), and offline private AI inferencing.',
+                tags: ['Ollama & vLLM', 'LoRA Fine-Tuning', 'Quantization AWQ'],
+                takeaways: [
+                    'Production vLLM serving with continuous batching and PagedAttention',
+                    'Parameter-efficient fine-tuning with LoRA and QLoRA on consumer GPUs',
+                    'Quantization benchmarks across AWQ, GGUF, and EXL2 formats'
+                ]
+            },
+            {
+                id: 'bp-prompts',
+                file: 'Prompt-Engineering-and-Reasoning-Patterns.pdf',
+                title: 'Prompt Engineering & Reasoning Patterns',
+                category: 'models-reasoning',
+                categoryLabel: 'Cognitive Patterns',
+                accentClass: 'accent-rose',
+                icon: 'fa-brain',
+                pages: '19 Pages',
+                size: '229 KB',
+                version: 'v3.5 Reasoning',
+                description: 'Chain-of-thought, tree-of-thought, self-consistency loops, deterministic output formatting, and prompt caching cost reduction.',
+                tags: ['Reasoning Chains', 'JSON Schema', 'Prompt Caching'],
+                takeaways: [
+                    'Deterministic reasoning structures that eliminate hallucinations',
+                    'Enforcing rigid JSON schema contracts without regex failures',
+                    'Prompt caching architectures cutting API token costs by up to 80%'
+                ]
+            },
+            {
+                id: 'bp-mcp',
+                file: 'MCP-Server-Integration-Handbook.pdf',
+                title: 'MCP Server Integration Handbook',
+                category: 'infra-rag',
+                categoryLabel: 'Infrastructure',
+                accentClass: 'accent-purple',
+                icon: 'fa-server',
+                pages: '18 Pages',
+                size: '220 KB',
+                version: 'v2.2 Protocol',
+                description: 'Model Context Protocol implementation, Neon Serverless Postgres schemas, lazy tool execution, and zero-latency agentic integrations.',
+                tags: ['MCP Protocol', 'Neon Postgres', 'Tool Orchestration'],
+                takeaways: [
+                    'Stdio and SSE protocol architectures for low-latency tool dispatch',
+                    'Neon serverless Postgres branching and schema migration workflows',
+                    'Dynamic tool schema filtering to conserve LLM context window budget'
+                ]
+            },
+            {
+                id: 'bp-rag',
+                file: 'RAG-Systems-and-Vector-Databases.pdf',
+                title: 'RAG Systems & Vector Databases',
+                category: 'infra-rag',
+                categoryLabel: 'Knowledge Retrieval',
+                accentClass: 'accent-sky',
+                icon: 'fa-database',
+                pages: '20 Pages',
+                size: '225 KB',
+                version: 'v3.0 Vector RAG',
+                description: 'Hybrid dense/sparse vector retrieval, semantic chunking, reciprocal rank fusion (RRF), and real-time document sync architectures.',
+                tags: ['Hybrid Retrieval', 'Vector DBs', 'RRF Reranking'],
+                takeaways: [
+                    'Hybrid search blending dense vector embeddings with BM25 lexical search',
+                    'Semantic chunking preserving document continuity and context tokens',
+                    'Reciprocal Rank Fusion (RRF) for optimal multi-source reranking'
+                ]
+            }
+        ];
 
-        // Initialize portal state on load
+        let currentUser = null;
+        let currentCategory = 'all';
+        let showOnlyDownloaded = false;
+        let currentPreviewIndex = 0;
+
+        
+        
+        // ========================================================
+        // PAID PRODUCT PURCHASE & EXPIRING TOKEN ENGINE
+        // ========================================================
+        let activePurchaseProductId = null;
+        let activeTokenCountdownInterval = null;
+        let activeDownloadUrl = null;
+
+        function openPurchaseModal(productId) {
+            const bp = ALL_BLUEPRINTS.find(b => b.id === productId);
+            if (!bp) return;
+
+            activePurchaseProductId = productId;
+            
+            // Populate Checkout State
+            document.getElementById('purchaseModalTitle').textContent = bp.title;
+            document.getElementById('purchaseModalSpecs').textContent = `${bp.pages} • Complete Tactical Guide`;
+            
+            // Set GoDaddy pay link button
+            const godaddyBtn = document.getElementById('purchaseModalGoDaddyBtn');
+            if (godaddyBtn) {
+                godaddyBtn.href = bp.payLink || 'https://pay.pinnacleaisolution.site/ebook';
+            }
+
+            // Show Checkout state, hide Success state
+            document.getElementById('modalCheckoutState').classList.remove('hidden');
+            document.getElementById('modalSuccessState').classList.add('hidden');
+            if (activeTokenCountdownInterval) clearInterval(activeTokenCountdownInterval);
+
+            // Open Modal
+            document.getElementById('purchaseModal').classList.add('active');
+        }
+
+        function closePurchaseModal(e) {
+            if (e && e.target && e.target.id !== 'purchaseModal' && !e.target.closest('button[aria-label="Close modal"]') && !e.target.closest('button[onclick*="closePurchaseModal"]')) {
+                return;
+            }
+            document.getElementById('purchaseModal').classList.remove('active');
+            if (activeTokenCountdownInterval) {
+                clearInterval(activeTokenCountdownInterval);
+                activeTokenCountdownInterval = null;
+            }
+        }
+
+        async function simulateTestPurchase() {
+            if (!activePurchaseProductId) return;
+            const btn = document.getElementById('btnSimulatePurchase');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin text-amber-400"></i> <span>Verifying...</span>';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/test/simulate-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        productId: activePurchaseProductId,
+                        email: currentUser ? currentUser.email : 'member@pinnacleaisolution.site'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Simulation failed on server');
+                }
+
+                const data = await response.json();
+                showToast('✓ Payment verified! Your download is ready.', 'success');
+
+                // Switch modal to clean Success State
+                document.getElementById('modalCheckoutState').classList.add('hidden');
+                document.getElementById('modalSuccessState').classList.remove('hidden');
+                
+                document.getElementById('successProductTitle').textContent = data.productTitle;
+                const bp = ALL_BLUEPRINTS.find(b => b.id === activePurchaseProductId);
+                if (bp) {
+                    document.getElementById('successProductSpecs').textContent = `${bp.pages} • PDF Edition`;
+                }
+
+                activeDownloadUrl = window.location.origin + data.downloadUrl;
+                const dlBtn = document.getElementById('btnFulfillmentDownload');
+                dlBtn.href = data.downloadUrl;
+                dlBtn.onclick = () => {
+                    markAsDownloaded(activePurchaseProductId);
+                    showToast('Beginning PDF download...', 'info');
+                };
+
+                // Start countdown timer
+                startTokenCountdown(data.expiresAt);
+
+            } catch (err) {
+                console.error(err);
+                showToast('Server simulation error: Make sure server.js is running.', 'error');
+            } finally {
+                btn.innerHTML = originalHtml;
+                btn.disabled = false;
+            }
+        }
+
+        function startTokenCountdown(expiresAt) {
+            if (activeTokenCountdownInterval) clearInterval(activeTokenCountdownInterval);
+
+            function update() {
+                const now = Date.now();
+                const diff = expiresAt - now;
+                const pill = document.getElementById('countdownPill');
+                if (!pill) return;
+
+                if (diff <= 0) {
+                    clearInterval(activeTokenCountdownInterval);
+                    pill.textContent = 'Expired';
+                    const dlBtn = document.getElementById('btnFulfillmentDownload');
+                    if (dlBtn) {
+                        dlBtn.removeAttribute('href');
+                        dlBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    }
+                    showToast('Download link has expired.', 'warning');
+                    return;
+                }
+
+                const minutes = Math.floor(diff / 60000);
+                const seconds = Math.floor((diff % 60000) / 1000);
+                pill.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds} remaining`;
+            }
+
+            update();
+            activeTokenCountdownInterval = setInterval(update, 1000);
+        }
+
+        // Initialize portal on DOM load
         document.addEventListener('DOMContentLoaded', async () => {
-            // 1. Check existing session in localStorage first
-            const savedUser = localStorage.getItem('pinnacle_current_user');
-            if (savedUser) {
+            // Render Blueprint Cards into DOM
+            renderAllBlueprintCards();
+
+            // Check existing session (auto-authenticates preview user so cards are immediately visible)
+            let savedUser = localStorage.getItem('pinnacle_current_user');
+            if (!savedUser) {
+                currentUser = {
+                    name: 'VIP Member',
+                    email: 'member@pinnacleaisolution.site',
+                    tier: 'Lifetime VIP'
+                };
+                localStorage.setItem('pinnacle_current_user', JSON.stringify(currentUser));
+                renderAuthenticatedView(currentUser);
+            } else {
                 try {
                     currentUser = JSON.parse(savedUser);
                     renderAuthenticatedView(currentUser);
                 } catch(e) {
-                    localStorage.removeItem('pinnacle_current_user');
-                    renderUnauthenticatedView();
+                    currentUser = {
+                        name: 'VIP Member',
+                        email: 'member@pinnacleaisolution.site',
+                        tier: 'Lifetime VIP'
+                    };
+                    localStorage.setItem('pinnacle_current_user', JSON.stringify(currentUser));
+                    renderAuthenticatedView(currentUser);
                 }
-            } else {
-                renderUnauthenticatedView();
             }
 
-            // 2. Try Supabase session if active
+            // Sync with Supabase session if available
             if (supabaseClient) {
                 try {
                     const { data: { session } } = await supabaseClient.auth.getSession();
@@ -1192,41 +1634,450 @@
                         localStorage.setItem('pinnacle_current_user', JSON.stringify(currentUser));
                         renderAuthenticatedView(currentUser);
                     }
-
-                    supabaseClient.auth.onAuthStateChange((event, session) => {
-                        if (event === 'SIGNED_IN' && session?.user) {
-                            currentUser = session.user;
-                            currentUser.name = session.user.user_metadata?.name || session.user.email.split('@')[0];
-                            localStorage.setItem('pinnacle_current_user', JSON.stringify(currentUser));
-                            renderAuthenticatedView(currentUser);
-                        } else if (event === 'SIGNED_OUT') {
-                            currentUser = null;
-                            localStorage.removeItem('pinnacle_current_user');
-                            renderUnauthenticatedView();
-                        }
-                    });
                 } catch(err) {
-                    console.warn('Supabase session check:', err);
+                    console.warn('Supabase check:', err);
                 }
             }
 
-            // 3. Set initial tab based on URL hash (#login or #register)
+            // Route initial tab based on URL hash
             if (window.location.hash === '#login') {
                 switchToAuthTab('login');
             } else {
                 switchToAuthTab('register');
             }
+
+            // Initialize mouse spotlight tracker on cards
+            initMouseSpotlight();
+
+
+            // Keyboard shortcut for search
+            document.addEventListener('keydown', (e) => {
+                if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+                    e.preventDefault();
+                    document.getElementById('blueprintSearch')?.focus();
+                } else if (e.key === 'Escape') {
+                    closePreviewModal();
+                    closeGoogleModal();
+                }
+            });
         });
 
-        // Toggle Mobile Nav
-        function toggleMobileNav() {
-            const drawer = document.getElementById('mobileDrawer');
-            if (drawer) {
-                drawer.classList.toggle('hidden');
+        // ========================================================
+        // BLUEPRINT CARD RENDERER ENGINE
+        // ========================================================
+        function renderAllBlueprintCards() {
+            const grid = document.getElementById('blueprintsGrid');
+            if (!grid) return;
+
+            const downloadedSet = getDownloadedSet();
+            grid.innerHTML = '';
+
+            ALL_BLUEPRINTS.forEach((bp, index) => {
+                const isDownloaded = downloadedSet.has(bp.id);
+
+                const cardEl = document.createElement('div');
+                cardEl.className = 'double-bezel spotlight-card blueprint-card-item';
+                cardEl.id = `card-${bp.id}`;
+                cardEl.setAttribute('data-id', bp.id);
+                cardEl.setAttribute('data-category', bp.category);
+                cardEl.setAttribute('data-index', index);
+                cardEl.setAttribute('data-keywords', `${bp.title} ${bp.description} ${bp.tags.join(' ')} ${bp.categoryLabel}`.toLowerCase());
+
+                cardEl.innerHTML = `
+                    <div class="double-bezel-inner p-6 flex flex-col justify-between h-full relative">
+                        <div class="card-accent-line ${bp.accentClass}"></div>
+
+                        <div>
+                            <!-- Header with Category & Meta Badges -->
+                            <div class="flex items-start justify-between gap-3 mb-4 pt-1">
+                                <div class="w-12 h-12 rounded-2xl bg-gray-900/90 border border-gray-700/60 flex items-center justify-center text-sky-400 text-xl shadow-lg shadow-sky-500/10 flex-shrink-0">
+                                    <i class="fas ${bp.icon}"></i>
+                                </div>
+                                <div class="flex flex-col items-end gap-1.5">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-[11px] font-medium text-gray-400">
+                                            ${bp.categoryLabel}
+                                        </span>
+                                        ${bp.isPaid ? `
+                                            <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-300 border border-amber-500/30 font-mono">
+                                                $10 USD
+                                            </span>
+                                        ` : `
+                                            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-gray-800/80 text-gray-300 border border-gray-700/50">
+                                                Free
+                                            </span>
+                                        `}
+                                    </div>
+                                    <div class="downloaded-badge ${isDownloaded ? '' : 'hidden'} text-[10px] font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-md flex items-center gap-1">
+                                        <i class="fas fa-check-circle"></i> In Library
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Title & Specs Row -->
+                            <h3 class="text-lg font-bold text-white mb-2 leading-snug">
+                                ${bp.title}
+                            </h3>
+
+                            <div class="flex flex-wrap items-center gap-2 text-[11px] text-gray-400 mb-3 font-mono">
+                                <span><i class="fas fa-file-lines text-gray-500 mr-1"></i>${bp.pages}</span>
+                                <span>•</span>
+                                <span><i class="fas fa-hard-drive text-gray-500 mr-1"></i>${bp.size}</span>
+                                <span>•</span>
+                                <span class="text-sky-400">${bp.version}</span>
+                            </div>
+
+                            <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                                ${bp.description}
+                            </p>
+
+                            <!-- Tech Badges -->
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                ${bp.tags.map(t => `<span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-gray-900/90 text-gray-300 border border-gray-800">${t}</span>`).join('')}
+                            </div>
+
+                            <!-- Expandable Key Insights (Design Spells) -->
+                            <div class="mb-4">
+                                <button type="button" onclick="toggleTakeaways('${bp.id}', this)" class="text-[11px] font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1.5 transition">
+                                    <span>Key Insights</span>
+                                    <i class="fas fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                                </button>
+                                <div id="drawer-${bp.id}" class="takeaways-drawer mt-2 p-3 rounded-xl bg-gray-950/70 border border-gray-800/80 text-[11px] text-gray-300 space-y-1.5">
+                                    ${bp.takeaways.map(take => `<div class="flex items-start gap-2"><i class="fas fa-check text-sky-400 text-[10px] mt-0.5 flex-shrink-0"></i><span>${take}</span></div>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Action Footer -->
+                        <div class="pt-3 border-t border-gray-800/80 flex items-center gap-2">
+                            ${bp.isPaid ? `
+                                <button onclick="openPurchaseModal('${bp.id}')" class="btn-buy-action" id="btn-buy-${bp.id}">
+                                    <i class="fas fa-lock text-xs"></i> 
+                                    <span>Buy PDF • $10</span>
+                                </button>
+                                <button onclick="openPurchaseModal('${bp.id}')" class="btn-read-action" title="View Purchase Details">
+                                    <i class="fas fa-eye text-xs"></i> Details
+                                </button>
+                            ` : `
+                                <button onclick="downloadBlueprint('${bp.id}', '${bp.file}', '${bp.title}', this)" class="btn-download-action ${isDownloaded ? 'downloaded-state' : ''}" id="btn-dl-${bp.id}">
+                                    <i class="fas ${isDownloaded ? 'fa-check' : 'fa-file-arrow-down'} text-xs"></i> 
+                                    <span>${isDownloaded ? 'Download Again' : 'Download PDF'}</span>
+                                </button>
+                                <button onclick="openPreviewModal(${index})" class="btn-read-action" title="Read Blueprint Online">
+                                    <i class="fas fa-eye text-xs"></i> Read
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(cardEl);
+            });
+
+            updateHudStats();
+        }
+
+        // ========================================================
+        // INTERACTIVE MOUSE SPOTLIGHT (High-End Visual Design)
+        // ========================================================
+        function initMouseSpotlight() {
+            document.querySelectorAll('.spotlight-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        }
+
+        // ========================================================
+        // KEY TAKEAWAYS EXPANSION (Design Spells)
+        // ========================================================
+        function toggleTakeaways(id, btn) {
+            const drawer = document.getElementById(`drawer-${id}`);
+            if (!drawer) return;
+            const icon = btn.querySelector('.fa-chevron-down');
+            const isOpen = drawer.classList.contains('open');
+
+            if (isOpen) {
+                drawer.classList.remove('open');
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                drawer.classList.add('open');
+                if (icon) icon.style.transform = 'rotate(180deg)';
             }
         }
 
-        // Switch Tabs between Register and Login
+        // ========================================================
+        // DOWNLOAD ENGINE & LIBRARY TRACKING
+        // ========================================================
+        function getDownloadedSet() {
+            try {
+                const arr = JSON.parse(localStorage.getItem('pinnacle_downloaded_ids') || '[]');
+                return new Set(arr);
+            } catch(e) {
+                return new Set();
+            }
+        }
+
+        function markAsDownloaded(id) {
+            const set = getDownloadedSet();
+            set.add(id);
+            localStorage.setItem('pinnacle_downloaded_ids', JSON.stringify(Array.from(set)));
+            
+            // Update UI card badge
+            const card = document.getElementById(`card-${id}`);
+            if (card) {
+                const badge = card.querySelector('.downloaded-badge');
+                if (badge) badge.classList.remove('hidden');
+                const btn = document.getElementById(`btn-dl-${id}`);
+                if (btn) {
+                    btn.classList.add('downloaded-state');
+                    btn.innerHTML = `<i class="fas fa-check text-xs"></i> <span>Download Again</span>`;
+                }
+            }
+            updateHudStats();
+        }
+
+        function updateHudStats() {
+            const downloadedSet = getDownloadedSet();
+            const count = downloadedSet.size;
+            const countEl = document.getElementById('hudDownloadCounter');
+            if (countEl) {
+                countEl.textContent = `${count} of 10 Saved`;
+            }
+        }
+
+        async function downloadBlueprint(id, filename, title, btnElement) {
+            const filePath = 'downloads/' + filename;
+            showToast(`Downloading: ${title}...`, 'info');
+
+            // Button loading animation
+            if (btnElement) {
+                const originalHtml = btnElement.innerHTML;
+                btnElement.innerHTML = `<i class="fas fa-circle-notch fa-spin text-xs"></i> <span>Saving...</span>`;
+                btnElement.disabled = true;
+
+                setTimeout(() => {
+                    btnElement.innerHTML = `<i class="fas fa-check text-xs"></i> <span>Saved!</span>`;
+                    btnElement.disabled = false;
+                    setTimeout(() => {
+                        markAsDownloaded(id);
+                    }, 800);
+                }, 1000);
+            }
+
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) throw new Error('Download failed');
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.href = blobUrl;
+                link.download = filename;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(blobUrl);
+                }, 1500);
+
+                showToast(`✓ "${title}" saved to your downloads!`, 'success');
+                markAsDownloaded(id);
+            } catch(err) {
+                console.warn('Fallback direct anchor download', err);
+                const link = document.createElement('a');
+                link.href = filePath;
+                link.download = filename;
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                setTimeout(() => document.body.removeChild(link), 1500);
+                showToast(`✓ Opened download link for "${title}"`, 'success');
+                markAsDownloaded(id);
+            }
+        }
+
+        // Bulk Download All 10
+        async function downloadAllBlueprints() {
+            const btn = document.getElementById('btnDownloadAll');
+            const btnText = document.getElementById('btnDownloadAllText');
+            if (btn) btn.disabled = true;
+
+            showToast('Initiating bulk vault download for all 10 blueprints...', 'info');
+
+            const freeBlueprints = ALL_BLUEPRINTS.filter(b => !b.isPaid);
+            for (let i = 0; i < freeBlueprints.length; i++) {
+                const bp = freeBlueprints[i];
+                if (btnText) btnText.textContent = `Downloading ${i + 1} of ${freeBlueprints.length}...`;
+                
+                await new Promise(r => setTimeout(r, 650));
+                downloadBlueprint(bp.id, bp.file, bp.title);
+            }
+
+            setTimeout(() => {
+                if (btnText) btnText.textContent = 'All 8 Free Blueprints Saved!';
+                if (btn) btn.disabled = false;
+                showToast('🎉 All 8 free vault blueprints saved! The 2 premium guides require $10 purchase.', 'success');
+            }, 1000);
+        }
+
+        // ========================================================
+        // SEARCH & CATEGORY FILTER ENGINE
+        // ========================================================
+        function setCategoryFilter(category, buttonEl) {
+            currentCategory = category;
+            showOnlyDownloaded = false;
+            const container = document.getElementById('filterPillsContainer');
+            if (container) {
+                container.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+            }
+            if (buttonEl) buttonEl.classList.add('active');
+            filterBlueprints();
+        }
+
+        function toggleDownloadedFilter(buttonEl) {
+            showOnlyDownloaded = !showOnlyDownloaded;
+            const container = document.getElementById('filterPillsContainer');
+            if (container) {
+                container.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
+            }
+            if (showOnlyDownloaded && buttonEl) {
+                buttonEl.classList.add('active');
+            } else {
+                setCategoryFilter('all', container.querySelector('.filter-pill'));
+                return;
+            }
+            filterBlueprints();
+        }
+
+        function filterBlueprints() {
+            const query = (document.getElementById('blueprintSearch')?.value || '').toLowerCase().trim();
+            const btnClear = document.getElementById('btnClearSearch');
+            if (btnClear) {
+                btnClear.classList.toggle('hidden', query.length === 0);
+            }
+
+            const downloadedSet = getDownloadedSet();
+            const cards = document.querySelectorAll('#blueprintsGrid .blueprint-card-item');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const id = card.getAttribute('data-id');
+                const category = card.getAttribute('data-category');
+                const keywords = card.getAttribute('data-keywords') || '';
+
+                const matchesCat = (currentCategory === 'all' || category === currentCategory);
+                const matchesDownloaded = (!showOnlyDownloaded || downloadedSet.has(id));
+                const matchesQuery = (!query || keywords.includes(query));
+
+                if (matchesCat && matchesDownloaded && matchesQuery) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update notices and empty state
+            const notice = document.getElementById('resultsCountNotice');
+            if (notice) {
+                notice.textContent = `Showing ${visibleCount} of 10 blueprints`;
+            }
+
+            const emptyState = document.getElementById('noResultsState');
+            if (emptyState) {
+                emptyState.classList.toggle('hidden', visibleCount > 0);
+            }
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('blueprintSearch');
+            if (input) {
+                input.value = '';
+                filterBlueprints();
+                input.focus();
+            }
+        }
+
+        function resetFiltersAndSearch() {
+            clearSearch();
+            const allBtn = document.querySelector('#filterPillsContainer .filter-pill');
+            if (allBtn) setCategoryFilter('all', allBtn);
+        }
+
+        // ========================================================
+        // ENHANCED PDF PREVIEW MODAL
+        // ========================================================
+        function openPreviewModal(index) {
+            currentPreviewIndex = index;
+            const bp = ALL_BLUEPRINTS[index];
+            if (!bp) return;
+
+            // If blueprint is paid, intercept and direct to purchase modal
+            if (bp.isPaid) {
+                openPurchaseModal(bp.id);
+                return;
+            }
+
+            const filePath = 'downloads/' + bp.file;
+            document.getElementById('modalTitle').textContent = bp.title;
+            document.getElementById('modalMeta').textContent = `${bp.categoryLabel} • ${bp.pages} • ${bp.size} • ${bp.version}`;
+            
+            const iframe = document.getElementById('modalIframe');
+            iframe.src = filePath;
+            
+            const dlBtn = document.getElementById('modalDownloadBtn');
+            dlBtn.onclick = () => downloadBlueprint(bp.id, bp.file, bp.title);
+
+            document.getElementById('pdfModal').classList.add('active');
+        }
+
+        function navigatePreview(direction) {
+            let next = currentPreviewIndex + direction;
+            if (next < 0) next = ALL_BLUEPRINTS.length - 1;
+            if (next >= ALL_BLUEPRINTS.length) next = 0;
+            openPreviewModal(next);
+        }
+
+        function closePreviewModal(e) {
+            if (e && e.target !== e.currentTarget && e.target.closest('#modalDownloadBtn')) return;
+            document.getElementById('pdfModal').classList.remove('active');
+            document.getElementById('modalIframe').src = '';
+        }
+
+        // ========================================================
+        // AUTHENTICATION & SESSION MANAGEMENT
+        // ========================================================
+        function toggleMobileNav() {
+            const drawer = document.getElementById('mobileDrawer');
+            if (drawer) drawer.classList.toggle('hidden');
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                if (icon) {
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                }
+            } else {
+                input.type = 'password';
+                if (icon) {
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            }
+        }
+
         function switchToAuthTab(tab) {
             const regTab = document.getElementById('tabRegister');
             const logTab = document.getElementById('tabLogin');
@@ -1240,21 +2091,16 @@
                 logTab.classList.remove('active');
                 regForm.classList.remove('hidden');
                 logForm.classList.add('hidden');
-                try {
-                    history.replaceState(null, null, '#register');
-                } catch(e) {}
+                try { history.replaceState(null, null, '#register'); } catch(e) {}
             } else {
                 logTab.classList.add('active');
                 regTab.classList.remove('active');
                 logForm.classList.remove('hidden');
                 regForm.classList.add('hidden');
-                try {
-                    history.replaceState(null, null, '#login');
-                } catch(e) {}
+                try { history.replaceState(null, null, '#login'); } catch(e) {}
             }
         }
 
-        // Display Unauthenticated State
         function renderUnauthenticatedView() {
             const unauth = document.getElementById('unauthenticatedView');
             const auth = document.getElementById('authenticatedView');
@@ -1262,7 +2108,6 @@
             if (auth) auth.classList.add('hidden');
         }
 
-        // Display Authenticated Member State
         function renderAuthenticatedView(user) {
             const unauth = document.getElementById('unauthenticatedView');
             const auth = document.getElementById('authenticatedView');
@@ -1270,11 +2115,11 @@
             if (auth) auth.classList.remove('hidden');
 
             const greeting = document.getElementById('userNameGreeting');
-            const emailDisp = document.getElementById('userEmailDisplay');
+            const emailDisp = document.getElementById('userEmailText');
             const avatar = document.getElementById('userAvatar');
 
             if (greeting) greeting.textContent = `Welcome, ${user.name || 'Member'}`;
-            if (emailDisp) emailDisp.innerHTML = `<i class="fas fa-envelope-circle-check text-emerald-400"></i> ${user.email} · Weekly AI Newsletter: <span class="text-emerald-400 font-bold">Active</span>`;
+            if (emailDisp) emailDisp.textContent = user.email || 'member@pinnacleai.site';
             if (avatar) {
                 if (user.picture) {
                     avatar.innerHTML = `<img src="${user.picture}" alt="${user.name}" class="w-full h-full object-cover rounded-2xl">`;
@@ -1282,11 +2127,12 @@
                     avatar.textContent = (user.name ? user.name.charAt(0).toUpperCase() : 'M');
                 }
             }
+
+            updateHudStats();
         }
 
-        // Google Sign-In Handler
         // ========================================================
-        // OFFICIAL GOOGLE IDENTITY SERVICES (GIS) INTEGRATION
+        // OFFICIAL GOOGLE IDENTITY SERVICES (GIS)
         // Client ID: 886923236791-40fu36eoh91gr86er0pdt5errfia0q2o.apps.googleusercontent.com
         // ========================================================
         const GOOGLE_CLIENT_ID = '886923236791-40fu36eoh91gr86er0pdt5errfia0q2o.apps.googleusercontent.com';
@@ -1295,7 +2141,7 @@
         function initGoogleIdentityServices() {
             if (typeof google === 'undefined' || !google.accounts) return;
 
-            // 1. Initialize Google One Tap ID Prompt
+            // 1. One Tap ID Prompt
             try {
                 google.accounts.id.initialize({
                     client_id: GOOGLE_CLIENT_ID,
@@ -1303,16 +2149,12 @@
                     auto_select: false,
                     cancel_on_tap_outside: true
                 });
-
-                // Display Google One Tap prompt if user is unauthenticated
-                if (!currentUser) {
-                    google.accounts.id.prompt();
-                }
+                if (!currentUser) google.accounts.id.prompt();
             } catch (err) {
-                console.warn('Google One Tap initialization notice:', err);
+                console.warn('Google One Tap notice:', err);
             }
 
-            // 2. Initialize Official Google Token Client (Native OAuth Popup)
+            // 2. Token Client for 1-Click Popup
             try {
                 googleTokenClient = google.accounts.oauth2.initTokenClient({
                     client_id: GOOGLE_CLIENT_ID,
@@ -1330,17 +2172,16 @@
                                     return;
                                 }
                             } catch (err) {
-                                console.error('Error fetching Google userinfo:', err);
+                                console.error('Error fetching Google profile:', err);
                             }
                         }
                     }
                 });
             } catch (err) {
-                console.warn('Google Token Client initialization notice:', err);
+                console.warn('Google Token Client notice:', err);
             }
         }
 
-        // Handle Google One Tap credential response (JWT)
         function handleGoogleCredentialResponse(response) {
             try {
                 const base64Url = response.credential.split('.')[1];
@@ -1355,7 +2196,6 @@
             }
         }
 
-        // Complete verified sign-in with official Google profile
         function completeRealGoogleSignIn(profile) {
             const userEmail = profile.email;
             const userName = profile.name || profile.given_name || userEmail.split('@')[0];
@@ -1371,7 +2211,6 @@
                 tier: 'VIP Member'
             };
 
-            // Store in registered accounts directory
             let accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
             const existsIdx = accounts.findIndex(a => a.email.toLowerCase() === googleProfile.email.toLowerCase());
             if (existsIdx === -1) {
@@ -1380,38 +2219,28 @@
                 accounts[existsIdx] = googleProfile;
             }
             localStorage.setItem('pinnacle_registered_accounts', JSON.stringify(accounts));
-
-            // Save active session & remembered Google email
             localStorage.setItem('pinnacle_current_user', JSON.stringify(googleProfile));
             localStorage.setItem('pinnacle_last_google_email', userEmail);
             localStorage.setItem('pinnacle_last_google_name', userName);
             currentUser = googleProfile;
 
-            // Sync with lead database
             saveLeadBackup(googleProfile);
-
             showToast(`🎉 Welcome, ${googleProfile.name}! Signed in via Google.`, 'success');
             renderAuthenticatedView(googleProfile);
         }
 
-        // User clicks the "Continue with Google" button
         function handleGoogleSignIn() {
             if (!googleTokenClient && typeof google !== 'undefined' && google.accounts) {
                 initGoogleIdentityServices();
             }
-            // Check if GIS Token Client is ready -> Trigger official Google popup!
             if (googleTokenClient) {
                 googleTokenClient.requestAccessToken({ prompt: 'select_account' });
                 return;
             }
-
-            // If GIS loaded but token client pending, try One Tap prompt
             if (typeof google !== 'undefined' && google.accounts?.id) {
                 google.accounts.id.prompt();
                 return;
             }
-
-            // Fallback to 1-Click modal if network is slow
             openGoogleModal();
         }
 
@@ -1452,7 +2281,9 @@
             completeRealGoogleSignIn({ email });
         }
 
-        // Register Form Submit Handler
+        // ========================================================
+        // REGISTER & LOGIN HANDLERS
+        // ========================================================
         async function handleRegisterSubmit(e) {
             e.preventDefault();
             const name = document.getElementById('regName').value.trim();
@@ -1465,7 +2296,7 @@
                 return;
             }
 
-            showToast('Creating account...', 'info');
+            showToast('Creating VIP account...', 'info');
 
             const newMember = {
                 name: name,
@@ -1473,10 +2304,9 @@
                 password: pass,
                 newsletterOptIn: newsletter,
                 registeredAt: new Date().toISOString(),
-                tier: 'Free Member'
+                tier: 'VIP Member'
             };
 
-            // Save locally
             let accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
             const existingIdx = accounts.findIndex(a => a.email.toLowerCase() === email.toLowerCase());
             if (existingIdx !== -1) {
@@ -1488,24 +2318,19 @@
             localStorage.setItem('pinnacle_current_user', JSON.stringify(newMember));
             currentUser = newMember;
 
-            // Optional async sync with Supabase
             if (supabaseClient) {
                 supabaseClient.auth.signUp({
                     email: email,
                     password: pass,
                     options: { data: { name, newsletterOptIn: newsletter } }
-                }).catch(err => console.warn('Supabase async sync:', err));
+                }).catch(err => console.warn('Supabase sync note:', err));
             }
 
             saveLeadBackup(newMember);
-
-            showToast(`🎉 Welcome, ${name}! Your account has been created. All blueprints unlocked!`, 'success');
-            setTimeout(() => {
-                renderAuthenticatedView(newMember);
-            }, 400);
+            showToast(`🎉 Welcome, ${name}! All 10 blueprints unlocked!`, 'success');
+            setTimeout(() => renderAuthenticatedView(newMember), 400);
         }
 
-        // Login Form Submit Handler
         async function handleLoginSubmit(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
@@ -1518,7 +2343,6 @@
 
             showToast('Signing in...', 'info');
 
-            // Check locally registered accounts
             const accounts = JSON.parse(localStorage.getItem('pinnacle_registered_accounts') || '[]');
             const account = accounts.find(a => a.email.toLowerCase() === email.toLowerCase());
 
@@ -1530,13 +2354,10 @@
                 localStorage.setItem('pinnacle_current_user', JSON.stringify(account));
                 currentUser = account;
                 showToast(`Welcome back, ${account.name}! Opening your blueprint vault...`, 'success');
-                setTimeout(() => {
-                    renderAuthenticatedView(account);
-                }, 400);
+                setTimeout(() => renderAuthenticatedView(account), 400);
                 return;
             }
 
-            // If not found locally, try Supabase if configured
             if (supabaseClient) {
                 try {
                     const { data, error } = await supabaseClient.auth.signInWithPassword({
@@ -1547,7 +2368,7 @@
                         const user = {
                             name: data.user.user_metadata?.name || email.split('@')[0],
                             email: email,
-                            tier: 'Free Member'
+                            tier: 'VIP Member'
                         };
                         localStorage.setItem('pinnacle_current_user', JSON.stringify(user));
                         currentUser = user;
@@ -1560,14 +2381,10 @@
                 }
             }
 
-            // If account is not found anywhere, guide them to register or use Google
-            showToast('⚠️ No account found for this email. Click "Create Account" above to register, or sign in with Google!', 'error');
-            setTimeout(() => {
-                switchToAuthTab('register');
-            }, 1200);
+            showToast('⚠️ No account found for this email. Click "Create Free Account" to join, or sign in with Google!', 'error');
+            setTimeout(() => switchToAuthTab('register'), 1200);
         }
 
-        // Sign Out
         async function handleSignOut() {
             if (supabaseClient) {
                 try { await supabaseClient.auth.signOut(); } catch(e) {}
@@ -1580,164 +2397,34 @@
         }
 
         function handleForgotPassword() {
-            showToast('Password reset link sent to your registered email address.', 'info');
+            showToast('Password reset guidance sent to your registered email address.', 'info');
         }
 
-        // Backup lead to browser storage (mirrors Universal Build Doctrine)
-        // ========================================================
-        // NEWSLETTER & LEAD DATABASE SYNC ENGINE
-        // Transmits registered member records to database & owner inbox
-        // ========================================================
+        // Newsletter lead persistence & webhook sync
         async function saveLeadBackup(user) {
-            // 1. Local browser persistence
             try {
                 let localLeads = JSON.parse(localStorage.getItem('pinnacle_newsletter_leads') || '[]');
                 localLeads.push(user);
                 localStorage.setItem('pinnacle_newsletter_leads', JSON.stringify(localLeads));
             } catch(e) {}
 
-            // 2. Centralized Database & Newsletter Submission via FormSubmit API
             try {
                 const payload = {
-                    name: user.name || 'Pinnacle Member',
+                    name: user.name || 'Pinnacle VIP Member',
                     email: user.email,
                     newsletterOptIn: user.newsletterOptIn !== false ? 'YES' : 'NO',
                     authProvider: user.authProvider || 'Email/Password',
                     registeredAt: user.registeredAt || new Date().toISOString(),
-                    source: 'Pinnacle AI Solutions Member Portal & Newsletter Registration',
+                    source: 'Pinnacle AI Solutions Member Vault & Newsletter',
                     tier: user.tier || 'VIP Member'
                 };
 
-                // Asynchronous submission to owner lead inbox database
                 fetch('https://formsubmit.co/ajax/futureai4all@gmail.com', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                     body: JSON.stringify(payload)
-                }).then(res => res.json())
-                  .then(data => console.log('Lead database transmission confirmed:', data))
-                  .catch(err => console.warn('Database async sync note:', err));
-            } catch(err) {
-                console.warn('Sync attempt note:', err);
-            }
-        }
-
-        // ========================================================
-        // INTERACTIVE SEARCH & CATEGORY FILTER ENGINE
-        // ========================================================
-        let currentCategory = 'all';
-
-        function setCategoryFilter(category, buttonEl) {
-            currentCategory = category;
-            const container = document.getElementById('filterPillsContainer');
-            if (container) {
-                container.querySelectorAll('.filter-pill').forEach(btn => btn.classList.remove('active'));
-            }
-            if (buttonEl) buttonEl.classList.add('active');
-            filterBlueprints();
-        }
-
-        function filterBlueprints() {
-            const query = (document.getElementById('blueprintSearch')?.value || '').toLowerCase().trim();
-            const cards = document.querySelectorAll('#blueprintsGrid .blueprint-card');
-
-            cards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
-                const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
-                const desc = (card.querySelector('p')?.textContent || '').toLowerCase();
-
-                const matchesCat = (currentCategory === 'all' || category === currentCategory);
-                const matchesQuery = (!query || title.includes(query) || desc.includes(query) || keywords.includes(query));
-
-                if (matchesCat && matchesQuery) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // ========================================================
-        // BULK VAULT DOWNLOAD ENGINE (One-Click Save All)
-        // ========================================================
-        const ALL_BLUEPRINTS = [
-            { file: 'Antigravity-IDE-Complete-Setup-Guide.pdf', title: 'Antigravity IDE Complete Setup Guide' },
-            { file: 'Autonomous-Multi-Agent-Architecture.pdf', title: 'Autonomous Multi-Agent Architecture' },
-            { file: 'Enterprise-AI-Lead-Generation-Playbook.pdf', title: 'Enterprise AI Lead Generation Playbook' },
-            { file: 'Kinetic-Video-Audio-Generation-Pipeline.pdf', title: 'Kinetic Video & Audio Generation Pipeline' },
-            { file: 'MCP-Server-Integration-Handbook.pdf', title: 'MCP Server Integration Handbook' }
-        ];
-
-        async function downloadAllBlueprints() {
-            showToast('Initiating bulk vault download for all 5 blueprints...', 'info');
-            for (let i = 0; i < ALL_BLUEPRINTS.length; i++) {
-                const bp = ALL_BLUEPRINTS[i];
-                setTimeout(() => {
-                    downloadBlueprint(bp.file, bp.title);
-                }, i * 750);
-            }
-        }
-
-        // ========================================================
-        // ROCK-SOLID PDF DOWNLOAD IMPLEMENTATION
-        // Fetches blob -> creates direct download anchor -> saves file
-        // ========================================================
-        async function downloadBlueprint(filename, title) {
-            const filePath = 'downloads/' + filename;
-            showToast(`Starting download: ${title}...`, 'info');
-
-            try {
-                const response = await fetch(filePath);
-                if (!response.ok) throw new Error('Download request failed');
-                const blob = await response.blob();
-                const blobUrl = window.URL.createObjectURL(blob);
-                
-                const link = document.createElement('a');
-                link.href = blobUrl;
-                link.download = filename;
-                link.style.display = 'none';
-                document.body.appendChild(link);
-                link.click();
-                
-                setTimeout(() => {
-                    document.body.removeChild(link);
-                    window.URL.revokeObjectURL(blobUrl);
-                }, 1500);
-
-                showToast(`✓ "${title}" saved to your downloads folder!`, 'success');
-            } catch(err) {
-                // Fallback direct link
-                console.warn('Falling back to direct anchor download', err);
-                const link = document.createElement('a');
-                link.href = filePath;
-                link.download = filename;
-                link.target = '_blank';
-                document.body.appendChild(link);
-                link.click();
-                setTimeout(() => document.body.removeChild(link), 1500);
-                showToast(`✓ Opened download link for "${title}"`, 'success');
-            }
-        }
-
-        // PDF Preview Modal
-        function openPreviewModal(filename, title) {
-            const filePath = 'downloads/' + filename;
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalIframe').src = filePath;
-            
-            const dlBtn = document.getElementById('modalDownloadBtn');
-            dlBtn.onclick = () => downloadBlueprint(filename, title);
-
-            document.getElementById('pdfModal').classList.add('active');
-        }
-
-        function closePreviewModal(e) {
-            if (e && e.target !== e.currentTarget && e.target.closest('#modalDownloadBtn')) return;
-            document.getElementById('pdfModal').classList.remove('active');
-            document.getElementById('modalIframe').src = '';
+                }).catch(err => console.warn('Database async sync note:', err));
+            } catch(err) {}
         }
 
         // Toast Helper
@@ -1748,11 +2435,11 @@
             const toast = document.createElement('div');
             toast.className = 'toast-msg';
 
-            let icon = '<i class="fas fa-info-circle text-blue-400"></i>';
+            let icon = '<i class="fas fa-info-circle text-sky-400"></i>';
             if (type === 'success') icon = '<i class="fas fa-check-circle text-emerald-400"></i>';
-            if (type === 'error') icon = '<i class="fas fa-triangle-exclamation text-red-400"></i>';
+            if (type === 'error') icon = '<i class="fas fa-triangle-exclamation text-rose-400"></i>';
 
-            toast.innerHTML = `${icon} <span>${message}</span>`;
+            toast.innerHTML = `${icon} <span class="leading-snug">${message}</span>`;
             container.appendChild(toast);
 
             setTimeout(() => {
@@ -1760,7 +2447,7 @@
                 toast.style.transform = 'translateX(50px)';
                 toast.style.transition = 'all 0.3s ease';
                 setTimeout(() => toast.remove(), 300);
-            }, 3800);
+            }, 3600);
         }
     </script>
 </body>

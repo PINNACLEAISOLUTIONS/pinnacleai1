@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous AI Phone Receptionist | Pinnacle AI Solutions</title>
+    <meta name="description"
+        content="Enterprise AI Voice Receptionist powered by Telnyx Dedicated SIP, Deepgram, and sub-480ms human-grade turn taking. Self-hosted telephony with zero SaaS markups.">
+    <meta name="keywords"
+        content="AI phone receptionist, voice agent, Retell AI alternative, Telnyx SIP, medical receptionist, High Springs Pediatrics, AI voice triage">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Autonomous AI Phone Receptionist | Pinnacle AI Solutions">
+    <meta property="og:description"
+        content="Sub-480ms streaming voice agent handling 1,000+ simultaneous calls with natural interruption and automatic booking.">
+    <meta property="og:image" content="https://pinnacleaisolution.site/og-preview.png">
+
+    <!-- Tailwind CSS (v2.2 CDN matching site) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Retell AI Typography: Inter + Plus Jakarta Sans + Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Core Site Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="enhancements.css">
+
+    <style>
+        /* ======================================================== */
+        /* RETELL AI SIGNATURE DESIGN SYSTEM & TOKENS               */
+        /* (Matched to https://www.retellai.com/)                   */
+        /* ======================================================== */
+        :root {
+            --navy: #00122e;
+            --navy-deep: #000b1d;
+            --white: #ffffff;
+            --ink: rgba(255, 255, 255, 0.88);
+            --dim: rgba(255, 255, 255, 0.60);
+            --hair: rgba(255, 255, 255, 0.14);
+            --cyan-glow: #38bdf8;
+            --purple-voice: #a855f7;
+            --green-active: #10b981;
+            /* Retell Font Stack */
+            --sans: 'Untitled Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --heading: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --ease-retell: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body {
+            font-family: var(--sans);
+            background-color: var(--navy-deep);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            letter-spacing: -0.012em;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: var(--heading);
+            letter-spacing: -0.025em;
+        }
+
+        /* Ambient Radiant Deep Space Glow */
+        .retell-ambient {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(900px circle at 50% 0%, rgba(56, 189, 248, 0.15), transparent 70%),
+                radial-gradient(800px circle at 85% 25%, rgba(168, 85, 247, 0.12), transparent 70%),
+                radial-gradient(800px circle at 15% 45%, rgba(16, 185, 129, 0.08), transparent 70%),
+                var(--navy-deep);
+        }
+
+        .retell-ambient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* Retell-Style Text Blur Pulse Animation on Button Hover */
+        @keyframes nav-text-blur-new {
+            0% { filter: blur(0px); }
+            25% { filter: blur(1.5px); }
+            50% { filter: blur(2.5px); }
+            100% { filter: blur(0px); }
+        }
+
+        .retell-btn-blur:hover .blur-label {
+            display: inline-block;
+            animation: nav-text-blur-new 0.85s var(--ease-retell);
+        }
+
+        /* Retell Voice Concentric Ring Pulse */
+        @keyframes retell-voice-ring {
+            0% {
+                transform: scale(0.85);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.35);
+                opacity: 0.25;
+            }
+            100% {
+                transform: scale(1.85);
+                opacity: 0;
+            }
+        }
+
+        .voice-ring {
+            position: absolute;
+            border-radius: 9999px;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            pointer-events: none;
+            animation: retell-voice-ring 3.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+        .voice-ring:nth-child(2) {
+            animation-delay: 1s;
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+        .voice-ring:nth-child(3) {
+            animation-delay: 2s;
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+
+        /* Retell Voice Equalizer Waveform */
+        .retell-equalizer {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            height: 38px;
+            padding: 0 10px;
+        }
+        .eq-bar {
+            width: 3.5px;
+            background: linear-gradient(180deg, #38bdf8 0%, #a855f7 100%);
+            border-radius: 99px;
+            transition: height 0.15s ease;
+            height: 8px;
+            animation: eqDance 1.2s ease-in-out infinite alternate;
+        }
+        .eq-bar:nth-child(2) { animation-delay: 0.15s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.3s; }
+        .eq-bar:nth-child(4) { animation-delay: 0.45s; }
+        .eq-bar:nth-child(5) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(6) { animation-delay: 0.5s; }
+        .eq-bar:nth-child(7) { animation-delay: 0.35s; }
+        .eq-bar:nth-child(8) { animation-delay: 0.1s; }
+        .eq-bar:nth-child(9) { animation-delay: 0.4s; }
+        .eq-bar:nth-child(10) { animation-delay: 0.25s; }
+        .eq-bar:nth-child(11) { animation-delay: 0.55s; }
+        .eq-bar:nth-child(12) { animation-delay: 0.18s; }
+
+        @keyframes eqDance {
+            0% { height: 6px; opacity: 0.5; }
+            50% { height: 28px; opacity: 1; }
+            100% { height: 12px; opacity: 0.7; }
+        }
+
+        .is-paused .eq-bar {
+            animation-play-state: paused !important;
+            height: 5px !important;
+            opacity: 0.35 !important;
+        }
+
+        /* Infinite Retell Feature Marquee */
+        @keyframes marquee-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee-left 32s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Retell Card Styling */
+        .retell-card {
+            background: rgba(0, 18, 46, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--hair);
+            border-radius: 20px;
+            transition: all 0.3s var(--ease-retell);
+        }
+        .retell-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 45px -12px rgba(56, 189, 248, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* Live Pulsing Dot */
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            box-shadow: 0 0 12px #10b981;
+            animation: livePulse 1.8s infinite;
+        }
+        @keyframes livePulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        /* Turn-Taking Transcript Bubble */
+        .transcript-bubble {
+            border-radius: 16px;
+            padding: 16px 20px;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            transition: all 0.25s ease;
+        }
+        .transcript-bubble.caller {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            margin-right: 2rem;
+        }
+        .transcript-bubble.sarah {
+            background: rgba(56, 189, 248, 0.09);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: #ffffff;
+            margin-left: 2rem;
+            box-shadow: 0 10px 25px -10px rgba(56, 189, 248, 0.2);
+        }
+        .transcript-bubble.active-speech {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Unified Navigation Styles */
+        .nav-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-dropdown-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu,
+        .nav-dropdown:focus-within .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: rgba(0, 18, 46, 0.98);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            border-radius: 14px;
+            padding: 8px;
+            min-width: 260px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.22s var(--ease-retell);
+            z-index: 9999;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: #f1f5f9;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+        .dropdown-item:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            transform: translateX(4px);
+        }
+        .dropdown-icon {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        .dropdown-title {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #f8fafc;
+            display: block;
+        }
+        .dropdown-sub {
+            font-size: 0.72rem;
+            color: #94a3b8;
+            margin-top: 2px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="loaded">
+    <div class="retell-ambient"></div>
+
+    <!-- MAIN UNIFIED HEADER NAVIGATION -->
+    <header id="main-header" class="relative z-50">
+        <div class="header-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="header-logo flex items-center">
+                <a href="index.html" class="logo-brand-link flex items-center gap-3">
+                    <div class="logo-emblem-wrap w-10 h-10 flex-shrink-0">
+                        <img src="pinnacle-emblem.png" alt="Pinnacle AI" class="w-full h-full object-contain">
+                    </div>
+                    <div class="logo-text-wrap flex flex-col">
+                        <span class="logo-text-primary text-lg font-black tracking-wider text-white">PINNACLE <span class="text-blue-400">AI</span></span>
+                        <span class="logo-text-sub text-xs tracking-widest text-gray-400 font-semibold">SOLUTIONS</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Header Nav Links -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold tracking-wider text-gray-300">
+                <a href="index.html" class="hover:text-blue-400 transition-colors">HOME</a>
+                <a href="index.html#services" class="hover:text-blue-400 transition-colors">SERVICES</a>
+                <a href="phone-agent.html" class="text-blue-400 font-bold border-b-2 border-blue-400 pb-1">PHONE AGENT</a>
+                <a href="index.html#about" class="hover:text-blue-400 transition-colors">ABOUT</a>
+                <a href="blogs.html" class="hover:text-blue-400 transition-colors">BLOGS</a>
+                <div class="nav-dropdown">
+                    <a href="portal.html" class="hover:text-blue-400 transition-colors nav-dropdown-trigger">
+                        MEMBER PORTAL <span style="font-size: 0.65em; margin-left: 3px;">▼</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="portal.html#register" class="dropdown-item">
+                            <span class="dropdown-icon">✨</span>
+                            <div>
+                                <span class="dropdown-title">Register & Newsletter</span>
+                                <span class="dropdown-sub">Weekly AI updates & blueprints</span>
+                            </div>
+                        </a>
+                        <a href="portal.html#login" class="dropdown-item">
+                            <span class="dropdown-icon">🔐</span>
+                            <div>
+                                <span class="dropdown-title">Member Sign In</span>
+                                <span class="dropdown-sub">Unlock member benefits & vault</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Header Right Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="tel:+13866390334" class="px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-xs font-bold text-gray-200 border border-gray-700 transition flex items-center gap-2">
+                    <i class="fas fa-phone-volume text-emerald-400"></i> +1 (386) 639-0334
+                </a>
+                <a href="portal.html#register" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition shadow retell-btn-blur">
+                    <span class="blur-label">Get AI Phone Agent</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-gray-300 hover:text-white focus:outline-none" onclick="toggleMobileNav()">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileDrawer" class="hidden md:hidden bg-gray-900 border-b border-gray-800 px-6 py-4 space-y-3">
+            <a href="index.html" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">HOME</a>
+            <a href="index.html#services" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">SERVICES</a>
+            <a href="phone-agent.html" class="block text-blue-400 text-sm font-bold">PHONE AGENT</a>
+            <a href="blogs.html" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">BLOGS</a>
+            <a href="portal.html" class="block text-gray-300 hover:text-blue-400 text-sm font-semibold">MEMBER PORTAL</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION: RETELL-INSPIRED VOICE AGENT HERO -->
+    <section class="relative z-10 pt-16 pb-12 lg:pt-24 lg:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Live Status Pill -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-950/80 border border-blue-400/30 text-blue-300 text-xs font-semibold mb-6 shadow-sm">
+            <span class="live-dot"></span>
+            <span>Sub-480ms Latency · Carrier-Direct SIP Telephony</span>
+        </div>
+
+        <!-- Main Headline (Retell Typography Style) -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight max-w-5xl mx-auto leading-[1.08] mb-6">
+            Autonomous Voice Agents <br>
+            <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400 bg-clip-text text-transparent">
+                Indistinguishable from Human.
+            </span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-gray-300 text-base sm:text-xl max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+            Answers every inbound call on the first ring, handles natural interruptions, executes live database actions, and books appointments into your calendar 24/7/365.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <a href="#simulator" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold text-sm shadow-lg shadow-blue-500/25 transition retell-btn-blur flex items-center justify-center gap-2">
+                <i class="fas fa-play text-xs"></i>
+                <span class="blur-label">Simulate Live Patient Call</span>
+            </a>
+            <a href="tel:+13866390334" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gray-900/90 hover:bg-gray-800 text-white font-bold text-sm border border-gray-700 transition flex items-center justify-center gap-2">
+                <i class="fas fa-phone text-emerald-400 text-xs"></i>
+                <span>Call Sarah: (386) 639-0334</span>
+            </a>
+        </div>
+
+        <!-- RETELL-STYLE CONTINUOUS INFINITE TICKER MARQUEE -->
+        <div class="relative overflow-hidden py-4 border-y border-white/10 bg-navy-deep/60">
+            <div class="marquee-track flex items-center gap-12 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+                <div class="flex items-center gap-2"><i class="fas fa-bolt text-yellow-400"></i> Sub-480ms Turn-Taking</div>
+                <div class="flex items-center gap-2"><i class="fas fa-shield-halved text-emerald-400"></i> HIPAA & SOC-2 Ready</div>
+                <div class="flex items-center gap-2"><i class="fas fa-network-wired text-cyan-400"></i> Telnyx Dedicated SIP Ingress</div>
+                <div class="flex items-center gap-2"><i class="fas fa-microphone text-purple-400"></i> Natural Interruption & Barge-In</div>
+                <div class="flex items-center gap-2"><i class="fas fa-calendar-check text-emerald-400"></i> Autonomous Appointment Booking</div>
+                <div class="flex items-center gap-2"><i class="fas fa-coins text-yellow-400"></i> Zero SaaS Cloud Markup</div>
+                <div class="flex items-center gap-2"><i class="fas fa-server text-blue-400"></i> Self-Hosted Telephony Gateway</div>
+                <!-- Duplicate for seamless loop -->
+                <div class="flex items-center gap-2"><i class="fas fa-bolt text-yellow-400"></i> Sub-480ms Turn-Taking</div>
+                <div class="flex items-center gap-2"><i class="fas fa-shield-halved text-emerald-400"></i> HIPAA & SOC-2 Ready</div>
+                <div class="flex items-center gap-2"><i class="fas fa-network-wired text-cyan-400"></i> Telnyx Dedicated SIP Ingress</div>
+                <div class="flex items-center gap-2"><i class="fas fa-microphone text-purple-400"></i> Natural Interruption & Barge-In</div>
+                <div class="flex items-center gap-2"><i class="fas fa-calendar-check text-emerald-400"></i> Autonomous Appointment Booking</div>
+                <div class="flex items-center gap-2"><i class="fas fa-coins text-yellow-400"></i> Zero SaaS Cloud Markup</div>
+                <div class="flex items-center gap-2"><i class="fas fa-server text-blue-400"></i> Self-Hosted Telephony Gateway</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE RETELL-STYLE CALL SIMULATOR & AUDIO VISUALIZER -->
+    <section id="simulator" class="relative z-10 py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="retell-card p-6 sm:p-10 border border-blue-500/30 relative overflow-hidden">
+            
+            <!-- Top Controls Bar -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-white/10 gap-4">
+                <div class="flex items-center gap-4">
+                    <!-- Concentric Voice Orb -->
+                    <div class="relative w-14 h-14 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white text-xl shadow-lg shadow-cyan-500/25 flex-shrink-0">
+                        <div class="voice-ring" style="inset: -8px;"></div>
+                        <div class="voice-ring" style="inset: -16px;"></div>
+                        <div class="voice-ring" style="inset: -24px;"></div>
+                        <i class="fas fa-headset text-white relative z-10"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-xl font-bold text-white">Sarah — Clinical AI Receptionist</h3>
+                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-900/60 text-emerald-300 border border-emerald-500/30">
+                                LIVE TELNYX LINE
+                            </span>
+                        </div>
+                        <p class="text-xs text-gray-400 font-mono mt-0.5">
+                            Client: High Springs Pediatrics · High Springs, FL · Dedicated DID: +1 (386) 639-0334
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Equalizer & Audio Play Trigger -->
+                <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                    <div id="equalizerVisualizer" class="retell-equalizer is-paused">
+                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                        <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+                    </div>
+                    <button id="callToggleBtn" onclick="toggleCallSimulation()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition">
+                        <i id="callBtnIcon" class="fas fa-play"></i>
+                        <span id="callBtnText">Play Interactive Call</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Audio Element (Loads real Sarah recording from workspace) -->
+            <audio id="sarahAudio" src="audio/sarah_sample.wav" preload="auto"></audio>
+
+            <!-- Call Telemetry Pills -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+                <div class="p-3 rounded-xl bg-navy/60 border border-white/5 text-center">
+                    <div class="text-[11px] text-gray-400 uppercase font-mono">Turn Latency</div>
+                    <div class="text-base font-bold text-cyan-400 font-mono mt-0.5">~480 ms</div>
+                </div>
+                <div class="p-3 rounded-xl bg-navy/60 border border-white/5 text-center">
+                    <div class="text-[11px] text-gray-400 uppercase font-mono">Telephony Trunk</div>
+                    <div class="text-base font-bold text-emerald-400 font-mono mt-0.5">Telnyx SIP</div>
+                </div>
+                <div class="p-3 rounded-xl bg-navy/60 border border-white/5 text-center">
+                    <div class="text-[11px] text-gray-400 uppercase font-mono">STT Engine</div>
+                    <div class="text-base font-bold text-purple-400 font-mono mt-0.5">Deepgram Nova-2</div>
+                </div>
+                <div class="p-3 rounded-xl bg-navy/60 border border-white/5 text-center">
+                    <div class="text-[11px] text-gray-400 uppercase font-mono">Voice Model</div>
+                    <div class="text-base font-bold text-yellow-400 font-mono mt-0.5">Eleven Flash v2</div>
+                </div>
+            </div>
+
+            <!-- Live Turn-Taking Transcript Stream -->
+            <div id="transcriptFeed" class="space-y-4 max-h-[380px] overflow-y-auto pr-2 py-2">
+                
+                <!-- Turn 1: Sarah Greeting -->
+                <div class="transcript-bubble sarah" id="bubble1">
+                    <div class="text-[11px] font-bold text-cyan-400 font-mono mb-1 flex items-center gap-1.5">
+                        <i class="fas fa-robot text-xs"></i> SARAH (AI RECEPTIONIST) · 00:01
+                    </div>
+                    "Thank you for calling High Springs Pediatrics and Primary Care. My name is Sarah. Are you calling to schedule an appointment, check office hours, or speak with our clinical nurse?"
+                </div>
+
+                <!-- Turn 2: Caller Inquiry -->
+                <div class="transcript-bubble caller" id="bubble2">
+                    <div class="text-[11px] font-bold text-gray-400 font-mono mb-1 flex items-center gap-1.5">
+                        <i class="fas fa-user text-xs"></i> PATIENT GUARDIAN · 00:07
+                    </div>
+                    "Hi Sarah! My four-year-old woke up with a fever this morning. Do you have any sick visits open with Dr. Ahmed this afternoon?"
+                </div>
+
+                <!-- Turn 3: Tool Execution & Availability -->
+                <div class="transcript-bubble sarah" id="bubble3">
+                    <div class="text-[11px] font-bold text-cyan-400 font-mono mb-1 flex items-center gap-1.5">
+                        <i class="fas fa-robot text-xs"></i> SARAH (AI RECEPTIONIST) · 00:12
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-900/40 border border-blue-500/30 text-[11px] text-blue-300 font-mono mb-2">
+                        <i class="fas fa-check text-emerald-400"></i> Executed tool: check_availability(Dr. Ahmed, "pediatric-sick", today)
+                    </div>
+                    <br>
+                    "I am so sorry to hear your little one is feeling sick. Let me look at Dr. Ahmed's schedule for you right now... Yes! Dr. Ahmed has open consultation slots at 2:15 PM and 4:00 PM today. Which one works best for you?"
+                </div>
+
+                <!-- Turn 4: Caller Selection -->
+                <div class="transcript-bubble caller" id="bubble4">
+                    <div class="text-[11px] font-bold text-gray-400 font-mono mb-1 flex items-center gap-1.5">
+                        <i class="fas fa-user text-xs"></i> PATIENT GUARDIAN · 00:21
+                    </div>
+                    "2:15 PM would be perfect, thank you!"
+                </div>
+
+                <!-- Turn 5: Autonomous Database Booking & Confirmation -->
+                <div class="transcript-bubble sarah" id="bubble5">
+                    <div class="text-[11px] font-bold text-cyan-400 font-mono mb-1 flex items-center gap-1.5">
+                        <i class="fas fa-robot text-xs"></i> SARAH (AI RECEPTIONIST) · 00:26
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-900/40 border border-emerald-500/30 text-[11px] text-emerald-300 font-mono mb-2">
+                        <i class="fas fa-check text-emerald-400"></i> Executed tool: book_appointment(date: "today", time: "14:15", status: "confirmed", id: 742)
+                    </div>
+                    <br>
+                    "Wonderful! 2:15 PM is booked on Dr. Ahmed's schedule. Your confirmation code is <strong>7-4-2</strong>. We have sent a confirmation SMS to this number with our clinic directions. We will see you and your child this afternoon!"
+                </div>
+
+            </div>
+
+            <!-- Bottom Action Footer -->
+            <div class="pt-6 mt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-database text-cyan-400"></i>
+                    <span>Direct SQLite & EHR Integration · Zero cloud latency · HIPAA compliant</span>
+                </div>
+                <a href="portal.html#register" class="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1">
+                    Deploy for your business line <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ARCHITECTURAL COMPARISON: RETELL STYLE BENCHMARK TABLE -->
+    <section class="relative z-10 py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                Why Pinnacle Telephony Outperforms Legacy Staff & SaaS
+            </h2>
+            <p class="text-gray-400 text-sm sm:text-base">
+                Direct carrier integration eliminates the heavy latency and per-minute price taxes of middlemen SaaS wrappers.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Col 1: Human Phone Staff -->
+            <div class="retell-card p-6 border-gray-800">
+                <div class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2 font-mono">Traditional Model</div>
+                <h3 class="text-xl font-bold text-white mb-4">Full-Time Human Staff</h3>
+                <div class="space-y-4 text-xs text-gray-300">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-times text-red-400 mt-0.5"></i>
+                        <span><strong>$3,500 - $4,200 / month</strong> in salary, benefits & taxes</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-times text-red-400 mt-0.5"></i>
+                        <span><strong>1 call at a time</strong> (callers wait on hold or go to voicemail)</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-times text-red-400 mt-0.5"></i>
+                        <span>Limited to 8-hour workday (no nights, weekends, or holidays)</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-times text-red-400 mt-0.5"></i>
+                        <span>Weeks of retraining whenever scripts or staff change</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 2: Third-Party SaaS Wrappers (Vapi, Bland) -->
+            <div class="retell-card p-6 border-gray-800">
+                <div class="text-sm font-bold text-yellow-400 uppercase tracking-wider mb-2 font-mono">SaaS Cloud Middlemen</div>
+                <h3 class="text-xl font-bold text-white mb-4">Generic Voice SaaS</h3>
+                <div class="space-y-4 text-xs text-gray-300">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-triangle-exclamation text-yellow-400 mt-0.5"></i>
+                        <span><strong>$0.15 - $0.25 / minute</strong> recurring markup tax</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-triangle-exclamation text-yellow-400 mt-0.5"></i>
+                        <span><strong>1,100ms - 1,800ms lag</strong> (awkward robotic pauses)</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-triangle-exclamation text-yellow-400 mt-0.5"></i>
+                        <span>Patient & client audio passes through third-party cloud servers</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-triangle-exclamation text-yellow-400 mt-0.5"></i>
+                        <span>Prone to vendor lock-in, API throttling & outages</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Col 3: Pinnacle Autonomous Telephony Engine -->
+            <div class="retell-card p-6 border-cyan-400/50 bg-blue-950/40 shadow-xl shadow-cyan-500/10">
+                <div class="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-2 font-mono">Pinnacle Telephony Stack</div>
+                <h3 class="text-xl font-bold text-white mb-4">Self-Hosted Tel-Agent</h3>
+                <div class="space-y-4 text-xs text-gray-200">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check text-emerald-400 mt-0.5"></i>
+                        <span><strong>Under $0.015 / minute</strong> wholesale carrier SIP rates</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check text-emerald-400 mt-0.5"></i>
+                        <span><strong>Sub-480ms ultra-low latency</strong> turn-taking</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check text-emerald-400 mt-0.5"></i>
+                        <span><strong>1,000+ simultaneous calls</strong> with zero wait times</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check text-emerald-400 mt-0.5"></i>
+                        <span>Self-hosted database, strict HIPAA compliance & total privacy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-white/10 bg-navy-deep py-10 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 Pinnacle AI Solutions. All rights reserved. Self-Hosted Telephony & Autonomous Agents.</p>
+            <div class="flex items-center space-x-6 text-gray-400">
+                <a href="index.html" class="hover:text-blue-400 transition">Home</a>
+                <a href="index.html#services" class="hover:text-blue-400 transition">Services</a>
+                <a href="phone-agent.html" class="text-blue-400 font-semibold">Phone Agent</a>
+                <a href="portal.html" class="hover:text-blue-400 transition">Member Portal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SIMULATOR SCRIPT -->
+    <script>
+        let isSimulating = false;
+        const audio = document.getElementById('sarahAudio');
+        const eq = document.getElementById('equalizerVisualizer');
+        const btn = document.getElementById('callToggleBtn');
+        const btnIcon = document.getElementById('callBtnIcon');
+        const btnText = document.getElementById('callBtnText');
+        const bubbles = [
+            document.getElementById('bubble1'),
+            document.getElementById('bubble2'),
+            document.getElementById('bubble3'),
+            document.getElementById('bubble4'),
+            document.getElementById('bubble5')
+        ];
+
+        function toggleMobileNav() {
+            const drawer = document.getElementById('mobileDrawer');
+            if (drawer) drawer.classList.toggle('hidden');
+        }
+
+        function toggleCallSimulation() {
+            if (!isSimulating) {
+                startSimulation();
+            } else {
+                stopSimulation();
+            }
+        }
+
+        function startSimulation() {
+            isSimulating = true;
+            eq.classList.remove('is-paused');
+            btnIcon.className = 'fas fa-pause';
+            btnText.textContent = 'Pause Call';
+
+            // Try playing audio
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(e => console.log('Audio autoplay prevented, running visual simulation'));
+            }
+
+            // Animate through transcript bubbles
+            animateTranscript(0);
+        }
+
+        function stopSimulation() {
+            isSimulating = false;
+            eq.classList.add('is-paused');
+            btnIcon.className = 'fas fa-play';
+            btnText.textContent = 'Play Interactive Call';
+            if (audio) audio.pause();
+            bubbles.forEach(b => b.classList.remove('active-speech'));
+        }
+
+        function animateTranscript(step) {
+            if (!isSimulating) return;
+
+            bubbles.forEach((b, idx) => {
+                if (idx === step) {
+                    b.classList.add('active-speech');
+                    b.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    b.classList.remove('active-speech');
+                }
+            });
+
+            const delays = [6000, 5000, 8000, 4000, 7000];
+            if (step < bubbles.length - 1) {
+                setTimeout(() => {
+                    if (isSimulating) animateTranscript(step + 1);
+                }, delays[step] || 5000);
+            } else {
+                setTimeout(() => {
+                    if (isSimulating) stopSimulation();
+                }, delays[step] || 5000);
+            }
+        }
+
+        if (audio) {
+            audio.addEventListener('ended', () => {
+                stopSimulation();
+            });
+        }
+    </script>
+</body>
+</html>
